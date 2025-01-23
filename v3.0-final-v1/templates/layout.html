@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <!--set meta properties-->
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!--link to css stylesheet-->
+        <link href="/static/styles.css" rel="stylesheet">
+
+        <!--link to js script-->
+        <script src="/static/script.js"></script>
+
+        <!--set favicon-->
+        <link href="/static/favicon.ico" rel="icon">
+
+        <!--set title-->
+        <title>{% block title %}{% endblock %} | Cookies & Cache!</title>
+
+    </head>
+
+    <body>
+
+        <!--set header for welcome message, brand & logo-->
+        {% block header %}
+            <header class="brand-header center">
+                <div class="top-header">
+                    <div id="welcome">
+                        <span id="a">WELCOME TO COOKIES & CACHE</span>
+                        <span id="b">ENJOY UP TO 10% OFF SELECTED PRODUCTS WITH CODE: "YAY"!</span>
+                    </div>
+                </div>
+                <a href="/">
+                    <img src="/static/cookies.jpg" alt="Cookies & Cache Brand Logo" width="150px" height="100px">
+                    <div>Cookies & Cache</div>
+                </a>
+            </header>
+        {% endblock %}
+
+        <!--create navbar-->
+        {% block navbar %}
+            <nav class="navbar">
+                <ul class="nav-list">
+                <!--dropdown-->
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="dropdown-button">
+                                <a href="/">SHOP NOW</a>
+                                <span class="caret-down"></span>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/">ALL PRODUCTS</a>
+                                <a href="/favs">ALL-TIME FAVOURITES</a>
+                            </div>
+                        </div>
+                    </li>
+                <!--normal nav-item-->
+                    <li class="nav-item"><a class="nav-link" href="/seasonal">SEASONAL DELIGHTS</a></li>
+                <!--normal nav-item-->
+                    <li class="nav-item"><a class="nav-link" href="/about">ABOUT</a></li>
+                <!--search bar-->
+                    <li class="nav-item">
+                        <div class="search">
+                            <input type="text" name="search" id="nav-searchbar" placeholder="Search for a product" onkeydown="search()">
+                            <button class="nav-searchbutton">Search</button>
+                            <div class="nav-searchlist"></div>
+                        </div>
+                    </li>
+                <!--profile icon-->
+                    <li class="nav-item"><a class="nav-profile" href="/profile"><img src="/static/profile_icon.jpg" alt="Profile" class="nav-profile"></a></li>
+                <!--cart icon-->
+                    <li class="nav-item"><a class="nav-profile" href="/cart"><img src="/static/cart_icon.png" alt="Cart" class="nav-cart"></a></li>
+                </ul>
+            </nav>
+        {% endblock %}
+
+        <!--main-->
+        <main>
+
+            {% block main %}{% endblock %}
+
+            <!--using flask flash() for alerts-->
+            <!--for success messages-->
+            {% if get_flashed_messages(category_filter=["success"]) %}
+                <div class="overlay" onclick="overlay_off()">
+                    <div class="alert" style="height:50%;">
+                    <!--use cross symbol to close alert-->
+                        <span class="close-alert" onclick="this.parentElement.style.display='none';overlay_off()">&times;</span>
+                    <!--alert message-->
+                        <p style="color:blue;">{{ get_flashed_messages() | join(" ") }}</p>
+                    <!--nav buttons-->
+                        <a href="/" id="left">Shop all products ></a>
+                        <a href="/cart" id="right">View Cart ></a>
+                    </div>
+                </div>
+            {% endif %}
+            <!--for error messages-->
+            {% if get_flashed_messages(category_filter=["error"]) %}
+                <div class="overlay" onclick="overlay_off()">
+                    <div class="alert" style="height:40%;">
+                    <!--use cross symbol to close alert-->
+                        <span class="close-alert" onclick="this.parentElement.style.display='none';overlay_off()">&times;</span>
+                    <!--alert message-->
+                        <p style="color:red;">{{ get_flashed_messages() | join(" ") }}</p>
+                    </div>
+                </div>
+            {% endif %}
+            <!--for alert messages-->
+            {% if get_flashed_messages(category_filter=["alert"]) %}
+                <div class="overlay" onclick="overlay_off()">
+                    <div class="alert" style="height:40%;">
+                    <!--use cross symbol to close alert-->
+                        <span class="close-alert" onclick="this.parentElement.style.display='none';overlay_off()">&times;</span>
+                    <!--alert message-->
+                        <p style="color:green;">{{ get_flashed_messages() | join(" ") }}</p>
+                    </div>
+                </div>
+            {% endif %}
+
+        </main>
+
+        <!--footer-->
+        <footer>
+            <!--split into three columns-->
+            <div class="vert-split-three">
+                <div class="each-third">
+                    <div class="footer-heading">CONTACT US</div>
+                    <div>Locate Us</div>
+                    <div>FAQs</div>
+                </div>
+                <div class="each-third">
+                    <div class="footer-heading"><a href="/about">ABOUT US</a></div>
+                    <div>Terms and Conditions</div>
+                    <div>Privacy Policy</div>
+                </div>
+                <div class="each-third">
+                    <div class="footer-heading">COOKIES & CACHE</div>
+                    <div>Delivery Policy</div>
+                </div>
+            </div>
+            <!--bottommost copyright text-->
+            <div class="bottom-footer">Copyright © 2024 General379 Pte Ltd | Terms of Use | Privacy Policy</div>
+        </footer>
+
+    </body>
+
+</html>

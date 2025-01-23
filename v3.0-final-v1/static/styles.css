@@ -1,0 +1,912 @@
+body {
+    margin: 0 auto;
+    font: 1.5vw "Trebuchet MS", sans-serif;
+}
+
+/* Page title */
+h1 {
+    font: bold small-caps 2.5vw Georgia, serif;
+    letter-spacing: 0.2vw;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Page subtitle */
+h4 {
+    margin-top: -40px;
+    font: 1.5vw "Trebuchet MS", sans-serif;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+/* Page text */
+p {
+    margin: 25px 100px;
+    font: inherit;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Individual product page title */
+h2 {
+    font: bold 2.5vw "Trebuchet MS", sans-serif;
+}
+
+/* Product description title */
+h3 {
+    font: bold 1.5vw "Trebuchet MS", sans-serif;
+}
+
+/* Product description (also p) */
+.pdt-desc {
+    margin: 0 20% 0 0;
+    font: 1vw "Trebuchet MS", sans-serif;
+}
+
+/* for centralising any block */
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* flash messages and alerts */
+
+.overlay {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+    cursor: pointer;
+}
+
+.alert {
+    display: block;
+    position: fixed;
+    top: 15%;
+    left: 25%;
+    background-color: white;
+    width: 50%;
+    height: 50%;
+    z-index: 100;
+}
+
+.close-alert {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    color: black;
+    font-weight: bold;
+    font-size: 2.5vw;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-alert:hover {
+    color: red;
+}
+
+.alert p {
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    margin: 0;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    font: bold 2vw "Trebuchet MS", sans-serif;
+    color: black;
+    line-height: 2;
+}
+
+.alert a {
+    display: block;
+    position: absolute;
+    bottom: 25%;
+    padding: 17.5px;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+    text-decoration: none;
+}
+
+.alert a:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+.alert a#left {
+    left: 20%;
+}
+
+.alert a#right {
+    right: 20%;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* header */
+
+/* topmost welcome block */
+.top-header {
+    display: block;
+    max-width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: black;
+    /* text */
+    font: 0.8vw "Trebuchet MS", sans-serif;
+    color: white;
+    text-align: center;
+}
+
+/* change text on mouseover */
+div#welcome span#a {
+    display: inline;
+}
+
+div#welcome:hover span#a {
+    display: none;
+}
+
+div#welcome span#b {
+    display: none;
+}
+
+div#welcome:hover span#b {
+    display: inline;
+}
+
+/* brand & logo */
+.brand-header {
+    font: bold 3vw "Brush Script MT", serif;
+    text-align: center;
+}
+
+.brand-header a {
+    color: black;
+}
+
+/* special header for checkout and receipt */
+.special-header {
+    padding: 15px 0;
+    border-bottom: 1px solid #d2d2d2;
+    font: bold 3vw "Brush Script MT", serif;
+    text-align: center;
+}
+
+.special-header a {
+    color: black;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* footer */
+
+footer {
+    background-color: black;
+    color: white;
+    padding: 40px 75px;
+    margin-top: 100px;
+}
+
+/* split page into three vertical columns */
+.each-third {
+    float: left;
+    width: 33.33%;
+}
+
+.vert-split-three:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* footer links */
+.each-third * {
+    color: white;
+    text-decoration: none;
+    padding: 10px 0;
+}
+
+.footer-heading {
+    margin-bottom: 15px;
+}
+
+/* bottommost copyright block */
+.bottom-footer {
+    margin-top: 100px;
+    font: 1vw "Trebuchet MS", sans-serif;
+    text-align: center;
+}
+
+/* space before footer (if needed) */
+.beforefooterspace {
+    padding: 50px;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* navbar */
+
+.navbar {
+    padding: 10px 20px;
+    text-align: center;
+    z-index: 10;
+    /* allow navbar to stick to top when scrolling */
+    position: sticky !important;
+    top: -5px;
+    /* color of navbar */
+    background-color: white;
+    background-size: cover;
+}
+
+.nav-list {
+    /* remove bullet points */
+    list-style-type: none;
+}
+
+.nav-item {
+    display: inline;
+    padding: 10px 15px;
+    /* text */
+    font: bold 1.2vw Verdana, sans-serif;
+    color: black;
+    transition: color 0.3s ease-in-out;
+}
+
+/***************format dropdown***************/
+
+.dropdown {
+    /* format dropdown */
+    display: inline-block;
+}
+
+.dropdown-button {
+    /* button only */
+    border: none;
+    background-color: inherit;
+    /* text (necessary) */
+    font: inherit;
+    color: inherit;
+}
+
+.dropdown-button a {
+    /* button text */
+    font: inherit;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.caret-down {
+    /* caret symbol always facing down */
+    display: inline-block;
+    margin-left: 5px;
+    width: 0.9vw;
+    height: 0.9vw;
+    /* use as background image */
+    background-image: url("/static/caret_icon.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.dropdown-content {
+    /* hide first */
+    display: none;
+    position: absolute;
+    z-index: 1;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.dropdown:hover .dropdown-content {
+    /* show dropdown content on hover */
+    display: block;
+    background-color: #fafafa;
+}
+
+.dropdown-content a {
+    /* each element in dropdown content */
+    display: block;
+    padding: 5px;
+    /* text */
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+}
+
+/***************end dropdown***************/
+
+.nav-link {
+    /* normal nav-item */
+    display: inline-block;
+    color: inherit;
+    text-decoration: none;
+}
+
+.nav-link:hover,
+.dropdown-content a:hover,
+.dropdown-button a:hover {
+    /* change color of navbar links on hover */
+    color: #ffd700;
+}
+
+/***************format search bar***************/
+
+.search {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+#nav-searchbar {
+    padding: 10px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    font-size: 1.2vw;
+}
+
+.nav-searchlist {
+    display: block;
+    position: absolute;
+    margin-top: 2px;
+    z-index: 1;
+}
+
+.nav-searchitem {
+    display: block;
+    padding: 10px;
+    background-color: #fafafa;
+    /* text */
+    text-align: left;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-searchitem:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.nav-searchimg {
+    width: 30px;
+    height: 30px;
+    vertical-align: top;
+}
+
+.nav-searchname {
+    border: none;
+    background-color: inherit;
+    font: bold 1.2vw Verdana, sans-serif;
+    color: black;
+}
+
+.nav-searchitem:hover,
+.nav-searchname:hover {
+    background-color: #d3d3d3;
+    cursor: pointer;
+}
+
+.nav-searchbutton {
+    padding: 0.65vw 1vw;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    /* search button color */
+    background-color: #ffd700;
+    transition: background-color 0.3s ease-in-out;
+    /* text color */
+    color: #000;
+    font-size: 1.05vw;
+}
+
+.nav-searchbutton:hover {
+    /* change searh button color on hover */
+    background-color: #000;
+    /* change text color on hover */
+    color: #ffd700;
+}
+
+/***************end search bar***************/
+
+.nav-profile {
+    width: 4%;
+    height: auto;
+    margin-bottom: -2%;
+    margin-left: 1.5%;
+}
+
+.nav-profile:hover {
+    width: 4.5%;
+    height: auto;
+    margin-top: -1%;
+    margin-left: 1.25%;
+}
+
+.nav-cart {
+    width: 2%;
+    height: auto;
+    margin-bottom: -10px;
+}
+
+.nav-cart:hover {
+    width: 2.5%;
+    height: auto;
+    margin-left: -0.2%;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* products grid layout */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: white;
+    /* grid borders */
+    gap: 30px;
+    /* space around outer grid */
+    margin: 25px 50px;
+}
+
+.grid-item {
+    border: none;
+    background-color: white;
+    /* space below for text */
+    padding: none none none 20px;
+    /* make all text not look like links */
+    color: black;
+    text-decoration: none;
+}
+
+.grid-item:hover {
+    cursor: pointer;
+}
+
+.item-img {
+    width: 20vw;
+    height: 16.5vw;
+}
+
+.item-img:hover {
+    transform: scale(1.02);
+}
+
+.item-name {
+    margin-top: 5px;
+    font: bold 1vw Verdana, sans-serif;
+}
+
+.item-value {
+    font: 1.5vw Verdana, sans-serif;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* individual product layout */
+
+/* split page into two vertically */
+.each-half {
+    float: left;
+    width: 50%;
+}
+
+.vert-split-half:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.product-img {
+    float: right;
+    margin-top: 30px;
+    margin-right: 50px;
+    max-width: 33vw;
+    max-height: 33vw;
+}
+
+.product-img:hover {
+    transform: scale(1.5);
+    cursor: pointer;
+}
+
+.qtylabel {
+    font: 1.5vw "Trebuchet MS", sans-serif;
+    margin: 50px 10px 0 10px;
+}
+
+.add-to-cart {
+    padding: 17.5px 30%;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    margin-top: 30px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+}
+
+.add-to-cart:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+.desc-space {
+    padding: 40px;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* shopping cart */
+
+.cart-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.cart-table th {
+    height: 50px;
+    background-color: black;
+    font: bold 1.2vw Verdana, sans-serif;
+    color: white;
+}
+
+.cart-table td {
+    height: 100px;
+    border-bottom: 1px solid black;
+}
+
+.cart-table th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+.cart-table th:nth-child(2),
+td:nth-child(2) {
+    text-align: center;
+}
+
+.cart-table th:last-child,
+td:last-child {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.cart-table tr:last-child td {
+    border: 0;
+    height: 75px;
+}
+
+.cart-item-left {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.cart-item-right {
+    display: inline-block;
+    width: 70%;
+    margin-top: 10px;
+}
+
+.cart-item-right button {
+    border: none;
+    padding: 0;
+    background-color: inherit;
+    font: bold 1.2vw Verdana, sans-serif;
+    color: black;
+}
+
+.cart-item-right button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cart-item-right p {
+    margin: 5px 0;
+    font: 1.2vw Verdana, sans-serif;
+    color: black;
+}
+
+.cart-img {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
+
+.checkout {
+    float: right;
+    margin-right: 10%;
+    padding: 17.5px;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+}
+
+.checkout:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+.continue-shopping {
+    margin-left: 42%;
+    padding: 17.5px;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+.continue-shopping:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* number input style (! this is for all number inputs !) */
+/* credit: https://stackoverflow.com/questions/45396280/customizing-increment-arrows-on-input-of-type-number-using-css */
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+/* whole thing */
+.number-input {
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    display: inline-flex;
+    margin: 20px 10px;
+}
+
+.number-input,
+.number-input * {
+    box-sizing: border-box;
+}
+
+.number-input button {
+    outline: none;
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+}
+
+.number-input button:before,
+.number-input button:after {
+    display: inline-block;
+    position: absolute;
+    content: '';
+    width: 1rem;
+    height: 2px;
+    background-color: #212121;
+    transform: translate(-50%, -50%);
+}
+
+.number-input button.plus:after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* allow manual number input */
+.number-input input[type=number] {
+    font-family: sans-serif;
+    max-width: 5rem;
+    padding: .5rem;
+    border: none;
+    border-width: 0 2px;
+    font-size: 2rem;
+    height: 3rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* checkout */
+
+.fill-in-details-section {
+    margin: 0 0 35px 20%;
+}
+
+/* format input bars */
+.fill-in-details-section input,
+select {
+    /* format input bar */
+    padding: 15px;
+    width: 90%;
+    border: 1px solid #d2d2d2;
+    border-radius: 10px;
+    margin: 0 7.5px 15px 0;
+    font-size: 1.2vw;
+}
+
+.fill-in-details-section input:focus {
+    /* format input bar on click */
+    outline: 1.5px solid hsl(204, 77%, 39%);
+}
+
+/* allow two input bars in a single line */
+.fill-in-details-inline input {
+    width: 41.3%;
+    margin: 0 7.5px 15px 0;
+}
+
+label[for="country"] {
+    font: 1vw Verdana, serif;
+    color: grey;
+    line-height: 25px;
+}
+
+/* pay button */
+.paynow {
+    padding: 17.5px 33.5%;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    margin-top: -15px;
+    margin-left: 20%;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+}
+
+.paynow:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+/* check products section */
+.checkout-info-section {
+    position: sticky;
+    top: 0;
+    right: 0;
+    width: 40%;
+    min-height: 43vw;
+    overflow-y: auto;
+    background-color: #f7f7f7;
+    border-radius: 10px;
+}
+
+.checkout-info-section table {
+    border-collapse: collapse;
+    /* left and right margin only */
+    margin: 0 5%;
+    width: 90%;
+}
+
+.checkout-info-section td {
+    min-width: 30%;
+    max-width: 30%;
+    padding: 5% 0;
+    border-bottom: 1px solid black;
+}
+
+.checkout-info-section td:first-child {
+    min-width: 40%;
+    max-width: 40%;
+    text-align: left;
+}
+
+.checkout-info-section td:nth-child(2) {
+    text-align: center;
+}
+
+.checkout-info-section td:last-child {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.no-border-bottom td {
+    border: 0;
+}
+
+.no-padding td {
+    padding: 0;
+}
+
+/* format products */
+.checkout-img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.checkout-info-section p {
+    margin: 0;
+    line-height: 60px;
+}
+
+.checkout-subtotal {
+    font: 1.25vw Verdana, serif;
+}
+
+.checkout-total {
+    font: bold 2vw Verdana, serif;
+    padding-bottom: 10%;
+}
+
+/* gift code */
+.apply-gift-code-btn {
+    padding: 1.25vw 1vw;
+    border: 0;
+    border-radius: 15px;
+    cursor: pointer;
+    background-color: #eaeaea;
+    transition: background-color 0.3s ease-in-out;
+    color: #505050;
+    font-size: 1.05vw;
+}
+
+.apply-gift-code-btn:hover {
+    background-color: hsl(204, 77%, 39%);
+    color: white;
+}
+
+.gift-code-status {
+    margin: 0;
+    font: 1vw Verdana, serif;
+    color: red;
+}
+
+/*----------------------------------------------------------------------------------*/
+/* login */
+
+.login input {
+    display: block;
+    margin: 15px auto;
+    padding: 20px;
+    border: 1px solid #d2d2d2;
+    border-radius: 50px;
+    font-size: 1.5vw;
+}
+
+.login input:focus {
+    outline: 1.5px solid hsl(204, 77%, 39%);
+}
+
+.login button {
+    display: block;
+    margin: auto;
+    padding: 17.5px 110px;
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+}
+
+.login button:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+.login span {
+    display: block;
+    text-align: center;
+    margin: 15px;
+}
