@@ -2,7 +2,7 @@
 ${\textsf{\color{red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
 
 > [!CAUTION]
-> This project was created entirely from scratch by the author (with some reference to the CS50x courseware, of course).
+> This project was created entirely from scratch by the author.
 > The author retains all rights to prohibit any form of distribution of any or all of the materials contained within this project.
 
 > [!WARNING]
