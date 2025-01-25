@@ -9,7 +9,7 @@ ${\textsf{\color{red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
 > Please do not use any of the materials without asking for permission (from me)! >.<
 
 #### Video Demo:  https://youtu.be/3_55Wi-5f70
-#### Description (~~~750 words~~2000 words):
+#### Description:
 
 ##### ${\textsf{\color{YellowOrange}{What my project is about}}}$
 This project is about creating an online website (for use with PC screens only, not compatible with mobile) to allow users to order cookies and other products from a fictional cookie company by the name of Cookies & Cache.
