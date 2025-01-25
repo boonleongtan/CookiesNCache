@@ -7,7 +7,7 @@ ${\textsf{\color{red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
 
 > [!WARNING]
 > Please do not use any of the materials without asking for my permission! >.<
-> And please remember to credit me after receiving my permission!
+> (And please remember to credit me after receiving my permission!)
 
 *Unlicensed usage and/or distribution of materials from this project is strictly prohibited.*
 
