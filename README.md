@@ -1,6 +1,13 @@
-# COOKIES & CACHE
+# Boon Leong's CS50x Project Title: COOKIES & CACHE
+Copyright ©2024 Tan Boon Leong. All rights reserved.
 #### Video Demo:  https://youtu.be/3_55Wi-5f70
 #### Description (~~~750 words~~2000 words):
+
+> [!CAUTION]
+> This project was created entirely from scratch by the author (with some reference to the CS50x courseware, of course). The author retains all rights to prohibit any form of distribution of any or all of the materials contained within this project, especially without prior permission from the author.
+
+> [!WARNING]
+> Please do not use any of the materials without asking for permission (from me)! >.<
 
 ##### ${\textsf{\color{YellowOrange}{What my project is about}}}$
 This project is about creating an online website (for use with PC screens only, not compatible with mobile) to allow users to order cookies and other products from a fictional cookie company by the name of Cookies & Cache.
