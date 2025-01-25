@@ -6,7 +6,8 @@ ${\textsf{\color{red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
 > The author retains all rights to prohibit any form of distribution of any or all of the materials contained within this project.
 
 > [!WARNING]
-> Please do not use any of the materials without asking for permission (from me)! >.<
+> Please do not use any of the materials without asking for my permission! >.<
+> Unlicensed usage and/or distribution of materials is strictly prohibited.
 
 ### Video Demo:  https://youtu.be/3_55Wi-5f70
 ### Description:
