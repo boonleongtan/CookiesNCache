@@ -203,14 +203,14 @@ Much time and effort was put into designing each element to make them fit better
 
 ### ${\textsf{\color{YellowOrange}{Did I debate certain design choices and why I made them?}}}$
 
-1  NUMBER INPUT STYLE
+(1) NUMBER INPUT STYLE
 
 To better allow editing item quantity, I chose to use the button style for all number inputs when adding items to cart or editting cart item quantities. As I was inexperienced with such designed principles, I went online to research for a way to implement this, and adapted a ready-made solution to my project (credit: https://stackoverflow.com/questions/45396280/customizing-increment-arrows-on-input-of-type-number-using-css). This allows for more user-friendly number inputs.
 
-2  DIFFERENT LAYOUT FOR CHECKOUT AND RECEIPT PAGES
+(2) DIFFERENT LAYOUT FOR CHECKOUT AND RECEIPT PAGES
 
 The checkout and receipt pages have slightly different layouts from their counterparts due to the simplicity required of their functionalities. Only allows navigation back to the home page to prevent caching of responses due to sensitive details being input in the checkout page.
 
-3  OTHERS
+(3) OTHERS
 
 The rest of the design choices have already been mentioned in their respective sections above in their corresponding functions.
