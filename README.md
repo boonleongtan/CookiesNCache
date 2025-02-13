@@ -190,7 +190,7 @@ Returns a commercial receipt of transaction including products bought and custom
 ## ${\textsf{\color{YellowGreen}{script.js}}}$
 overlay_off()
 
-When the flash alert message is clicked anywhere on the screen, or the red cross on the upper right hand corner of the alert box is clicked, closes the flash alert box and simultaneously removes the dark overlay. This is because the alert box is under the overlay <div> as well.
+When the flash alert message is clicked anywhere on the screen, or the red cross on the upper right hand corner of the alert box is clicked, closes the flash alert box and simultaneously removes the dark overlay. This is because the alert box is under the overlay `<div>` as well.
 
 search()
 
