@@ -19,7 +19,7 @@ This project is about creating an online website (for use with PC screens onlyâ€
 
 ### ${\textsf{\color{YellowOrange}{What each of the files I wrote for the project contains and does}}}$
 
-#### app.py
+#### ${\textsf{\color{Green}{app.py}}}$
 Starting with the flask application that powers the whole project, we first import `sqlite3` to work with SQL, `flask` and `flask session` to run Flask, `werkzeug.security` to implement password checking and hashing, as well as other custom helper functions which will be explained in further detail later.
 
 Next we configure the app to allow Flask to run, and customise the jinja filter for the usd function.
@@ -110,7 +110,7 @@ clear_session()
 
 When the user checkouts, deletes all items saved to the user's profile and then clears all sessions.
 
-#### helper_functions.py
+#### ${\textsf{\color{Green}{helper_functions.py}}}$
 login_required()
 
 Decorator function that ensures user is logged in before allowing access to the decorated function, else redirects them to login. Used in /profile to allow users to sign in to access their personal profile.
@@ -119,17 +119,17 @@ usd()
 
 Simple format function to format floats into USD values. Customised as a filter in app.py to allow use in jinja template.
 
-#### cookie.py
+#### ${\textsf{\color{Green}{cookie.py}}}$
 Cookie()
 
 A custom class storing all information about each product using getter and setter functions, as retrieved from the `products` table in the database. The __str__ method is only for debugging purposes.
 
-#### customsql.py
+#### ${\textsf{\color{Green}{customsql.py}}}$
 CustomSQL()
 
 A custom class to abstract passing SQL queries into the database. If the query starts with `"SELECT"`, returns the result as a list of dictionaries zipped with the keys as the table headers and the values as the corresponding data entries.
 
-#### layout.html
+#### ${\textsf{\color{Green}{layout.html}}}$
 The base layout for all the templates in this project. Defines meta properties and links to relevant stylesheet, favicon, and script as well as page titles in the head. Defines header for brand logo, nav for navbar, main for page body, flash message alerts, and footer in body.
 
 HEADER
@@ -148,46 +148,46 @@ FOOTER
 
 The footer displays a certain set of links for easy navigation at the bottom of the page. For the purpose of this project, however, only the link to the about page has been implemented for simplicity sake.
 
-#### grid.html
+#### ${\textsf{\color{Green}{grid.html}}}$
 This layout is also an extension of `layout.html` which serves as a secondary layer for pages to display multiple products in a table format on the same page.
 
-#### index.html
+#### ${\textsf{\color{Green}{index.html}}}$
 This is the homepage of the website, and shows all the products the company sells. Each product is displayed as a grid item and on click leads the user to the respective individual product page.
 
-#### product.html
+#### ${\textsf{\color{Green}{product.html}}}$
 This is another extension of `layout.html` which serves as a template for any product given its product id and other details. This allows the same layout to be used for multiple products without the need for multiple individual pages to be created for each product.
 
-#### favs.html and seasonal.html
+#### ${\textsf{\color{Green}{favs.html and seasonal.html}}}$
 These pages display products of their respective categories based on the data entered into the database. Similar to `index.html`, they also extend `grid.html` to use the grid layout to display their products.
 
-#### about.html
+#### ${\textsf{\color{Green}{about.html}}}$
 A simple about page to describe the company.
 
-#### profile.html
+#### ${\textsf{\color{Green}{profile.html}}}$
 Allows users to view their profile or log out as required.
 
-#### login.html
+#### ${\textsf{\color{Green}{login.html}}}$
 Allows users to login or sign up for a new account.
 
-#### register.html
+#### ${\textsf{\color{Green}{register.html}}}$
 Allows users to register for a new account.
 
-#### cart.html
+#### ${\textsf{\color{Green}{cart.html}}}$
 This is another template extending `layout.html` that serves as the basis for the following two pages.
 
-#### emptycart.html
+#### ${\textsf{\color{Green}{emptycart.html}}}$
 Displays a message prompting users that the cart is empty and directs users to browse products to add to cart. Prevents users from checking out without any item in cart with $0 total cost.
 
-#### fullcart.html
+#### ${\textsf{\color{Green}{fullcart.html}}}$
 When an item is added to cart, it will be displayed in a table format here, along with the total cost. Allows users to edit cart items here and checkout when done.
 
-#### checkout.html
+#### ${\textsf{\color{Green}{checkout.html}}}$
 Displays a form for users to fill in personal particulars and delivery and payment details, along with a summary of all products in cart. (See /checkout above for more details)
 
-#### receipt.html
+#### ${\textsf{\color{Green}{receipt.html}}}$
 Returns a commercial receipt of transaction including products bought and customer details, and some other details of the transaction. Allows users to print the receipt page with a print button at the bottom.
 
-#### script.js
+#### ${\textsf{\color{Green}{script.js}}}$
 overlay_off()
 
 When the flash alert message is clicked anywhere on the screen, or the red cross on the upper right hand corner of the alert box is clicked, closes the flash alert box and simultaneously removes the dark overlay. This is because the alert box is under the overlay <div> as well.
@@ -196,7 +196,7 @@ search()
 
 Implements the search function in /search using jsonify. Returns, in HTML, a list of block links (buttons) as part of a form to direct users to the respective products searched for.
 
-#### styles.css
+#### ${\textsf{\color{Green}{styles.css}}}$
 The main stylesheet that dictates the design principles behind the template items.
 
 Much time and effort was put into designing each element to make them fit better into the page, albeit not supported for mobile viewing, but at least allowing zooming in and out on a PC screen. Each element was painstakingly manually transformed and styled to appeal to the general user (less the number input style, with which credit I have mentioned in the document itself)
