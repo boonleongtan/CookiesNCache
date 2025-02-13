@@ -22,6 +22,18 @@ This project is about creating an online website (for use with PC screens onlyâ€
 ## ${\textsf{\color{YellowGreen}{app.py}}}$
 Starting with the flask application that powers the whole project, we first import `sqlite3` to work with SQL, `flask` and `flask session` to run Flask, `werkzeug.security` to implement password checking and hashing, as well as other custom helper functions which will be explained in further detail later.
 
+```py
+import sqlite3
+
+from flask import Flask, flash, jsonify, redirect, render_template, request, session
+from flask_session import Session
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from cookie import Cookie
+from helper_functions import login_required, usd
+from customsql import CustomSQL
+```
+
 Next we configure the app to allow Flask to run, and customise the jinja filter for the usd function.
 
 Following which, we establish a connection to the database we will be using for the rest of the program, which we create here and name as `store.db`. We first query the database using a custom class CustomSQL, imported from a custom library which will be explained later. Here we use an oversimplified approach to store all the information about all the products that our company will be selling. This is done by manually passing SQL queries to create tables such as `products`, which stores the name, price, image source hyperlink (stored as text to access, via the same folder, the saved images) and description etc of all the products, followed by inserting each product as a data entry into the table with all its corresponding properties. Here we also create tables `transactions`, `transacted_items`, `users` and `savedcart`, which will all be explained in further detail later.
