@@ -11,6 +11,8 @@ ${\textsf{\color{red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
 
 *Unlicensed usage and/or distribution of materials from this project is strictly prohibited.*
 
+---
+
 ### Video Demo:  https://youtu.be/3_55Wi-5f70
 ### Description:
 
