@@ -20,9 +20,9 @@ This project is about creating an online website (for use with PC screens onlyâ€
 ### ${\textsf{\color{YellowOrange}{What each of the files I wrote for the project contains and does}}}$
 
 ## ${\textsf{\color{YellowGreen}{app.py}}}$
-Starting with the flask application that powers the whole project, we first import `sqlite3` to work with SQL, `flask` and `flask session` to run Flask, `werkzeug.security` to implement password checking and hashing, as well as other custom helper functions which will be explained in further detail later.
+Starting with the flask application that powers the whole project, we first import `sqlite3` to work with SQL, `flask` and `flask session` to run Flask, `werkzeug.security` to implement password checking and hashing, as well as other custom helper functions which will be explained in further detail later:
 
-```py
+```python
 import sqlite3
 
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
@@ -34,11 +34,64 @@ from helper_functions import login_required, usd
 from customsql import CustomSQL
 ```
 
-Next we configure the app to allow Flask to run, and customise the jinja filter for the usd function.
+Next we configure the app to allow Flask to run, and customise the jinja filter for the usd function:
+
+```python
+# Configure app
+app = Flask(__name__)
+
+# customise jinja filter for usd function
+app.jinja_env.filters["usd"] = usd
+```
 
 Following which, we establish a connection to the database we will be using for the rest of the program, which we create here and name as `store.db`. We first query the database using a custom class CustomSQL, imported from a custom library which will be explained later. Here we use an oversimplified approach to store all the information about all the products that our company will be selling. This is done by manually passing SQL queries to create tables such as `products`, which stores the name, price, image source hyperlink (stored as text to access, via the same folder, the saved images) and description etc of all the products, followed by inserting each product as a data entry into the table with all its corresponding properties. Here we also create tables `transactions`, `transacted_items`, `users` and `savedcart`, which will all be explained in further detail later.
 
+```python
+# for simplicity sake, preconfigure cookie store products
+db = CustomSQL("store.db")
+# create table for products
+db.execute(
+    "CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, price REAL NOT NULL, img TEXT, desc TEXT, fav TEXT, seasonal TEXT);")
+# input products into table
+db.execute(
+    "INSERT INTO products(name, price, img, desc, fav, seasonal)"
+    "VALUES('Chocolate Cookies', 6.70, '/static/choco_cookie.jpg', 'Juicy chocolate with sweet and spicy tastes, beautiful and amazing, wonderfully rich fragrance. Bite into a whole new world of creamy chocolatey delight as you give your tastebuds a well-deserved treat.', 'no', 'no'),"
+    "('Strawberry Cookies', 13.30, '/static/strawberry_cookie.jpg', 'Beautifully rich aroma.', 'yes', 'yes'),"
+    "('Thumbdrive', 5.00, '/static/thumbdrive_cookie.jpg', 'Crunchy and flavourful data.', 'yes', 'no'),"
+    "('Durian', 7.77, '/static/durian_cookie.png', 'Stinky.', 'yes', 'no'),"
+    "('Keyboard', 27.90, NULL, NULL, NULL, NULL)"
+    "ON CONFLICT(name) DO UPDATE SET price=excluded.price, img=excluded.img, desc=excluded.desc, fav=excluded.fav, seasonal=excluded.seasonal;")
+# create table for transaction details
+db.execute(
+    "CREATE TABLE IF NOT EXISTS transactions(id INTEGER PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL, phone_no TEXT NOT NULL, country TEXT NOT NULL, address TEXT NOT NULL, postal_code TEXT NOT NULL, delivery_datetime BLOB NOT NULL, card_no TEXT NOT NULL, card_exp TEXT NOT NULL, card_code TEXT NOT NULL, card_name TEXT NOT NULL, prediscount_amt REAL NOT NULL, transacted_amt REAL NOT NULL, transaction_datetime TEXT NOT NULL);")
+# create table for transacted items
+db.execute(
+    "CREATE TABLE IF NOT EXISTS transacted_items(transaction_id INTEGER NOT NULL, item_name TEXT NOT NULL, item_price REAL NOT NULL, item_qty INTEGER NOT NULL, FOREIGN KEY(transaction_id) REFERENCES transactions(id));")
+# create table for users
+db.execute(
+    "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, hash TEXT NOT NULL);")
+# create table for user's saved cart
+db.execute(
+    "CREATE TABLE IF NOT EXISTS savedcart(user_id INTEGER NOT NULL, product_id INTEGER NOT NULL UNIQUE, qty INTEGER NOT NULL, FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(product_id) REFERENCES products(id));")
+```
+
 After that we configure the flask sessions and ensure the responses are not cached to ensure validation of form resubmission, which will be important later especially for the submission of sensitive data. Now that our basic functionalities are completed, we can move on to explore each of the `app.route` functions.
+
+```python
+# Configure session
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
+# In total there are 5 session variables defined: "cart"(list of dictionaries), "grandtotal"(float), "discounted"(float), "gift_code_status"(string), "user_id"(integer)
+
+# Ensure responses aren't cached
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+```
 
 NAVBAR FUNCTIONS
 
