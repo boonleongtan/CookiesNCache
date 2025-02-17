@@ -21,7 +21,7 @@ function Footer() {
                 </div>
             </div>
             {/* bottommost copyright text */}
-            <div className="bottom-footer">Copyright © 2024 General379 Pte Ltd | Terms of Use | Privacy Policy</div>
+            <div className="bottom-footer">Copyright © 2025 General379 Pte Ltd | Terms of Use | Privacy Policy</div>
         </footer>
     );
 }
