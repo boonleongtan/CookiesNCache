@@ -1,6 +1,6 @@
- // Home.js
- import React from 'react'
+ import React from 'react';
  import Navbar from '../components/Navbar';
+ 
  function Home() {
    return (
      <div>
@@ -9,7 +9,7 @@
          This is Home page
          </h1>
      </div>
-   )
+   );
  }
 
- export default Home
+ export default Home;

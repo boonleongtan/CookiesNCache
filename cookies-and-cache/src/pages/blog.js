@@ -1,6 +1,6 @@
- // Blog.js
- import React from 'react'
- import Navbar from '../components/Navbar'
+ import React from 'react';
+ import Navbar from '../components/Navbar';
+
  function Blog() {
    return (
      <div>
@@ -9,7 +9,7 @@
          Write your blogs here!
        </h1>
      </div>
-   )
+   );
  }
 
- export default Blog
+ export default Blog;

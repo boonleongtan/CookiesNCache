@@ -1,6 +1,6 @@
- //About.js
- import React from 'react'
- import Navbar from '../components/Navbar'
+ import React from 'react';
+ import Navbar from '../components/Navbar';
+
  function About() {
    return (
      <div>
@@ -9,7 +9,7 @@
          This is a multi-page React App
        </h1>
      </div>
-   )
+   );
  }
 
- export default About
+ export default About;
