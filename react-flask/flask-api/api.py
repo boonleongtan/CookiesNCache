@@ -20,8 +20,8 @@ import queries
 # Configure app
 app = Flask(__name__)
 
-# customise jinja filter for usd function
-app.jinja_env.filters["usd"] = usd
+# # customise jinja filter for usd function
+# app.jinja_env.filters["usd"] = usd
 
 # for simplicity sake, preconfigure cookie store products
 db = CustomSQL("store.db")
@@ -67,12 +67,12 @@ def search():
 
 
 # homepage/products page
-@app.route("/api/products")
+@app.route("/api/")
 def index():
     # render all products
     cookies = db.execute("SELECT * FROM products;")
     # return render_template("index.html", cookies=cookies)
-    return {"cookies": cookies}
+    return jsonify(cookies)
 
 
 # individual product pages (use POST to get cookie_id)

@@ -2,9 +2,25 @@ import { useState, useEffect } from 'react';
 import Layout from './Layout';
 
 function Grid() {
+    const [cookieList, setCookieList] = useState("no cookie");
+
+    useEffect(() => {
+        fetch('/api/').then(res => res.json()).then(data => {
+            setCookieList(data);
+        });
+    }, []);
+
     return (
         <Layout>
             <div class="grid-container">
+                <form>
+                    <input name="id" type="hidden" value={cookieList[0].id} />
+                    <button class="grid-item" type="submit">
+                        <img src={cookieList[0].img} alt={"Image of " + cookieList[0].name} class="item-img" />
+                        <div class="item-name">{cookieList[0].name}</div>
+                        <div class="item-value">{cookieList[0].price}</div>
+                    </button>
+                </form>
                 {/* {% for cookie in cookies %}
                     <form action="/product" method="post">
                         <input name="id" type="hidden" value="{{ cookie.id }}">
