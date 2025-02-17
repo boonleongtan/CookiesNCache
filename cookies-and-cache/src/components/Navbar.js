@@ -31,9 +31,9 @@ function Navbar() {
                     </div>
                 </li>
             {/* <!--profile icon--> */}
-                <li className="nav-item"><a className="nav-profile" href="/profile"><img src="/static/profile_icon.jpg" alt="Profile" className="nav-profile" /></a></li>
+                <li className="nav-item"><a className="nav-profile" href="/profile"><img src="/profile_icon.jpg" alt="Profile" className="nav-profile" /></a></li>
             {/* <!--cart icon--> */}
-                <li className="nav-item"><a className="nav-profile" href="/cart"><img src="/static/cart_icon.png" alt="Cart" className="nav-cart" /></a></li>
+                <li className="nav-item"><a className="nav-profile" href="/cart"><img src="/cart_icon.png" alt="Cart" className="nav-cart" /></a></li>
             </ul>
         </nav>
     );

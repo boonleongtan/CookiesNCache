@@ -54,7 +54,7 @@
     width: 0.9vw;
     height: 0.9vw;
     /* use as background image */
-    background-image: url("/static/caret_icon.png");
+    background-image: url("../../public/caret_icon.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
