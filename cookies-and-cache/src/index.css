@@ -1,13 +1,51 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0 auto;
+  font: 1.5vw "Trebuchet MS", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Page title */
+h1 {
+  font: bold small-caps 2.5vw Georgia, serif;
+  letter-spacing: 0.2vw;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Page subtitle */
+h4 {
+  margin-top: -40px;
+  font: 1.5vw "Trebuchet MS", sans-serif;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Page text */
+p {
+  margin: 25px 100px;
+  font: inherit;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Individual product page title */
+h2 {
+  font: bold 2.5vw "Trebuchet MS", sans-serif;
+}
+
+/* Product description title */
+h3 {
+  font: bold 1.5vw "Trebuchet MS", sans-serif;
+}
+
+/* Product description (also p) */
+.pdt-desc {
+  margin: 0 20% 0 0;
+  font: 1vw "Trebuchet MS", sans-serif;
+}
+
+/* for centralising any block */
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
