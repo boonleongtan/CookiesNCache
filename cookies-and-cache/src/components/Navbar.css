@@ -43,7 +43,7 @@
 .dropdown-button a {
     /* button text */
     font: inherit;
-    color: inherit;
+    color: black;
     text-decoration: inherit;
 }
 
@@ -81,7 +81,7 @@
     /* text */
     text-align: left;
     text-decoration: none;
-    color: inherit;
+    color: black;
 }
 
 /***************end dropdown***************/
