@@ -3,6 +3,7 @@ venv
 
 # flask run
 __pycache__
+flask_session
 
 # sqlite3
 store.db
