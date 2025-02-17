@@ -1,0 +1,44 @@
+.brand-header {
+    font: bold 3vw "Brush Script MT", serif;
+    text-align: center;
+}
+
+.brand-header a {
+    color: black;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* topmost welcome block */
+.top-header {
+    display: block;
+    max-width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: black;
+    /* text */
+    font: 0.8vw "Trebuchet MS", sans-serif;
+    color: white;
+    text-align: center;
+}
+
+/* change text on mouseover */
+div#welcome span#a {
+    display: inline;
+}
+
+div#welcome:hover span#a {
+    display: none;
+}
+
+div#welcome span#b {
+    display: none;
+}
+
+div#welcome:hover span#b {
+    display: inline;
+}

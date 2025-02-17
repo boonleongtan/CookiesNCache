@@ -1,9 +1,10 @@
-import React from 'react';
 import Navbar from './Navbar';
+import BrandHeader from './BrandHeader';
 
 function Layout({ children }) {
     return (
         <div>
+            <BrandHeader />
             <Navbar />
             {children}
         </div>
