@@ -1,15 +1,16 @@
 import Header from './Header';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import './Layout.css';
 
 function Layout({ children }) {
     return (
-        <div>
+        <>
             <Header />
             <Navbar />
             {children}
             <Footer />
-        </div>
+        </>
     )
 }
 
