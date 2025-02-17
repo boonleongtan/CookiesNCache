@@ -1,4 +1,3 @@
-import logo from '../cookies.jpg';
 import './Header.css';
 
 function Header() {
@@ -11,7 +10,7 @@ function Header() {
                 </div>
             </div>
             <a href="/">
-                <img src={logo} alt="Cookies & Cache Brand Logo" width="150px" height="100px" />
+                <img src="/cookies.jpg" alt="Cookies & Cache Brand Logo" width="150px" height="100px" />
                 <div>Cookies & Cache</div>
             </a>
         </header>
