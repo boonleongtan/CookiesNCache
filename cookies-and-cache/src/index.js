@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import reportWebVitals from './reportWebVitals';
+import './index.css';
+
+import App from './App';
 import Favs from './pages/favs';
 import About from './pages/about';
 
@@ -16,11 +17,11 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/favs",
+    path: "/Favs",
     element: <Favs />,
   },
   {
-    path: "/about",
+    path: "/About",
     element: <About />,
   },
 ]);
