@@ -85,11 +85,12 @@ def search():
 
 
 # homepage/products page
-@app.route("/")
+@app.route("/api/products")
 def index():
     # render all products
     cookies = db.execute("SELECT * FROM products;")
-    return render_template("index.html", cookies=cookies)
+    # return render_template("index.html", cookies=cookies)
+    return {"cookies": cookies}
 
 
 # individual product pages (use POST to get cookie_id)
