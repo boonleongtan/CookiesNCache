@@ -1,5 +1,5 @@
 // import { useState, useEffect } from 'react';
-import Grid from './components/Grid';
+import Products from './components/Products';
 // import './App.css';
 
 function App() {
@@ -12,10 +12,11 @@ function App() {
     // }, []);
 
     return (
-        <Grid>
+        <>
             <h1>Products</h1>
             {/* <p>The current time is {currentTime}</p> */}
-        </Grid>
+            <Products />
+        </>
     );
 }
 
