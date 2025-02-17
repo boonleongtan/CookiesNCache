@@ -9,19 +9,19 @@ function Navbar() {
                 <li className="nav-item">
                     <div className="dropdown">
                         <button className="dropdown-button">
-                            <a href="/">SHOP NOW</a>
+                            <Link to="/">SHOP NOW</Link>
                             <span className="caret-down"></span>
                         </button>
                         <div className="dropdown-content">
-                            <a href="/">ALL PRODUCTS</a>
-                            <a href="/favs">ALL-TIME FAVOURITES</a>
+                            <Link to="/">ALL PRODUCTS</Link>
+                            <Link to="/Favs">ALL-TIME FAVOURITES</Link>
                         </div>
                     </div>
                 </li>
             {/* <!--normal nav-item--> */}
-                <li className="nav-item"><a className="nav-link" href="/seasonal">SEASONAL DELIGHTS</a></li>
+                <li className="nav-item"><Link className="nav-link" to="/Seasonal">SEASONAL DELIGHTS</Link></li>
             {/* <!--normal nav-item--> */}
-                <li className="nav-item"><a className="nav-link" href="/about">ABOUT</a></li>
+                <li className="nav-item"><Link className="nav-link" to="/About">ABOUT</Link></li>
             {/* <!--search bar--> */}
                 <li className="nav-item">
                     <div className="search">
@@ -31,9 +31,9 @@ function Navbar() {
                     </div>
                 </li>
             {/* <!--profile icon--> */}
-                <li className="nav-item"><a className="nav-profile" href="/profile"><img src="/profile_icon.jpg" alt="Profile" className="nav-profile" /></a></li>
+                <li className="nav-item"><Link className="nav-profile" to="/Profile"><img src="/profile_icon.jpg" alt="Profile" className="nav-profile" /></Link></li>
             {/* <!--cart icon--> */}
-                <li className="nav-item"><a className="nav-profile" href="/cart"><img src="/cart_icon.png" alt="Cart" className="nav-cart" /></a></li>
+                <li className="nav-item"><Link className="nav-profile" to="/Cart"><img src="/cart_icon.png" alt="Cart" className="nav-cart" /></Link></li>
             </ul>
         </nav>
     );
