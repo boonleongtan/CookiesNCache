@@ -3,13 +3,11 @@ import './App.css';
 
 function App() {
     return (
-        <>
-            <Layout>
-                <div className="App">
-                    <p>We all start from somewhere</p>
-                </div>
-            </Layout>
-        </>
+        <Layout>
+            <div className="App">
+                <p>We all start from somewhere</p>
+            </div>
+        </Layout>
     );
 }
 
