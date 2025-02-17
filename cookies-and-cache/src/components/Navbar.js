@@ -6,7 +6,7 @@ function Navbar() {
         <nav className="navbar">
             <ul className="nav-list">
             {/* <!--dropdown--> */}
-                <li className="nav-item"><Link to="{/about}">
+                <li className="nav-item">
                     <div className="dropdown">
                         <button className="dropdown-button">
                             <a href="/">SHOP NOW</a>
@@ -17,7 +17,7 @@ function Navbar() {
                             <a href="/favs">ALL-TIME FAVOURITES</a>
                         </div>
                     </div>
-                    </Link></li>
+                </li>
             {/* <!--normal nav-item--> */}
                 <li className="nav-item"><a className="nav-link" href="/seasonal">SEASONAL DELIGHTS</a></li>
             {/* <!--normal nav-item--> */}
