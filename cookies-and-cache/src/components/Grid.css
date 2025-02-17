@@ -1,0 +1,41 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: white;
+    /* grid borders */
+    gap: 30px;
+    /* space around outer grid */
+    margin: 25px 50px;
+}
+
+.grid-item {
+    border: none;
+    background-color: white;
+    /* space below for text */
+    padding: none none none 20px;
+    /* make all text not look like links */
+    color: black;
+    text-decoration: none;
+}
+
+.grid-item:hover {
+    cursor: pointer;
+}
+
+.item-img {
+    width: 20vw;
+    height: 16.5vw;
+}
+
+.item-img:hover {
+    transform: scale(1.02);
+}
+
+.item-name {
+    margin-top: 5px;
+    font: bold 1vw Verdana, sans-serif;
+}
+
+.item-value {
+    font: 1.5vw Verdana, sans-serif;
+}
