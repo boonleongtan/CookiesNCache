@@ -16,6 +16,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from cookie import Cookie
 from helper_functions import login_required, usd
 from customsql import CustomSQL
+import queries
 
 # Configure app
 app = Flask(__name__)
@@ -25,30 +26,12 @@ app.jinja_env.filters["usd"] = usd
 
 # for simplicity sake, preconfigure cookie store products
 db = CustomSQL("store.db")
-# create table for products
-db.execute(
-    "CREATE TABLE IF NOT EXISTS products(id INTEGER PRIMARY KEY, name TEXT NOT NULL UNIQUE, price REAL NOT NULL, img TEXT, desc TEXT, fav TEXT, seasonal TEXT);")
-# input products into table
-db.execute(
-    "INSERT INTO products(name, price, img, desc, fav, seasonal)"
-    "VALUES('Chocolate Cookies', 6.70, '/static/choco_cookie.jpg', 'Juicy chocolate with sweet and spicy tastes, beautiful and amazing, wonderfully rich fragrance. Bite into a whole new world of creamy chocolatey delight as you give your tastebuds a well-deserved treat.', 'no', 'no'),"
-    "('Strawberry Cookies', 13.30, '/static/strawberry_cookie.jpg', 'Beautifully rich aroma.', 'yes', 'yes'),"
-    "('Thumbdrive', 5.00, '/static/thumbdrive_cookie.jpg', 'Crunchy and flavourful data.', 'yes', 'no'),"
-    "('Durian', 7.77, '/static/durian_cookie.png', 'Stinky.', 'yes', 'no'),"
-    "('Keyboard', 27.90, NULL, NULL, NULL, NULL)"
-    "ON CONFLICT(name) DO UPDATE SET price=excluded.price, img=excluded.img, desc=excluded.desc, fav=excluded.fav, seasonal=excluded.seasonal;")
-# create table for transaction details
-db.execute(
-    "CREATE TABLE IF NOT EXISTS transactions(id INTEGER PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL, phone_no TEXT NOT NULL, country TEXT NOT NULL, address TEXT NOT NULL, postal_code TEXT NOT NULL, delivery_datetime BLOB NOT NULL, card_no TEXT NOT NULL, card_exp TEXT NOT NULL, card_code TEXT NOT NULL, card_name TEXT NOT NULL, prediscount_amt REAL NOT NULL, transacted_amt REAL NOT NULL, transaction_datetime TEXT NOT NULL);")
-# create table for transacted items
-db.execute(
-    "CREATE TABLE IF NOT EXISTS transacted_items(transaction_id INTEGER NOT NULL, item_name TEXT NOT NULL, item_price REAL NOT NULL, item_qty INTEGER NOT NULL, FOREIGN KEY(transaction_id) REFERENCES transactions(id));")
-# create table for users
-db.execute(
-    "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE, hash TEXT NOT NULL);")
-# create table for user's saved cart
-db.execute(
-    "CREATE TABLE IF NOT EXISTS savedcart(user_id INTEGER NOT NULL, product_id INTEGER NOT NULL UNIQUE, qty INTEGER NOT NULL, FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(product_id) REFERENCES products(id));")
+db.execute(queries.a_create_table_for_products)
+db.execute(queries.b_input_products_into_table)
+db.execute(queries.c_create_table_for_transaction_details)
+db.execute(queries.d_create_table_for_transacted_items)
+db.execute(queries.e_create_table_for_users)
+db.execute(queries.f_create_table_for_users_saved_cart)
 
 
 # Configure session
