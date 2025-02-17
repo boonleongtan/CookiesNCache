@@ -1,6 +1,12 @@
 import React from 'react';
-import 
+import Navbar from '../components/Navbar';
 
-function Layout() {}
+function Layout() {
+    return (
+        <div>
+            <Navbar />
+        </div>
+    )
+}
 
 export default Layout;
