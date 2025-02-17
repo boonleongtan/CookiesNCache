@@ -4,10 +4,10 @@ a_create_table_for_products = '''
 
 b_input_products_into_table = '''
     INSERT INTO products(name, price, img, desc, fav, seasonal)
-    VALUES('Chocolate Cookies', 6.70, '/static/choco_cookie.jpg', 'Juicy chocolate with sweet and spicy tastes, beautiful and amazing, wonderfully rich fragrance. Bite into a whole new world of creamy chocolatey delight as you give your tastebuds a well-deserved treat.', 'no', 'no'),
-    ('Strawberry Cookies', 13.30, '/static/strawberry_cookie.jpg', 'Beautifully rich aroma.', 'yes', 'yes'),
-    ('Thumbdrive', 5.00, '/static/thumbdrive_cookie.jpg', 'Crunchy and flavourful data.', 'yes', 'no'),
-    ('Durian', 7.77, '/static/durian_cookie.png', 'Stinky.', 'yes', 'no'),
+    VALUES('Chocolate Cookies', 6.70, '/choco_cookie.jpg', 'Juicy chocolate with sweet and spicy tastes, beautiful and amazing, wonderfully rich fragrance. Bite into a whole new world of creamy chocolatey delight as you give your tastebuds a well-deserved treat.', 'no', 'no'),
+    ('Strawberry Cookies', 13.30, '/strawberry_cookie.jpg', 'Beautifully rich aroma.', 'yes', 'yes'),
+    ('Thumbdrive', 5.00, '/thumbdrive_cookie.jpg', 'Crunchy and flavourful data.', 'yes', 'no'),
+    ('Durian', 7.77, '/durian_cookie.png', 'Stinky.', 'yes', 'no'),
     ('Keyboard', 27.90, NULL, NULL, NULL, NULL)
     ON CONFLICT(name) DO UPDATE SET price=excluded.price, img=excluded.img, desc=excluded.desc, fav=excluded.fav, seasonal=excluded.seasonal;
 '''
