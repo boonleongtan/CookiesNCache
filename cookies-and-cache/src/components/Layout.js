@@ -1,10 +1,10 @@
+import Header from './Header';
 import Navbar from './Navbar';
-import BrandHeader from './BrandHeader';
 
 function Layout({ children }) {
     return (
         <div>
-            <BrandHeader />
+            <Header />
             <Navbar />
             {children}
         </div>

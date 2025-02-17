@@ -1,7 +1,7 @@
 import logo from '../cookies.jpg';
-import './BrandHeader.css';
+import './Header.css';
 
-function BrandHeader() {
+function Header() {
     return (
         <header className="brand-header center">
             <div className="top-header">
@@ -18,4 +18,4 @@ function BrandHeader() {
     );
 }
 
-export default BrandHeader;
+export default Header;
