@@ -12,13 +12,13 @@ function Grid() {
 
     return (
         <Layout>
-            <div class="grid-container">
+            <div className="grid-container">
                 <form>
                     <input name="id" type="hidden" value={cookieList[0].id} />
-                    <button class="grid-item" type="submit">
-                        <img src={cookieList[0].img} alt={"Image of " + cookieList[0].name} class="item-img" />
-                        <div class="item-name">{cookieList[0].name}</div>
-                        <div class="item-value">{cookieList[0].price}</div>
+                    <button className="grid-item" type="submit">
+                        <img src={cookieList[0].img} alt={"Image of " + cookieList[0].name} className="item-img" />
+                        <div className="item-name">{cookieList[0].name}</div>
+                        <div className="item-value">{cookieList[0].price}</div>
                     </button>
                 </form>
                 {/* {% for cookie in cookies %}
