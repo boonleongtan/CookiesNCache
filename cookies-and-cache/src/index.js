@@ -9,7 +9,10 @@ import './index.css';
 
 import App from './App';
 import Favs from './pages/favs';
+import Seasonal from './pages/seasonal';
 import About from './pages/about';
+import Profile from './pages/profile';
+import Cart from './pages/cart';
 
 const router = createBrowserRouter([
   {
@@ -21,8 +24,20 @@ const router = createBrowserRouter([
     element: <Favs />,
   },
   {
+    path: "/Seasonal",
+    element: <Seasonal />,
+  },
+  {
     path: "/About",
     element: <About />,
+  },
+  {
+    path: "/Profile",
+    element: <Profile />,
+  },
+  {
+    path: "/Cart",
+    element: <Cart />,
   },
 ]);
 
