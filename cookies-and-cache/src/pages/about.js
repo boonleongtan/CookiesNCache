@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import Layout from '../components/Layout';
 
 function About() {
+    useEffect(() => {
+        document.title = 'About | Cookies & Cache!';
+      }, []);
+
     return (
         <Layout>
             <h1>About Cookies & Cache</h1>
