@@ -4,7 +4,7 @@ import './Navbar.css';
 
 function Navbar() {
     const [searchInput, setSearchInput] = useState("");
-    const [searchOutput, setSearchOutput] = useState([{}]);
+    const [searchOutput, setSearchOutput] = useState([]);
 
     useEffect(() => {
         fetch("/api/search?q=" + searchInput).then(res => res.json()).then(data => {
