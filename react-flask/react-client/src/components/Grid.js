@@ -13,14 +13,14 @@ function Grid({ apiRoute, children }) {
 
     const gridItems = cookieList[0] && cookieList.map((cookie) => {
         return (
-            <>
+            <form>
                 <input name="id" type="hidden" value={cookie.id} />
                 <button className="grid-item" type="submit">
                     <img src={cookie.img} alt={"Image of " + cookie.name} className="item-img" />
                     <div className="item-name">{cookie.name}</div>
                     <div className="item-value">{cookie.price}</div>
                 </button>
-            </>
+            </form>
         );
     });
 
@@ -28,9 +28,7 @@ function Grid({ apiRoute, children }) {
         <Layout>
             {children}
             <div className="grid-container">
-                <form>
-                    {gridItems}
-                </form>
+                {gridItems}
             </div>
         </Layout>
     )
