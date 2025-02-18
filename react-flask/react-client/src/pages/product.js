@@ -7,18 +7,22 @@ function Product() {
     const { cookie } = useLocation().state;
 
     useEffect(() => {
-        document.title = "cookie.name" + ' | Cookies & Cache!';
+        document.title = cookie.name + ' | Cookies & Cache!';
     }, []);
 
     return (
         <Layout>
             <div className="vert-split-half">
                 <div className="each-half">
-                    <img src={ cookie.img } alt={ cookie.name } className="product-img" />
+                    <img
+                        className="product-img"
+                        src={ cookie.img }
+                        alt={ cookie.name }
+                    />
                 </div>
                 <div className="each-half">
-                    <h2>cookie.name</h2>
-                    <h2>cookie.price</h2>
+                    <h2>{cookie.name}</h2>
+                    <h2>{cookie.price}</h2>
                     <p className="pdt-desc">Shipping is calculated at checkout</p>
                     <form action="/cart" method="post">
                         <input name="id" type="hidden" value="{{ cookie.id }}" />
@@ -33,7 +37,7 @@ function Product() {
                         </div>
                     </form>
                     <h3>Description</h3>
-                    <p className="pdt-desc">cookie.desc</p>
+                    <p className="pdt-desc">{cookie.desc}</p>
                     <div className="desc-space"></div>
                 </div>
             </div>
