@@ -12,13 +12,13 @@ function Navbar() {
         });
     }, [searchInput]);
 
-    const navSearchList = searchOutput[0] && searchOutput.map((product) => {
+    const navSearchList = searchOutput[0] && searchOutput.map((cookie) => {
         return (
-            <form className="nav-searchitem">
-                <input name="id" type="hidden" value={product.id} />
-                <img src={product.img} alt={product.name} className="nav-searchimg" />
-                <button className="nav-searchname" type="submit">{product.img}</button>
-            </form>
+            <Link to="/Product" state={{ cookie: cookie }} className="nav-searchitem">
+                <input name="id" type="hidden" value={cookie.id} />
+                <img src={cookie.img} alt={cookie.name} className="nav-searchimg" />
+                <button className="nav-searchname">{cookie.name}</button>
+            </Link>
         );
     });
 
