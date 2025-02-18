@@ -5,8 +5,7 @@ import './product.css';
 
 function Product() {
     const location = useLocation();
-    const { from } = location.state;
-    const cookie = from;
+    const { cookie } = location.state;
 
     useEffect(() => {
         document.title = "cookie.name" + ' | Cookies & Cache!';
