@@ -3,14 +3,15 @@ import { Link } from "react-router-dom";
 import './Navbar.css';
 
 function Navbar() {
+    const [searchInput, setSearchInput] = useState("");
     const [searchOutput, setSearchOutput] = useState([{}]);
 
-    async function handleSearch(searchInput) {
-        fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => {
+    useEffect(() => {
+        fetch("/api/search?q=" + searchInput).then(res => res.json()).then(data => {
             setSearchOutput(data);
         });
-    }
-    
+    }, [searchInput]);
+
     const navSearchList = searchOutput[0][0] && searchOutput.map((product) => {
         return (
             <form className="nav-searchitem">
@@ -48,7 +49,8 @@ function Navbar() {
                             type="text"
                             className="nav-searchbar"
                             placeholder="Search for a product"
-                            onChange={(e) => handleSearch(e.target.value)}
+                            value={searchInput}
+                            onChange={(e) => setSearchInput(e.target.value)}
                         />
                         <button className="nav-searchbutton">Search</button>
                         <div className="nav-searchlist">{navSearchList}</div>
