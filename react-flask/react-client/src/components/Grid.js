@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Layout from './Layout';
 import './Grid.css';
 
@@ -13,14 +14,12 @@ function Grid({ apiRoute, children }) {
 
     const gridItems = cookieList[0] && cookieList.map((cookie) => {
         return (
-            <form>
+            <Link to={{ pathname: '/Product', state: cookie }} className="grid-item">
                 <input name="id" type="hidden" value={cookie.id} />
-                <button className="grid-item" type="submit">
-                    <img src={cookie.img} alt={"Image of " + cookie.name} className="item-img" />
-                    <div className="item-name">{cookie.name}</div>
-                    <div className="item-value">{cookie.price}</div>
-                </button>
-            </form>
+                <img src={cookie.img} alt={"Image of " + cookie.name} className="item-img" />
+                <div className="item-name">{cookie.name}</div>
+                <div className="item-value">{cookie.price}</div>
+            </Link>
         );
     });
 
