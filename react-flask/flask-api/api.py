@@ -1,27 +1,14 @@
-# import time
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route('/api/time')
-# def get_current_time():
-#     return {'time': time.time()}
-
-import sqlite3
 from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from cookie import Cookie
-from helper_functions import login_required, usd
+from helper_functions import login_required
 from customsql import CustomSQL
 import queries
 
 # Configure app
 app = Flask(__name__)
-
-# # customise jinja filter for usd function
-# app.jinja_env.filters["usd"] = usd
 
 # for simplicity sake, preconfigure cookie store products
 db = CustomSQL("store.db")
@@ -32,13 +19,11 @@ db.execute(queries.d_create_table_for_transacted_items)
 db.execute(queries.e_create_table_for_users)
 db.execute(queries.f_create_table_for_users_saved_cart)
 
-
 # Configure session
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 # In total there are 5 session variables defined: "cart"(list of dictionaries), "grandtotal"(float), "discounted"(float), "gift_code_status"(string), "user_id"(integer)
-
 
 # Ensure responses aren't cached
 @app.after_request
@@ -99,12 +84,6 @@ def seasonal():
     # render all products
     cookies = db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
     return render_template("seasonal.html", cookies=cookies)
-
-
-# about page
-@app.route("/about")
-def about():
-    return render_template("about.html")
 
 
 # login functions
