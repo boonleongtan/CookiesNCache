@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
 import Layout from './Layout';
+<<<<<<< HEAD
 import './Grid.css';
 
 function Grid({ apiRoute }) {
@@ -37,6 +37,15 @@ function Grid({ apiRoute }) {
                         </button>
                     </form>
                 {% endfor %} */}
+=======
+import './Grid.css'
+
+function Grid({ children }) {
+    return (
+        <Layout>
+            <div className="grid-container">
+                {children}
+>>>>>>> parent of 89363f2 (remove product.js)
             </div>
         </Layout>
     )
