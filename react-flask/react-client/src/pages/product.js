@@ -1,8 +1,13 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import './product.css';
 
-function Product({}) {
+function Product() {
+    const location = useLocation();
+    const { from } = location.state;
+    const cookie = from;
+
     useEffect(() => {
         document.title = "cookie.name" + ' | Cookies & Cache!';
     }, []);
