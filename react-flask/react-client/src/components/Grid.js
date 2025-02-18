@@ -8,21 +8,25 @@ function Grid({ apiRoute }) {
     useEffect(() => {
         fetch(apiRoute).then(res => res.json()).then(data => {
             setCookieList(data);
-            console.log(cookieList);
         });
-    }, [apiRoute]);
+    });
+    console.log(cookieList);
 
-    return (
+    return cookieList != [] ? (
+        <Layout>
+            <h1>Loading...</h1>
+        </Layout>
+    ) : (
         <Layout>
             <div className="grid-container">
-                {/* <form>
+                <form>
                     <input name="id" type="hidden" value={cookieList[0].id} />
                     <button className="grid-item" type="submit">
                         <img src={cookieList[0].img} alt={"Image of " + cookieList[0].name} className="item-img" />
                         <div className="item-name">{cookieList[0].name}</div>
                         <div className="item-value">{cookieList[0].price}</div>
                     </button>
-                </form> */}
+                </form>
                 {/* {% for cookie in cookies %}
                     <form action="/product" method="post">
                         <input name="id" type="hidden" value="{{ cookie.id }}">
