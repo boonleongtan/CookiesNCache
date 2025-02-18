@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import './product.css';
 
 function Product() {
+    // receive props from Link
     const { cookie } = useLocation().state;
 
     useEffect(() => {
