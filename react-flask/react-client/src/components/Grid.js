@@ -3,13 +3,13 @@ import Layout from './Layout';
 import './Grid.css';
 
 function Grid({ apiRoute }) {
-    const [cookieList, setCookieList] = useState("no cookie");
+    const [cookieList, setCookieList] = useState([{}]);
 
     useEffect(() => {
         fetch(apiRoute).then(res => res.json()).then(data => {
             setCookieList(data);
         });
-    }, []);
+    }, [apiRoute]);
 
     return (
         <Layout>
