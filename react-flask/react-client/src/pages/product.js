@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Layout from '../components/Layout';
 import './product.css';
 
-function Product() {
+function Product({}) {
     useEffect(() => {
         document.title = "cookie.name" + ' | Cookies & Cache!';
     }, []);
