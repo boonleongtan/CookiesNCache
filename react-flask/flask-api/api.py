@@ -75,7 +75,7 @@ def product():
 def favs():
     # render all products
     cookies = db.execute("SELECT * FROM products WHERE fav = 'yes';")
-    return render_template("favs.html", cookies=cookies)
+    return jsonify(cookies)
 
 
 # seasonal page
