@@ -40,6 +40,7 @@ def after_request(response):
 # searchbar (using jsonify to autocomplete searches)
 @app.route("/api/search")
 def search():
+    # takes the "q=" from the url after the "?" eg .../api/search?q=...
     q = request.args.get("q")
     if q:
         products = db.execute("SELECT * FROM products WHERE name LIKE ? LIMIT 3", f"%{q}%")
