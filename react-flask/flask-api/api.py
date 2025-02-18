@@ -71,7 +71,7 @@ def product():
 
 
 # favourites page
-@app.route("/favs")
+@app.route("/api/favs")
 def favs():
     # render all products
     cookies = db.execute("SELECT * FROM products WHERE fav = 'yes';")

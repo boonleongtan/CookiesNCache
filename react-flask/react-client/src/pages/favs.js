@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Layout from '../components/Layout';
+import Grid from '../components/Grid';
 
 function Favs() {
     useEffect(() => {
@@ -7,9 +7,9 @@ function Favs() {
       }, []);
 
     return (
-        <Layout>
+        <Grid apiRoute={"/api/favs"}>
             <h1>Favs</h1>
-        </Layout>
+        </Grid>
     );
 }
 
