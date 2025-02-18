@@ -4,8 +4,7 @@ import Layout from '../components/Layout';
 import './product.css';
 
 function Product() {
-    const location = useLocation();
-    const { cookie } = location.state;
+    const { cookie } = useLocation().state;
 
     useEffect(() => {
         document.title = "cookie.name" + ' | Cookies & Cache!';
