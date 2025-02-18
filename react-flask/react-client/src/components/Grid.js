@@ -4,6 +4,7 @@ import Layout from './Layout';
 import './Grid.css';
 
 function Grid({ apiRoute, children }) {
+    // create state cookie list and set to []
     const [cookieList, setCookieList] = useState([]);
     
     // get the list of dictionaries returned by selecting from products
@@ -13,6 +14,7 @@ function Grid({ apiRoute, children }) {
         });
     }, [apiRoute]);
 
+    // map cookie list to grid space in grid layout, and add link and pass data
     const gridItems = cookieList[0] && cookieList.map((cookie) => {
         return (
             <Link to='/Product' state={{ cookie: cookie }} className="grid-item">
