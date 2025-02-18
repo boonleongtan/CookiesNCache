@@ -3,7 +3,7 @@ import Layout from './Layout';
 import './Grid.css';
 
 function Grid({ apiRoute, children }) {
-    const [cookieList, setCookieList] = useState([{}]);
+    const [cookieList, setCookieList] = useState([]);
 
     useEffect(() => {
         fetch(apiRoute).then(res => res.json()).then(data => {
@@ -11,7 +11,7 @@ function Grid({ apiRoute, children }) {
         });
     }, [apiRoute]);
 
-    const gridItems = cookieList.map((cookie) => {
+    const gridItems = cookieList[0] && cookieList.map((cookie) => {
         return (
             <>
                 <input name="id" type="hidden" value={cookie.id} />
