@@ -67,7 +67,7 @@ def search():
 
 
 # homepage/products page
-@app.route("/api/products")
+@app.route("/api")
 def index():
     # render all products
     cookies = db.execute("SELECT * FROM products;")
