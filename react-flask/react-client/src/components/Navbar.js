@@ -1,7 +1,19 @@
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './Navbar.css';
 
 function Navbar() {
+    const [searchInput, setSearchInput] = useState("");
+    const [searchOutput, setSearchOutput] = useState();
+
+    function handleSearch(e) {
+        setSearchInput(e.target.value);
+
+        useEffect(() => {
+            fetch().then(res => res.json()).then(data => data)
+        })
+    }
+
     return (
         <nav className="navbar">
             <ul className="nav-list">
@@ -25,7 +37,13 @@ function Navbar() {
             {/* <!--search bar--> */}
                 <li className="nav-item">
                     <div className="search">
-                        <input type="text" name="search" id="nav-searchbar" placeholder="Search for a product" onkeydown="search()" />
+                        <input
+                            type="text"
+                            className="nav-searchbar"
+                            placeholder="Search for a product"
+                            value={searchInput}
+                            onChange={handleSearch}
+                        />
                         <button className="nav-searchbutton">Search</button>
                         <div className="nav-searchlist"></div>
                     </div>
