@@ -5,7 +5,7 @@ import './product.css';
 function Product() {
     useEffect(() => {
         document.title = "cookie.name" + ' | Cookies & Cache!';
-      }, []);
+    }, []);
 
     return (
         <Layout>

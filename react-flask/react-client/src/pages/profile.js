@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 function Profile() {
     useEffect(() => {
         document.title = 'Profile | Cookies & Cache!';
-      }, []);
+    }, []);
 
     return (
         <Layout>

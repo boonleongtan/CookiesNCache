@@ -4,7 +4,7 @@ import Grid from '../components/Grid';
 function Favs() {
     useEffect(() => {
         document.title = 'Our Favourites | Cookies & Cache!';
-      }, []);
+    }, []);
 
     return (
         <Grid apiRoute={"/api/favs"}>

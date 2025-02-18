@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 function About() {
     useEffect(() => {
         document.title = 'About | Cookies & Cache!';
-      }, []);
+    }, []);
 
     return (
         <Layout>

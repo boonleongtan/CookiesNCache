@@ -4,7 +4,7 @@ import Grid from '../components/Grid';
 function Seasonal() {
     useEffect(() => {
         document.title = 'Seasonal Products | Cookies & Cache!';
-      }, []);
+    }, []);
 
     return (
         <Grid apiRoute={"/api/seasonal"}>
