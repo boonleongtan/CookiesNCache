@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './Navbar.css';
 
@@ -6,10 +6,9 @@ function Navbar() {
     const [searchOutput, setSearchOutput] = useState([{}]);
 
     async function handleSearch(searchInput) {
-        const response = await fetch('/api/search?q=' + searchInput);
-        const products = await response.json();
-        console.log(products)
-        setSearchOutput(products);
+        fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => {
+            setSearchOutput(data);
+        });
     }
     
     const navSearchList = searchOutput[0][0] && searchOutput.map((product) => {
