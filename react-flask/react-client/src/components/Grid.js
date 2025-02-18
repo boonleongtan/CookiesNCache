@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Layout from './Layout';
 import './Grid.css';
 
-function Grid({ apiRoute, children }) {
+function Grid({ apiRoute }) {
     const [cookieList, setCookieList] = useState([]);
 
     useEffect(() => {
@@ -14,7 +14,6 @@ function Grid({ apiRoute, children }) {
     return (
         <Layout>
             <div className="grid-container">
-                {children}
                 <form>
                     <input name="id" type="hidden" value={cookieList[0].id} />
                     <button className="grid-item" type="submit">
