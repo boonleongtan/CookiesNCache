@@ -7,6 +7,7 @@ function App() {
     return (
         <>
             <h1>Products</h1>
+<<<<<<< HEAD
             <Grid apiRoute="/api" />
 =======
     // const [currentTime, setCurrentTime] = useState(0);
@@ -23,6 +24,9 @@ function App() {
             {/* <p>The current time is {currentTime}</p> */}
             <Products />
 >>>>>>> parent of 89363f2 (remove product.js)
+=======
+            <Grid apiRoute="/api/products" />
+>>>>>>> parent of 2d09969 (edit)
         </>
     );
 }

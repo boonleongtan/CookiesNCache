@@ -9,8 +9,12 @@ function Grid({ apiRoute }) {
         fetch(apiRoute).then(res => res.json()).then(data => {
             setCookieList(data);
         });
+<<<<<<< HEAD
     });
     console.log(cookieList);
+=======
+    }, [cookieList]);
+>>>>>>> parent of 2d09969 (edit)
 
     return cookieList != [] ? (
         <Layout>
