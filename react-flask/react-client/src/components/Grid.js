@@ -2,21 +2,16 @@ import { useState, useEffect } from 'react';
 import Layout from './Layout';
 import './Grid.css';
 
-function Grid({ apiRoute }) {
-    const [cookieList, setCookieList] = useState("no cookies");
+function Grid() {
+    const [cookieList, setCookieList] = useState("no cookie");
 
     useEffect(() => {
-        fetch(apiRoute).then(res => res.json()).then(data => {
+        fetch('/api/products').then(res => res.json()).then(data => {
             setCookieList(data);
         });
     }, []);
-    console.log("current" + cookieList)
 
-    return cookieList !== "no cookies" ? (
-        <Layout>
-            <h1>Loading...</h1>
-        </Layout>
-    ) : (
+    return (
         <Layout>
             <div className="grid-container">
                 <form>
