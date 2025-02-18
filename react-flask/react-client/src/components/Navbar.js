@@ -4,15 +4,24 @@ import './Navbar.css';
 
 function Navbar() {
     const [searchInput, setSearchInput] = useState("");
-    const [searchOutput, setSearchOutput] = useState();
+    const [searchOutput, setSearchOutput] = useState([{}]);
 
     function handleSearch(e) {
         setSearchInput(e.target.value);
-
         useEffect(() => {
-            fetch().then(res => res.json()).then(data => data)
-        })
+            fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => setSearchOutput(data));
+        });
     }
+    
+    const navSearchList = searchOutput.map((product) => {
+        return (
+            <form className="nav-searchitem">
+                <input name="id" type="hidden" value={product.id} />
+                <img src={product.img} alt="Image" className="nav-searchimg" />
+                <button className="nav-searchname" type="submit">{product.img}</button>
+            </form>
+        );
+    });
 
     return (
         <nav className="navbar">
@@ -45,7 +54,7 @@ function Navbar() {
                             onChange={handleSearch}
                         />
                         <button className="nav-searchbutton">Search</button>
-                        <div className="nav-searchlist"></div>
+                        <div className="nav-searchlist">{navSearchList}</div>
                     </div>
                 </li>
             {/* <!--profile icon--> */}

@@ -38,7 +38,7 @@ def after_request(response):
 
 
 # searchbar (using jsonify to autocomplete searches)
-@app.route("/search")
+@app.route("/api/search")
 def search():
     q = request.args.get("q")
     if q:
