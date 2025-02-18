@@ -1,29 +1,20 @@
+import { useState, useEffect } from 'react';
 import Layout from './Layout';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import './Grid.css';
 
-function Grid({ apiRoute }) {
+function Grid({ apiRoute, children }) {
     const [cookieList, setCookieList] = useState([]);
 
     useEffect(() => {
         fetch(apiRoute).then(res => res.json()).then(data => {
             setCookieList(data);
         });
-<<<<<<< HEAD
-    });
-    console.log(cookieList);
-=======
-    }, [cookieList]);
->>>>>>> parent of 2d09969 (edit)
+    }, []);
 
-    return cookieList != [] ? (
-        <Layout>
-            <h1>Loading...</h1>
-        </Layout>
-    ) : (
+    return (
         <Layout>
             <div className="grid-container">
+                {children}
                 <form>
                     <input name="id" type="hidden" value={cookieList[0].id} />
                     <button className="grid-item" type="submit">
@@ -42,24 +33,6 @@ function Grid({ apiRoute }) {
                         </button>
                     </form>
                 {% endfor %} */}
-=======
-import './Grid.css'
-
-function Grid({ children }) {
-    return (
-        <Layout>
-            <div className="grid-container">
-                {children}
->>>>>>> parent of 89363f2 (remove product.js)
-=======
-import './Grid.css'
-
-function Grid({ children }) {
-    return (
-        <Layout>
-            <div className="grid-container">
-                {children}
->>>>>>> parent of 89363f2 (remove product.js)
             </div>
         </Layout>
     )
