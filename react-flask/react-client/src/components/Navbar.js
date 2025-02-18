@@ -1,16 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom";
 import './Navbar.css';
 
 function Navbar() {
-    const [searchInput, setSearchInput] = useState("");
     const [searchOutput, setSearchOutput] = useState([{}]);
 
-    function handleSearch(e) {
-        setSearchInput(e.target.value);
-        useEffect(() => {
-            fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => setSearchOutput(data));
-        });
+    function handleSearch(searchInput) {
+        const response = fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => setSearchOutput(data));
     }
     
     const navSearchList = searchOutput.map((product) => {
@@ -50,8 +46,7 @@ function Navbar() {
                             type="text"
                             className="nav-searchbar"
                             placeholder="Search for a product"
-                            value={searchInput}
-                            onChange={handleSearch}
+                            onChange={(e) => handleSearch(e.target.value)}
                         />
                         <button className="nav-searchbutton">Search</button>
                         <div className="nav-searchlist">{navSearchList}</div>
