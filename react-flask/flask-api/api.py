@@ -56,7 +56,6 @@ def search():
 def index():
     # render all products
     cookies = db.execute("SELECT * FROM products;")
-    # return render_template("index.html", cookies=cookies)
     return jsonify(cookies)
 
 
