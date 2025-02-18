@@ -12,7 +12,7 @@ function Navbar() {
         });
     }, [searchInput]);
 
-    const navSearchList = searchOutput[0][0] && searchOutput.map((product) => {
+    const navSearchList = searchOutput[0] && searchOutput.map((product) => {
         return (
             <form className="nav-searchitem">
                 <input name="id" type="hidden" value={product.id} />
