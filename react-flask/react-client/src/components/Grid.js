@@ -16,7 +16,7 @@ function Grid({ apiRoute, children }) {
         return (
             <Link to={{ pathname: '/Product', state: cookie }} className="grid-item">
                 <input name="id" type="hidden" value={cookie.id} />
-                <img src={cookie.img} alt={"Image of " + cookie.name} className="item-img" />
+                <img src={cookie.img} alt={cookie.name} className="item-img" />
                 <div className="item-name">{cookie.name}</div>
                 <div className="item-value">{cookie.price}</div>
             </Link>
