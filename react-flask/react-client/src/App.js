@@ -5,7 +5,7 @@ function App() {
     return (
         <>
             <h1>Products</h1>
-            <Grid apiRoute="/api/products" />
+            <Grid apiRoute="/api" />
         </>
     );
 }

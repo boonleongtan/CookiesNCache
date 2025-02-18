@@ -10,7 +10,7 @@ function Grid({ apiRoute }) {
             setCookieList(data);
             console.log(cookieList);
         });
-    }, [cookieList]);
+    }, [apiRoute]);
 
     return (
         <Layout>
