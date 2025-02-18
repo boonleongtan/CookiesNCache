@@ -5,7 +5,8 @@ import './Grid.css';
 
 function Grid({ apiRoute, children }) {
     const [cookieList, setCookieList] = useState([]);
-
+    
+    // get the list of dictionaries returned by selecting from products
     useEffect(() => {
         fetch(apiRoute).then(res => res.json()).then(data => {
             setCookieList(data);
