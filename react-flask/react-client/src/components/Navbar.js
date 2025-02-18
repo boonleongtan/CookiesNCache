@@ -5,8 +5,11 @@ import './Navbar.css';
 function Navbar() {
     const [searchOutput, setSearchOutput] = useState([{}]);
 
-    function handleSearch(searchInput) {
-        fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => setSearchOutput(data));
+    async function handleSearch(searchInput) {
+        const response = await fetch('/api/search?q=' + searchInput);
+        const products = await response.json();
+        console.log(products)
+        setSearchOutput(products);
     }
     
     const navSearchList = searchOutput[0][0] && searchOutput.map((product) => {
