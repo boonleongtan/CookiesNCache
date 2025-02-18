@@ -6,14 +6,14 @@ function Navbar() {
     const [searchOutput, setSearchOutput] = useState([{}]);
 
     function handleSearch(searchInput) {
-        const response = fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => setSearchOutput(data));
+        fetch('/api/search?q=' + searchInput).then(res => res.json()).then(data => setSearchOutput(data));
     }
     
-    const navSearchList = searchOutput.map((product) => {
+    const navSearchList = searchOutput[0][0] && searchOutput.map((product) => {
         return (
             <form className="nav-searchitem">
                 <input name="id" type="hidden" value={product.id} />
-                <img src={product.img} alt="Image" className="nav-searchimg" />
+                <img src={product.img} alt={product.name} className="nav-searchimg" />
                 <button className="nav-searchname" type="submit">{product.img}</button>
             </form>
         );
