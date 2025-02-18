@@ -54,9 +54,19 @@ def search():
 # homepage/products page
 @app.route("/api/products")
 def index():
-    # render all products
-    cookies = db.execute("SELECT * FROM products;")
-    return jsonify(cookies)
+    return db.execute("SELECT * FROM products;")
+
+
+# favourites page
+@app.route("/api/favs")
+def favs():
+    return db.execute("SELECT * FROM products WHERE fav = 'yes';")
+
+
+# seasonal page
+@app.route("/api/seasonal")
+def seasonal():
+    return db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
 
 
 # individual product pages (use POST to get cookie_id)
@@ -67,22 +77,6 @@ def product():
         cookie_id = request.form.get("id")
         cookie = db.execute("SELECT * FROM products WHERE id = ?;", cookie_id)[0]
         return render_template("product.html", cookie=cookie)
-
-
-# favourites page
-@app.route("/api/favs")
-def favs():
-    # render all products
-    favs = db.execute("SELECT * FROM products WHERE fav = 'yes';")
-    return jsonify(favs)
-
-
-# seasonal page
-@app.route("/api/seasonal")
-def seasonal():
-    # render all products
-    seasonal = db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
-    return jsonify(seasonal)
 
 
 # login functions
