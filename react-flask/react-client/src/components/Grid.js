@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import Layout from './Layout';
 import './Grid.css';
 
-function Grid() {
+function Grid({ apiRoute }) {
     const [cookieList, setCookieList] = useState("no cookie");
 
     useEffect(() => {
-        fetch('/api/products').then(res => res.json()).then(data => {
+        fetch(apiRoute).then(res => res.json()).then(data => {
             setCookieList(data);
         });
     }, []);
