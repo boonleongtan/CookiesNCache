@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Layout from '../components/Layout';
+import Grid from '../components/Grid';
 
 function Seasonal() {
     useEffect(() => {
@@ -7,9 +7,9 @@ function Seasonal() {
       }, []);
 
     return (
-        <Layout>
+        <Grid apiRoute={"/api/seasonal"}>
             <h1>Seasonal</h1>
-        </Layout>
+        </Grid>
     );
 }
 

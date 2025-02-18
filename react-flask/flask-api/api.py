@@ -73,16 +73,16 @@ def product():
 @app.route("/api/favs")
 def favs():
     # render all products
-    cookies = db.execute("SELECT * FROM products WHERE fav = 'yes';")
-    return jsonify(cookies)
+    favs = db.execute("SELECT * FROM products WHERE fav = 'yes';")
+    return jsonify(favs)
 
 
 # seasonal page
-@app.route("/seasonal")
+@app.route("/api/seasonal")
 def seasonal():
     # render all products
-    cookies = db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
-    return render_template("seasonal.html", cookies=cookies)
+    seasonal = db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
+    return jsonify(seasonal)
 
 
 # login functions
