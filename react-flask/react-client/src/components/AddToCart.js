@@ -1,0 +1,36 @@
+function AddToCart({ productId }) {
+    async function handleClick(e) {
+        e.preventDefault();
+        const response = await fetch("/api/cart", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: productId,
+                qty: 5,
+            })
+        });
+        if (response.ok) {
+            console.log("sent data");
+        }
+    }
+
+    return (
+        <form>
+            <input name="id" type="hidden" value="{{ cookie.id }}" />
+            <p className="qtylabel">Quantity</p>
+            <div className="number-input">
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();event.preventDefault();" type="button"></button>
+                <input name="qty" type="number" min="1" value="1" />
+                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();event.preventDefault();" className="plus" type="button"></button>
+            </div>
+            <div>
+                <button className="add-to-cart" type="submit" onClick={handleClick}>Add to Cart</button>
+            </div>
+        </form>
+    );
+}
+
+export default AddToCart;
