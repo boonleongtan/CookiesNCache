@@ -10,7 +10,7 @@ import queries
 # Configure app
 app = Flask(__name__)
 
-# for simplicity sake, preconfigure cookie store products
+# Preset database
 db = CustomSQL("store.db")
 db.execute(queries.a_create_table_for_products)
 db.execute(queries.b_input_products_into_table)
@@ -23,7 +23,7 @@ db.execute(queries.f_create_table_for_users_saved_cart)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-# In total there are 5 session variables defined: "cart"(list of dictionaries), "grandtotal"(float), "discounted"(float), "gift_code_status"(string), "user_id"(integer)
+# Note: In total there are 5 session variables defined: "cart"(list of dictionaries), "grandtotal"(float), "discounted"(float), "gift_code_status"(string), "user_id"(integer)
 
 # Ensure responses aren't cached
 @app.after_request
@@ -68,16 +68,6 @@ def favs():
 @app.route("/api/seasonal")
 def seasonal():
     return db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
-
-
-# # individual product pages (use POST to get cookie_id)
-# @app.route("/product", methods=["POST"])
-# def product():
-#     # POST (when user clicks on product on homepage, display product page)
-#     if request.method == "POST":
-#         cookie_id = request.form.get("id")
-#         cookie = db.execute("SELECT * FROM products WHERE id = ?;", cookie_id)[0]
-#         return render_template("product.html", cookie=cookie)
 
 
 # login functions
@@ -181,7 +171,7 @@ def register():
 
 
 # shopping cart (add to cart, view cart)
-@app.route("/cart", methods=["GET", "POST"])
+@app.route("/api/cart", methods=["GET", "POST"])
 def cart():
     # Ensure cart exists
     if "cart" not in session:
@@ -189,42 +179,44 @@ def cart():
 
     # POST (i.e. when user adds item to cart from individual product page)
     if request.method == "POST":
-        cookie_id = int(request.form.get("id"))
-        cookie_qty = int(request.form.get("qty"))
-        # add to session["cart"]
-        # Note! This function is only for adding items so cookie_qty must > 0!
-        if cookie_id and cookie_qty > 0:
-            # if the cookie is already in session["cart"], update qty
-            if any(cookie.id == cookie_id for cookie in session["cart"]):
-                for cookie_obj in session["cart"]:
-                    if cookie_obj.id == cookie_id:
-                        cookie_obj.qty += cookie_qty
-            # else if the cookie is not yet in session["cart"], add it as a new Cookie object
-            else:
-                cookie_name, cookie_price, cookie_img = db.execute(
-                    "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
-                session["cart"].append(Cookie(cookie_id, cookie_name,
-                                       cookie_price, cookie_qty, cookie_img))
-        # also update savedcart if signed in
-        if session.get("user_id") is not None:
-            sync_carts("w")
-            sync_carts("r")
-        # once done render success message and stay on page
-        flash("Item added to cart!", "success")
-        return product()
+        cookie = request.get_json()
+        print(cookie)
+        return "Success", 201
 
-    # GET (i.e. when user clicks on shopping cart icon)
-    else:
-        if len(session["cart"]) == 0:
-            return render_template("emptycart.html")
-        else:
-            # first calculate total cost, then store it in session["grandtotal"]
-            grandtotal = 0
-            for cookie in session["cart"]:
-                grandtotal += cookie.total
-            session["grandtotal"] = grandtotal
-            # display cart
-            return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
+    #     # add to session["cart"]
+    #     # Note! This function is only for adding items so cookie_qty must > 0!
+    #     if cookie_id and cookie_qty > 0:
+    #         # if the cookie is already in session["cart"], update qty
+    #         if any(cookie.id == cookie_id for cookie in session["cart"]):
+    #             for cookie_obj in session["cart"]:
+    #                 if cookie_obj.id == cookie_id:
+    #                     cookie_obj.qty += cookie_qty
+    #         # else if the cookie is not yet in session["cart"], add it as a new Cookie object
+    #         else:
+    #             cookie_name, cookie_price, cookie_img = db.execute(
+    #                 "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
+    #             session["cart"].append(Cookie(cookie_id, cookie_name,
+    #                                    cookie_price, cookie_qty, cookie_img))
+    #     # also update savedcart if signed in
+    #     if session.get("user_id") is not None:
+    #         sync_carts("w")
+    #         sync_carts("r")
+    #     # once done render success message and stay on page
+    #     flash("Item added to cart!", "success")
+    #     return product()
+
+    # # GET (i.e. when user clicks on shopping cart icon)
+    # else:
+    #     if len(session["cart"]) == 0:
+    #         return render_template("emptycart.html")
+    #     else:
+    #         # first calculate total cost, then store it in session["grandtotal"]
+    #         grandtotal = 0
+    #         for cookie in session["cart"]:
+    #             grandtotal += cookie.total
+    #         session["grandtotal"] = grandtotal
+    #         # display cart
+    #         return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
 
 
 # edit cart qty

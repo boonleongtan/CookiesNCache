@@ -7,6 +7,25 @@ function Product() {
     // receive props from Link
     const { cookie } = useLocation().state;
 
+    async function handleClick(e) {
+        e.preventDefault();
+        const response = await fetch("/api/cart", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: 4,
+                qty: 3,
+            })
+        });
+
+        if (response.ok) {
+            console.log("it worked");
+        }
+    }
+
     return (
         <>
             <title>{cookie.name} | Cookies & Cache!</title>
@@ -33,7 +52,7 @@ function Product() {
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();event.preventDefault();" className="plus" type="button"></button>
                             </div>
                             <div>
-                                <button className="add-to-cart" type="submit">Add to Cart</button>
+                                <button className="add-to-cart" type="submit" onClick={handleClick}>Add to Cart</button>
                             </div>
                         </form>
                         <h3>Description</h3>
