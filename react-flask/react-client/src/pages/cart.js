@@ -1,14 +1,15 @@
 import { useEffect } from 'react';
 import Layout from '../components/Layout';
 
-function Cart() {
+function Cart({ children }) {
     useEffect(() => {
-        document.title = 'Cart | Cookies & Cache!';
+        document.title = 'Shopping Cart | Cookies & Cache!';
     }, []);
 
     return (
         <Layout>
-            <h1>Cart</h1>
+            <h1>Shopping Cart</h1>
+            {children}
         </Layout>
     );
 }
