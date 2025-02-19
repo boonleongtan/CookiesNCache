@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Layout from '../components/Layout';
+import './cart.css';
 
 function Cart({ children }) {
     useEffect(() => {

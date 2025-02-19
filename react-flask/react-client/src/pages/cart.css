@@ -1,0 +1,110 @@
+.cart-table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.cart-table th {
+    height: 50px;
+    background-color: black;
+    font: bold 1.2vw Verdana, sans-serif;
+    color: white;
+}
+
+.cart-table td {
+    height: 100px;
+    border-bottom: 1px solid black;
+}
+
+.cart-table th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+.cart-table th:nth-child(2),
+td:nth-child(2) {
+    text-align: center;
+}
+
+.cart-table th:last-child,
+td:last-child {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.cart-table tr:last-child td {
+    border: 0;
+    height: 75px;
+}
+
+.cart-item-left {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+}
+
+.cart-item-right {
+    display: inline-block;
+    width: 70%;
+    margin-top: 10px;
+}
+
+.cart-item-right button {
+    border: none;
+    padding: 0;
+    background-color: inherit;
+    font: bold 1.2vw Verdana, sans-serif;
+    color: black;
+}
+
+.cart-item-right button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cart-item-right p {
+    margin: 5px 0;
+    font: 1.2vw Verdana, sans-serif;
+    color: black;
+}
+
+.cart-img {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+}
+
+.checkout {
+    float: right;
+    margin-right: 10%;
+    padding: 17.5px;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+}
+
+.checkout:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+.continue-shopping {
+    margin-left: 42%;
+    padding: 17.5px;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+.continue-shopping:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
