@@ -1,10 +1,8 @@
 # Cookies & Cache - The React Version
 
-Translating HTML-Flask to React-Flask and then React-Express
+### ${\textsf{\color{GreenYellow}{Translating HTML-Flask to React-Flask, and then React-Express.}}}$
 
----
-
-${\textsf{\color{red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
+${\textsf{\color{Red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
 
 > [!CAUTION]
 > This project was created entirely from scratch by the author. The author retains all rights to prohibit any form of distribution and/or usage of any or all of the materials contained within this project.
