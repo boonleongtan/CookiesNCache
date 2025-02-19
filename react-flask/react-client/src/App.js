@@ -1,15 +1,14 @@
-import { useEffect } from 'react';
 import Grid from './components/Grid';
 
 function App() {
-    useEffect(() => {
-        document.title = 'Products | Cookies & Cache!';
-    }, []);
-
     return (
-        <Grid apiRoute={"/api/products"}>
-            <h1>Products</h1>
-        </Grid>
+        <>
+            <title>Products | Cookies & Cache!</title>
+            
+            <Grid apiRoute={"/api/products"}>
+                <h1>Products</h1>
+            </Grid>
+        </>
     );
 }
 

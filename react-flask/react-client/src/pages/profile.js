@@ -1,21 +1,20 @@
-import { useEffect } from 'react';
 import Layout from '../components/Layout';
 
 function Profile({ username = "user" }) {
-    useEffect(() => {
-        document.title = 'Profile | Cookies & Cache!';
-    }, []);
-
     return (
-        <Layout>
-            <h1>Welcome, {username}</h1>
+        <>
+            <title>Profile | Cookies & Cache!</title>
 
-            <h4 style={{marginTop: 0}}>Any item you add to cart now will automatically be saved for your next purchase, unless you checkout.</h4>
+            <Layout>
+                <h1>Welcome, {username}</h1>
 
-            <form action="/logout" className="login">
-                <button type="submit">Log out</button>
-            </form>
-        </Layout>
+                <h4 style={{marginTop: 0}}>Any item you add to cart now will automatically be saved for your next purchase, unless you checkout.</h4>
+
+                <form action="/logout" className="login">
+                    <button type="submit">Log out</button>
+                </form>
+            </Layout>
+        </>
     );
 }
 
