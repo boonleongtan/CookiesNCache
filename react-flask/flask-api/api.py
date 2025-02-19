@@ -70,14 +70,14 @@ def seasonal():
     return db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
 
 
-# individual product pages (use POST to get cookie_id)
-@app.route("/product", methods=["POST"])
-def product():
-    # POST (when user clicks on product on homepage, display product page)
-    if request.method == "POST":
-        cookie_id = request.form.get("id")
-        cookie = db.execute("SELECT * FROM products WHERE id = ?;", cookie_id)[0]
-        return render_template("product.html", cookie=cookie)
+# # individual product pages (use POST to get cookie_id)
+# @app.route("/product", methods=["POST"])
+# def product():
+#     # POST (when user clicks on product on homepage, display product page)
+#     if request.method == "POST":
+#         cookie_id = request.form.get("id")
+#         cookie = db.execute("SELECT * FROM products WHERE id = ?;", cookie_id)[0]
+#         return render_template("product.html", cookie=cookie)
 
 
 # login functions
