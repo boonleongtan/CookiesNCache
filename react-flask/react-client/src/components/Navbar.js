@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import './Navbar.css';
 
-function Navbar() {
+function Searchbar() {
     const [searchInput, setSearchInput] = useState("");
     const [searchOutput, setSearchOutput] = useState([]);
 
@@ -21,6 +21,24 @@ function Navbar() {
             </Link>
         );
     });
+
+    return (
+        <div className="search">
+            <input
+                type="text"
+                className="nav-searchbar"
+                placeholder="Search for a product"
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
+                />
+            <button className="nav-searchbutton">Search</button>
+            <div className="nav-searchlist">{navSearchList}</div>
+        </div>
+    );
+}
+
+function Navbar() {
+    
 
     return (
         <nav className="navbar">
@@ -44,17 +62,7 @@ function Navbar() {
                 <li className="nav-item"><Link className="nav-link" to="/About">ABOUT</Link></li>
             {/* <!--search bar--> */}
                 <li className="nav-item">
-                    <div className="search">
-                        <input
-                            type="text"
-                            className="nav-searchbar"
-                            placeholder="Search for a product"
-                            value={searchInput}
-                            onChange={(e) => setSearchInput(e.target.value)}
-                        />
-                        <button className="nav-searchbutton">Search</button>
-                        <div className="nav-searchlist">{navSearchList}</div>
-                    </div>
+                    <Searchbar />
                 </li>
             {/* <!--profile icon--> */}
                 <li className="nav-item"><Link className="nav-profile" to="/Profile"><img src="/profile_icon.jpg" alt="Profile" className="nav-profile" /></Link></li>
