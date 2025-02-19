@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import './product.css';
+import './numberinput.css';
 
 function Product() {
     // receive props from Link
