@@ -20,9 +20,8 @@ function Product() {
                 qty: 5,
             })
         });
-
         if (response.ok) {
-            console.log("it worked");
+            console.log("sent data");
         }
     }
 
@@ -43,7 +42,7 @@ function Product() {
                         <h2>{cookie.name}</h2>
                         <h2>{cookie.price}</h2>
                         <p className="pdt-desc">Shipping is calculated at checkout</p>
-                        <form action="/cart" method="post">
+                        <form>
                             <input name="id" type="hidden" value="{{ cookie.id }}" />
                             <p className="qtylabel">Quantity</p>
                             <div className="number-input">
