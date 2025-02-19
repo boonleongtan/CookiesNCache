@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 function Header() {
@@ -9,10 +10,10 @@ function Header() {
                     <span id="b">ENJOY UP TO 10% OFF SELECTED PRODUCTS WITH CODE: "YAY"!</span>
                 </div>
             </div>
-            <a href="/">
+            <Link to="/">
                 <img src="/cookies.jpg" alt="Cookies & Cache Brand Logo" width="150px" height="100px" />
                 <div>Cookies & Cache</div>
-            </a>
+            </Link>
         </header>
     );
 }
