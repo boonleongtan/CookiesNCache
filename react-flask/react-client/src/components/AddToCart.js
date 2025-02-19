@@ -1,6 +1,5 @@
 function AddToCart({ productId }) {
-    async function handleClick(e) {
-        e.preventDefault();
+    async function addToCart(productId, formData) {
         const response = await fetch("/api/cart", {
             method: 'POST',
             headers: {
@@ -16,9 +15,10 @@ function AddToCart({ productId }) {
             console.log("sent data");
         }
     }
+    const addProductToCart = addToCart.bind(null, productId);
 
     return (
-        <form>
+        <form action={addProductToCart}>
             <input name="id" type="hidden" value="{{ cookie.id }}" />
             <p className="qtylabel">Quantity</p>
             <div className="number-input">
@@ -27,7 +27,7 @@ function AddToCart({ productId }) {
                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp();event.preventDefault();" className="plus" type="button"></button>
             </div>
             <div>
-                <button className="add-to-cart" type="submit" onClick={handleClick}>Add to Cart</button>
+                <button className="add-to-cart" type="submit">Add to Cart</button>
             </div>
         </form>
     );
