@@ -1,13 +1,13 @@
 /* split page into two vertically */
-.each-half {
-    float: left;
-    width: 50%;
-}
-
 .vert-split-half:after {
     content: "";
     display: table;
     clear: both;
+}
+
+.each-half {
+    float: left;
+    width: 50%;
 }
 
 .product-img {
@@ -21,27 +21,6 @@
 .product-img:hover {
     transform: scale(1.5);
     cursor: pointer;
-}
-
-.qtylabel {
-    font: 1.5vw "Trebuchet MS", sans-serif;
-    margin: 50px 10px 0 10px;
-}
-
-.add-to-cart {
-    padding: 17.5px 30%;
-    border: 2px solid white;
-    border-radius: 7.5px;
-    margin-top: 30px;
-    background-color: black;
-    color: white;
-    font: 1.25vw Verdana, serif;
-}
-
-.add-to-cart:hover {
-    cursor: pointer;
-    border: 2px solid yellow;
-    color: yellow;
 }
 
 .desc-space {

@@ -1,3 +1,6 @@
+import './AddToCart.css';
+import './numberinput.css';
+
 function AddToCart({ productId }) {
     async function addToCart(productId, formData) {
         const response = await fetch("/api/cart", {
@@ -19,7 +22,6 @@ function AddToCart({ productId }) {
 
     return (
         <form action={addProductToCart}>
-            <input name="id" type="hidden" value="{{ cookie.id }}" />
             <p className="qtylabel">Quantity</p>
             <div className="number-input">
                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown();event.preventDefault();" type="button"></button>

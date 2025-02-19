@@ -2,7 +2,6 @@ import { useLocation } from 'react-router-dom';
 import Layout from '../components/Layout';
 import AddToCart from '../components/AddToCart';
 import './product.css';
-import './numberinput.css';
 
 function Product() {
     // receive props from Link
