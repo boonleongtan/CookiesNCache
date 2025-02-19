@@ -13,6 +13,7 @@ import Seasonal from './pages/seasonal';
 import About from './pages/about';
 import Profile from './pages/profile';
 import EmptyCart from './pages/emptycart';
+import FullCart from './pages/fullcart';
 import Product from './pages/product';
 
 const router = createBrowserRouter([
@@ -38,7 +39,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Cart",
-    element: <EmptyCart />,
+    element: <FullCart />,
   },
   {
     path: "/Product",
