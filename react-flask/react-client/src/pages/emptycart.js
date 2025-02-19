@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Cart from '../components/Cart';
+import Cart from './cart';
 
 function EmptyCart() {
     return (

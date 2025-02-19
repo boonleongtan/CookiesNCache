@@ -12,7 +12,7 @@ import Favs from './pages/favs';
 import Seasonal from './pages/seasonal';
 import About from './pages/about';
 import Profile from './pages/profile';
-import Cart from './pages/cart';
+import EmptyCart from './pages/emptycart';
 import Product from './pages/product';
 
 const router = createBrowserRouter([
@@ -37,8 +37,8 @@ const router = createBrowserRouter([
     element: <Profile />,
   },
   {
-    path: "/Cart",
-    element: <Cart />,
+    path: "/EmptyCart",
+    element: <EmptyCart />,
   },
   {
     path: "/Product",
