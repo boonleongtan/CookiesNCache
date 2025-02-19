@@ -16,8 +16,8 @@ function Product() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                id: 4,
-                qty: 3,
+                id: cookie.id,
+                qty: 5,
             })
         });
 
