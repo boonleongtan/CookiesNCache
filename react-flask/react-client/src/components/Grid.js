@@ -12,7 +12,7 @@ function Grid({ apiRoute, children }) {
         fetch(apiRoute).then(res => res.json()).then(data => {
             setCookieList(data);
         });
-    }, [apiRoute]);
+    }, []);
 
     // map cookie list to grid space in grid layout, and add link and pass data
     const gridItems = cookieList[0] && cookieList.map((cookie) => {
