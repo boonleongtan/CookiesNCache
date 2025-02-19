@@ -1,5 +1,5 @@
 import './AddToCart.css';
-import './numberinput.css';
+import './NumberInput.css';
 
 function AddToCart({ productId }) {
     async function addToCart(productId, formData) {
