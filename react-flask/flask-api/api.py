@@ -213,7 +213,7 @@ def cart():
 
     # GET (i.e. when user clicks on shopping cart icon)
     else:
-        print("Now in cart: ", session["cart"])
+        print("Now in cart: ", [str(_) for _ in session["cart"]])
         if len(session["cart"]) == 0:
             return []
         else:
