@@ -210,18 +210,20 @@ def cart():
     #     flash("Item added to cart!", "success")
     #     return product()
 
-    # # GET (i.e. when user clicks on shopping cart icon)
-    # else:
-    #     if len(session["cart"]) == 0:
-    #         return render_template("emptycart.html")
-    #     else:
-    #         # first calculate total cost, then store it in session["grandtotal"]
-    #         grandtotal = 0
-    #         for cookie in session["cart"]:
-    #             grandtotal += cookie.total
-    #         session["grandtotal"] = grandtotal
-    #         # display cart
-    #         return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
+    # GET (i.e. when user clicks on shopping cart icon)
+    else:
+        if len(session["cart"]) == 0:
+            # return render_template("emptycart.html")
+            return []
+        else:
+            # first calculate total cost, then store it in session["grandtotal"]
+            grandtotal = 0
+            for cookie in session["cart"]:
+                grandtotal += cookie.total
+            session["grandtotal"] = grandtotal
+            # display cart
+            return ["test"]
+            # return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
 
 
 # TODO
