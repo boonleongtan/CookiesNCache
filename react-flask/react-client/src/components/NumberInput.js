@@ -22,11 +22,14 @@ function NumberInput() {
             setQty(val > 0 && val < 101 ? val : val > 100 ? 100 : 1);
         }
     }
+    function handleEnterKey(e) {
+        e.key === 'Enter' && setQty(qty => qty + 1);
+    }
 
     return (
         <div className="number-input">
             <button onClick={decCnt}></button>
-            <input name="qty" type="number" min="1" value={qty} onChange={handleInput} />
+            <input name="qty" type="number" min="1" value={qty} onChange={handleInput} onKeyDown={handleEnterKey} />
             <button onClick={incCnt} className="plus"></button>
         </div>
     );
