@@ -29,7 +29,7 @@ function NumberInput() {
     return (
         <div className="number-input">
             <button onClick={decCnt}></button>
-            <input name="qty" type="number" min="1" value={qty} onChange={handleInput} onKeyDown={handleEnterKey} />
+            <input required name="qty" type="number" min="1" value={qty} onChange={handleInput} onKeyDown={handleEnterKey} />
             <button onClick={incCnt} className="plus"></button>
         </div>
     );
