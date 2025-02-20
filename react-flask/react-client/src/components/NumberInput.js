@@ -3,19 +3,20 @@ import './NumberInput.css';
 
 function NumberInput({ sendDataToParent }) {
     const [qty, setQty] = useState(1);
+    let newQty = qty;
     
     function decCnt(e) {
         e.preventDefault();
-        setQty(qty => qty > 1 ? qty - 1 : qty);
-        console.log(qty);
-        sendDataToParent(qty);
+        newQty = qty > 1 ? qty - 1 : qty;
+        setQty(newQty);
+        sendDataToParent(newQty);
     }
     
     function incCnt(e) {
         e.preventDefault();
-        setQty(qty => qty < 100 ? qty + 1 : qty);
-        console.log(qty);
-        sendDataToParent(qty);
+        newQty = qty < 100 ? qty + 1 : qty;
+        setQty(newQty);
+        sendDataToParent(newQty);
     }
     
     function handleInput(e) {
@@ -23,21 +24,30 @@ function NumberInput({ sendDataToParent }) {
             setQty(null);
         } else {
             let val = Number(e.target.value);
-            setQty(val > 0 && val < 101 ? val : val > 100 ? 100 : 1);
-            console.log(qty);
-            sendDataToParent(qty);
+            newQty = val > 0 && val < 101 ? val : val > 100 ? 100 : 1;
+            setQty(newQty);
+            sendDataToParent(newQty);
         }
     }
     function handleEnterKey(e) {
-        e.key === 'Enter' && setQty(qty => qty + 1);
-        console.log(qty);
-        sendDataToParent(qty);
+        if (e.key === 'Enter') {
+            newQty = qty + 1;
+            setQty(newQty);
+            sendDataToParent(newQty);
+        }
     }
 
     return (
         <div className="number-input">
             <button onClick={decCnt}></button>
-            <input required name="qty" type="number" value={qty} onChange={handleInput} onKeyDown={handleEnterKey} />
+            <input
+                required
+                name="qty"
+                type="number"
+                value={qty}
+                onChange={handleInput}
+                onKeyDown={handleEnterKey}
+            />
             <button onClick={incCnt} className="plus"></button>
         </div>
     );
