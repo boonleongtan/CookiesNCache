@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Layout from '../components/Layout';
 import FullCart from './fullcart';
 import EmptyCart from './emptycart';
-import './cart.css';
 
 function Cart() {
     const [cookieCart, setCookieCart] = useState([]);

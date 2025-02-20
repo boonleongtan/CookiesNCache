@@ -49,7 +49,7 @@ td:last-child {
     margin-top: 10px;
 }
 
-.cart-item-right button {
+.cart-item-name {
     border: none;
     padding: 0;
     background-color: inherit;
@@ -57,7 +57,7 @@ td:last-child {
     color: black;
 }
 
-.cart-item-right button:hover {
+.cart-item-name:hover {
     text-decoration: underline;
     cursor: pointer;
 }
@@ -86,24 +86,6 @@ td:last-child {
 }
 
 .checkout:hover {
-    cursor: pointer;
-    border: 2px solid yellow;
-    color: yellow;
-}
-
-.continue-shopping {
-    margin-left: 42%;
-    padding: 17.5px;
-    border: 2px solid white;
-    border-radius: 7.5px;
-    background-color: black;
-    color: white;
-    font: 1.25vw Verdana, serif;
-    text-decoration: none;
-    text-align: center;
-}
-
-.continue-shopping:hover {
     cursor: pointer;
     border: 2px solid yellow;
     color: yellow;

@@ -1,0 +1,17 @@
+.continue-shopping {
+    margin-left: 42%;
+    padding: 17.5px;
+    border: 2px solid white;
+    border-radius: 7.5px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+    text-decoration: none;
+    text-align: center;
+}
+
+.continue-shopping:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}

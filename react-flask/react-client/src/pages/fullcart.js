@@ -14,14 +14,7 @@ function FullCart({ cookieCart }) {
                         className="cart-item-left cart-img"
                     />
                     <div className="cart-item-right">
-                        <form>
-                            <input
-                                name="id"
-                                type="hidden"
-                                value={cookie.id}
-                            />
-                            <button><Link to="/Product" state={{ cookie }}>{cookie.name}</Link></button>
-                        </form>
+                        <Link to="/Product" state={{ cookie }} className="cart-item-name">{cookie.name}</Link>
                         <p>{cookie.price}</p>
                     </div>
                 </td>
@@ -60,7 +53,7 @@ function FullCart({ cookieCart }) {
                 </tr>
             </table>
 
-            <form action="/checkout" method="get">
+            <form>
                 <button className="checkout" type="submit">Proceed to Checkout</button>
             </form>
 
