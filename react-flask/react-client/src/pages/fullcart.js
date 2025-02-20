@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function FullCart({ cookieCart }) {
     console.log("Successfully received cart data: ");
     console.log(cookieCart);
@@ -18,7 +20,7 @@ function FullCart({ cookieCart }) {
                                 type="hidden"
                                 value={cookie.id}
                             />
-                            <button href="/product">{cookie.name}</button>
+                            <button><Link to="/Product" state={{ cookie }}>{cookie.name}</Link></button>
                         </form>
                         <p>{cookie.price}</p>
                     </div>
