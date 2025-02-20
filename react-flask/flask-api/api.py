@@ -73,6 +73,7 @@ def seasonal():
 # login functions
 
 
+# TODO
 # profile page (requires login)
 @app.route("/profile")
 @login_required
@@ -83,6 +84,7 @@ def profile():
     return render_template("profile.html", username=username)
 
 
+# TODO
 # login page
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -121,6 +123,7 @@ def login():
         return render_template("login.html")
 
 
+# TODO
 # log user out
 @app.route("/logout")
 def logout():
@@ -129,6 +132,7 @@ def logout():
     return redirect("/login")
 
 
+# TODO
 # register page
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -170,6 +174,7 @@ def register():
 # cart functions
 
 
+# TODO!!!
 # shopping cart (add to cart, view cart)
 @app.route("/api/cart", methods=["GET", "POST"])
 def cart():
@@ -219,6 +224,7 @@ def cart():
     #         return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
 
 
+# TODO
 # edit cart qty
 @app.route("/editcart", methods=["POST"])
 def editcart():
@@ -248,6 +254,7 @@ def editcart():
         return redirect("/cart")
 
 
+# TODO
 # allows syncing of session["cart"] and savedcart in sql
 def sync_carts(op_type):
     # Ensure signed in
@@ -277,6 +284,7 @@ def sync_carts(op_type):
 # checkout functions
 
 
+# TODO
 # checkout page
 @app.route("/checkout", methods=["GET", "POST"])
 def checkout():
@@ -331,6 +339,7 @@ def checkout():
         return render_template("receipt.html", details=details, items=items)
 
 
+# TODO
 # when discount code is applied
 @app.route("/giftcode", methods=["POST"])
 def giftcode():
@@ -345,6 +354,7 @@ def giftcode():
     return redirect("/checkout")
 
 
+# TODO
 # clear all session items and savedcart items
 def clear_session():
     # if logged in, clear all entries
