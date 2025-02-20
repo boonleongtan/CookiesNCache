@@ -6,20 +6,20 @@ function NumberInput() {
     
     function decCnt(e) {
         e.preventDefault();
-        setQty(qty => qty - 1);
+        setQty(qty => qty > 1 ? qty - 1 : qty);
     }
     
     function incCnt(e) {
         e.preventDefault();
-        setQty(qty => qty + 1);
+        setQty(qty => qty < 100 ? qty + 1 : qty);
     }
 
     function handleInput(e) {
         if (e.target.value === "") {
-            setQty("");
+            setQty(null);
         } else {
             let val = Number(e.target.value);
-            setQty(val > 0 ? val : 1);
+            setQty(val > 0 && val < 101 ? val : val > 100 ? 100 : 1);
         }
     }
 
