@@ -26,6 +26,7 @@ function Product() {
                         <h2>{cookie.name}</h2>
                         <h2>{cookie.price}</h2>
                         <p className="pdt-desc">Shipping is calculated at checkout</p>
+                        {/* includes qty input and add to cart button */}
                         <AddToCart productId={cookie.id} />
                         <h3>Description</h3>
                         <p className="pdt-desc">{cookie.desc}</p>
