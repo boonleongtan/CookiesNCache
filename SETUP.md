@@ -50,7 +50,21 @@ npm install
 
 # Running
 
-First Open 2 x `react-client` in Integrated Terminal
+First change `... "scripts": {...} ...` in `package.json` to match OS:
+
+**Linux:**
+
+```
+"start-api": "cd ../flask-api && venv/bin/flask run --no-debugger",
+```
+
+**Windows:**
+
+```
+"start-api": "cd ../flask-api && venv\\Scripts\\activate && flask run --no-debugger",
+```
+
+Open 2 x `react-client` in Integrated Terminal
 
 ### Server (Flask)
 ```
