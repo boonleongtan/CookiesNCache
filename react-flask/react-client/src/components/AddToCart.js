@@ -15,7 +15,7 @@ function AddToCart({ productId }) {
             })
         });
         if (response.ok) {
-            console.log("sent data");
+            console.log("Sent data successfully!");
         }
     }
     const addProductToCart = addToCart.bind(null, productId);
@@ -24,6 +24,7 @@ function AddToCart({ productId }) {
         <form action={addProductToCart}>
             <p className="qtylabel">Quantity</p>
             <NumberInput />
+            {/* use div for styling */}
             <div>
                 <button className="add-to-cart" type="submit">
                     Add to Cart
