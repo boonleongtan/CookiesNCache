@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import NumberInput from '../components/NumberInput';
 import './fullcart.css';
 
 function FullCart({ cookieCart }) {
+    const [receivedQty, setReceivedQty] = useState();
+
     console.log("Successfully received cart data: ");
     console.log(cookieCart);
 
@@ -20,15 +23,7 @@ function FullCart({ cookieCart }) {
                     </div>
                 </td>
                 <td>
-                    TODO
-                    {/* <form action="/editcart" method="post">
-                        <input name="id" type="hidden" value="{{ cookie.id }}">
-                        <div className="number-input">
-                            <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
-                            <input name="qty" className="qty-indicator" type="number" min="0" value="{{ cookie.qty }}">
-                            <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" className="plus"></button>
-                        </div>
-                    </form> */}
+                    <NumberInput sendDataToParent={data => setReceivedQty(data)} />
                 </td>
                 <td>{cookie.total}</td>
             </tr>
@@ -54,9 +49,7 @@ function FullCart({ cookieCart }) {
                 </tr>
             </table>
 
-            <form>
-                <button className="checkout" type="submit">Proceed to Checkout</button>
-            </form>
+            <button className="checkout" type="submit">Proceed to Checkout</button>
 
             <div className="beforefooterspace"></div>
         </>
