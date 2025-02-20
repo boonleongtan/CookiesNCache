@@ -201,6 +201,7 @@ def cart():
                     "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
                 session["cart"].append(Cookie(cookie_id, cookie_name,
                                        cookie_price, cookie_qty, cookie_img))
+        print(session["cart"])
         return "Success", 201
     #     # also update savedcart if signed in
     #     if session.get("user_id") is not None:
@@ -212,6 +213,7 @@ def cart():
 
     # GET (i.e. when user clicks on shopping cart icon)
     else:
+        print(session["cart"])
         if len(session["cart"]) == 0:
             # return render_template("emptycart.html")
             return []
@@ -222,7 +224,7 @@ def cart():
                 grandtotal += cookie.total
             session["grandtotal"] = grandtotal
             # display cart
-            return ["test"]
+            return [{"test": "teste"}]
             # return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
 
 
