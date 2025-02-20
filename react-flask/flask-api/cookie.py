@@ -6,11 +6,11 @@ class Cookie:
         self.price = price
         self.qty = qty
         self.img = img
-        self.total = self.price * self.qty
+        self._total = self.price * self.qty
 
     # for debugging
     def __str__(self):
-        return f"<Name:{self.name}|ID:{self.id}|Price:{self.price}|Qty:{self.qty}|Total:{self.total}|ImgSrc:\"{self.img}\">"
+        return f"<Name:{self.name}|ID:{self.id}|Price:{self.price}|Qty:{self.qty}|Total:{self._total}|ImgSrc:\"{self.img}\">"
 
     # add serialising method for jsonify by turning object into dict
     # using list comprehension in jsonify
@@ -21,9 +21,12 @@ class Cookie:
             "name": self.name,
             "price": self.price,
             "qty": self.qty,
-            "total": self.total,
+            "total": self._total,
             "img": self.img,
         }
+    
+    def update_total(self):
+        self._total = self.price * self.qty
 
     # getter for id
     @property
