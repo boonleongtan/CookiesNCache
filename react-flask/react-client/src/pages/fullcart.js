@@ -1,7 +1,7 @@
 function FullCart({ cookieCart }) {
     console.log("Successfully received cart data: " + cookieCart);
 
-    const cookieRow = cookieCart[0] && cookieCart.map((cookie) => {
+    const cookieRows = cookieCart[0] && cookieCart.map((cookie) => {
         return (
             <tr>
                 <td>
@@ -41,28 +41,27 @@ function FullCart({ cookieCart }) {
     return (
         <>
             <table className="cart-table">
-
+                {/* headings */}
                 <tr>
                     <th style={{paddingLeft: "20px"}}>PRODUCTS</th>
                     <th>QUANTITY</th>
                     <th>TOTAL</th>
                 </tr>
-
-                {cookieRow}
-
+                {/* respective cookie rows */}
+                {cookieRows}
+                {/* grandtotal */}
                 {/* <tr>
                     <td></td>
                     <td style="text-align:right;">GRAND TOTAL</td>
                     <td>{{ grandtotal | usd }}</td>
                 </tr> */}
+            </table>
 
-                </table>
+            <form action="/checkout" method="get">
+                <button className="checkout" type="submit">Proceed to Checkout</button>
+            </form>
 
-                <form action="/checkout" method="get">
-                    <button className="checkout" type="submit">Proceed to Checkout</button>
-                </form>
-
-                <div className="beforefooterspace"></div>
+            <div className="beforefooterspace"></div>
         </>
     );
 }
