@@ -60,6 +60,7 @@ td:last-child {
 .cart-item-name:hover {
     text-decoration: underline;
     cursor: pointer;
+    color: blue;
 }
 
 .cart-item-right p {

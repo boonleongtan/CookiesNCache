@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import './fullcart.css';
 
 function FullCart({ cookieCart }) {
     console.log("Successfully received cart data: ");
