@@ -12,6 +12,19 @@ class Cookie:
     def __str__(self):
         return f"<Name:{self.name}|ID:{self.id}|Price:{self.price}|Qty:{self.qty}|Total:{self.total}|ImgSrc:\"{self.img}\">"
 
+    # add serialising method for jsonify by turning object into dict
+    # using list comprehension in jsonify
+    # usage: return jsonify[c.serialise() for c in session["cart"]]
+    def serialise(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "price": self.price,
+            "qty": self.qty,
+            "total": self.total,
+            "img": self.img,
+        }
+
     # getter for id
     @property
     def id(self):
