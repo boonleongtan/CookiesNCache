@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './NumberInput.css';
 
-function NumberInput({ sendDataToParent }) {
-    const [qty, setQty] = useState(1);
+function NumberInput({ sendDataToParent, initialValue }) {
+    const [qty, setQty] = useState(initialValue);
     // allows passing data from child to parent via sendDataToParent; but can use formData.get(name) in parent also
     let newQty = qty;
     

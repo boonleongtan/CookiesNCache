@@ -24,7 +24,7 @@ function FullCart({ cookieCart }) {
                     </div>
                 </td>
                 <td>
-                    <NumberInput sendDataToParent={data => setReceivedQty(data)} />
+                    <NumberInput initialValue={cookie.qty} sendDataToParent={data => setReceivedQty(data)} />
                 </td>
                 <td>{cookie.total}</td>
             </tr>

@@ -27,7 +27,7 @@ function AddToCart({ productId }) {
     return (
         <form action={addProductToCart}>
             <p className="qtylabel">Quantity</p>
-            <NumberInput sendDataToParent={data => setReceivedQty(data)}/>
+            <NumberInput initialValue={1} sendDataToParent={data => setReceivedQty(data)}/>
             {/* use div for styling */}
             <div>
                 <button className="add-to-cart" type="submit">
