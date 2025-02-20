@@ -10,31 +10,38 @@ function FullCart({ cookieCart }) {
                     <th>TOTAL</th>
                 </tr>
 
-                {/* {% for cookie in cookies %}
                     <tr>
                         <td>
-                            <img src="{{ cookie.img }}" alt="Image of {{ cookie.name }}" className="cart-item-left cart-img">
+                            <img
+                                src={cookieCart[0].img}
+                                alt={cookieCart[0].name}
+                                className="cart-item-left cart-img"
+                            />
                             <div className="cart-item-right">
-                                <form action="/product" method="post">
-                                    <input name="id" type="hidden" value="{{ cookie.id }}">
-                                    <button href="/product">{{ cookie.name }}</button>
+                                <form>
+                                    <input
+                                        name="id"
+                                        type="hidden"
+                                        value={cookieCart[0].id}
+                                    />
+                                    <button href="/product">{cookieCart[0].name}</button>
                                 </form>
-                                <p>{{ cookie.price | usd }}</p>
+                                <p>{cookieCart[0].price}</p>
                             </div>
                         </td>
                         <td>
-                            <form action="/editcart" method="post">
+                            TODO
+                            {/* <form action="/editcart" method="post">
                                 <input name="id" type="hidden" value="{{ cookie.id }}">
                                 <div className="number-input">
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></button>
                                     <input name="qty" className="qty-indicator" type="number" min="0" value="{{ cookie.qty }}">
                                     <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" className="plus"></button>
                                 </div>
-                            </form>
+                            </form> */}
                         </td>
-                        <td>{{ cookie.total | usd }}</td>
+                        <td>{cookieCart[0].total}</td>
                     </tr>
-                {% endfor %} */}
 
                 {/* <tr>
                     <td></td>
