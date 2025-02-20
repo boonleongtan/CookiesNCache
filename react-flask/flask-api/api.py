@@ -195,6 +195,7 @@ def cart():
                 for cookie_obj in session["cart"]:
                     if cookie_obj.id == cookie_id:
                         cookie_obj.qty += cookie_qty
+                        cookie_obj.update_total()
             # else if the cookie is not yet in session["cart"], add it as a new Cookie object
             else:
                 cookie_name, cookie_price, cookie_img = db.execute(
