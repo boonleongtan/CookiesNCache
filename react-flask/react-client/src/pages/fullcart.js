@@ -1,8 +1,6 @@
-import Cart from './cart';
-
 function FullCart() {
     return (
-        <Cart>
+        <>
             <table className="cart-table">
 
                 <tr>
@@ -50,7 +48,7 @@ function FullCart() {
                 </form>
 
                 <div className="beforefooterspace"></div>
-        </Cart>
+        </>
     );
 }
 

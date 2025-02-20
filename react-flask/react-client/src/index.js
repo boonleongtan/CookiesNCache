@@ -12,8 +12,7 @@ import Favs from './pages/favs';
 import Seasonal from './pages/seasonal';
 import About from './pages/about';
 import Profile from './pages/profile';
-import EmptyCart from './pages/emptycart';
-import FullCart from './pages/fullcart';
+import Cart from './pages/cart';
 import Product from './pages/product';
 
 const router = createBrowserRouter([
@@ -39,7 +38,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/Cart",
-    element: <FullCart />,
+    element: <Cart />,
   },
   {
     path: "/Product",
