@@ -46,7 +46,7 @@ def search():
         products = db.execute("SELECT * FROM products WHERE name LIKE ? LIMIT 3", f"%{q}%")
     else:
         products = []
-    return jsonify(products)
+    return products
 
 
 # page functions
