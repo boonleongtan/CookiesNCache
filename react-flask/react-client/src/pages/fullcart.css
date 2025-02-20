@@ -54,13 +54,13 @@ td:last-child {
     padding: 0;
     background-color: inherit;
     font: bold 1.2vw Verdana, sans-serif;
+    text-decoration: none;
     color: black;
 }
 
 .cart-item-name:hover {
     text-decoration: underline;
     cursor: pointer;
-    color: blue;
 }
 
 .cart-item-right p {
