@@ -17,7 +17,7 @@ function Cart() {
 
             <Layout>
                 <h1>Shopping Cart</h1>
-                {cookieCart[0] ? <FullCart /> : <EmptyCart />}
+                {cookieCart[0] ? <FullCart cookieCart={cookieCart} /> : <EmptyCart />}
             </Layout>
         </>
     );

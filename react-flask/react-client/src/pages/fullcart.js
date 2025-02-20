@@ -1,4 +1,5 @@
-function FullCart() {
+function FullCart({ cookieCart }) {
+    console.log(cookieCart);
     return (
         <>
             <table className="cart-table">
@@ -33,9 +34,9 @@ function FullCart() {
                         </td>
                         <td>{{ cookie.total | usd }}</td>
                     </tr>
-                {% endfor %}
+                {% endfor %} */}
 
-                <tr>
+                {/* <tr>
                     <td></td>
                     <td style="text-align:right;">GRAND TOTAL</td>
                     <td>{{ grandtotal | usd }}</td>

@@ -217,11 +217,11 @@ def cart():
         if len(session["cart"]) == 0:
             return []
         else:
-            # first calculate total cost, then store it in session["grandtotal"]
-            grandtotal = 0
-            for cookie in session["cart"]:
-                grandtotal += cookie.total
-            session["grandtotal"] = grandtotal
+            # # first calculate total cost, then store it in session["grandtotal"]
+            # grandtotal = 0
+            # for cookie in session["cart"]:
+            #     grandtotal += cookie.total
+            # session["grandtotal"] = grandtotal
             # display cart
             return jsonify([c.serialise() for c in session["cart"]])
             # return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
