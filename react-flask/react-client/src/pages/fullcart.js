@@ -4,7 +4,7 @@ function FullCart({ cookieCart }) {
     console.log("Successfully received cart data: ");
     console.log(cookieCart);
 
-    const cookieRows = cookieCart[0] && cookieCart.map((cookie) => {
+    const cookieRows = cookieCart.cookierows && cookieCart.cookierows.map((cookie) => {
         return (
             <tr>
                 <td>
@@ -53,11 +53,11 @@ function FullCart({ cookieCart }) {
                 {/* respective cookie rows */}
                 {cookieRows}
                 {/* grandtotal */}
-                {/* <tr>
+                <tr>
                     <td></td>
-                    <td style="text-align:right;">GRAND TOTAL</td>
-                    <td>{{ grandtotal | usd }}</td>
-                </tr> */}
+                    <td style={{textAlign: "right"}}>GRAND TOTAL</td>
+                    <td>{cookieCart.grandtotal}</td>
+                </tr>
             </table>
 
             <form action="/checkout" method="get">
