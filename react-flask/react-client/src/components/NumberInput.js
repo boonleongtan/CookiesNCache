@@ -3,6 +3,7 @@ import './NumberInput.css';
 
 function NumberInput({ sendDataToParent }) {
     const [qty, setQty] = useState(1);
+    // allows passing data from child to parent via sendDataToParent; but can use formData.get(name) in parent also
     let newQty = qty;
     
     function decCnt(e) {

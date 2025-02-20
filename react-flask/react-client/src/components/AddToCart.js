@@ -3,6 +3,7 @@ import NumberInput from './NumberInput';
 import './AddToCart.css';
 
 function AddToCart({ productId }) {
+    // allows passing data from child to parent; but can use formData.get(name) also
     const [recQty, setRecQty] = useState();
 
     async function addToCart(productId, formData) {
@@ -14,7 +15,7 @@ function AddToCart({ productId }) {
             },
             body: JSON.stringify({
                 id: productId,
-                qty: recQty,
+                qty: formData.get("qty"),
             })
         });
         if (response.ok) {
