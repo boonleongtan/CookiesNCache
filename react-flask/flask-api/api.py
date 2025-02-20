@@ -175,13 +175,12 @@ def seasonal():
 
 
 # TODO!!!
-# shopping cart (add to cart, view cart)
-@app.route("/api/cart", methods=["GET", "POST"])
-def cart():
+# add to cart
+@app.route("/api/addtocart", methods=["POST"])
+def add_to_cart():
     # Ensure cart exists
     if "cart" not in session:
         session["cart"] = []
-
     # POST (i.e. when user adds item to cart from individual product page)
     if request.method == "POST":
         cookie = request.get_json()
@@ -212,8 +211,15 @@ def cart():
     #     flash("Item added to cart!", "success")
     #     return product()
 
+
+# view cart
+@app.route("/api/cart", methods=["GET", "POST"])
+def cart():
+    # Ensure cart exists
+    if "cart" not in session:
+        session["cart"] = []
     # GET (i.e. when user clicks on shopping cart icon)
-    else:
+    if request.method == "GET":
         print("Now in cart: ", [str(_) for _ in session["cart"]])
         if len(session["cart"]) == 0:
             return []

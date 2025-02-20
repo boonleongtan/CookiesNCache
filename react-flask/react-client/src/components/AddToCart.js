@@ -7,7 +7,7 @@ function AddToCart({ productId }) {
     const [recQty, setRecQty] = useState();
 
     async function addToCart(productId, formData) {
-        const response = await fetch("/api/cart", {
+        const response = await fetch("/api/addtocart", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
