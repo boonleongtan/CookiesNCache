@@ -1,5 +1,6 @@
 function FullCart({ cookieCart }) {
-    console.log("Successfully received cart data: " + cookieCart);
+    console.log("Successfully received cart data: ");
+    console.log(cookieCart);
 
     const cookieRows = cookieCart[0] && cookieCart.map((cookie) => {
         return (
