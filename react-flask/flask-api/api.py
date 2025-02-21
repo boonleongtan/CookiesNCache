@@ -235,36 +235,33 @@ def cart():
                 "grandtotal": session["grandtotal"]
             }
             # return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
-
-
-# TODO
-# edit cart qty
-# @app.route("/editcart", methods=["POST"])
-# def editcart():
-#     # POST (i.e. when user edits item qty)
-#     if request.method == "POST":
-#         cookie_id = int(request.form.get("id"))
-#         cookie_qty = int(request.form.get("qty"))
-#         if cookie_id:
-#             if cookie_qty > 0:
-#                 if any(cookie.id == cookie_id for cookie in session["cart"]):
-#                     for cookie_obj in session["cart"]:
-#                         if cookie_obj.id == cookie_id:
-#                             cookie_obj.qty = cookie_qty
-#                 # also update savedcart if signed in
-#                 if session.get("user_id") is not None:
-#                     sync_carts("w")
-#                     sync_carts("r")
-#             # if cookie_qty == 0 remove item from cart
-#             if cookie_qty == 0:
-#                 for nocookie_obj in session["cart"]:
-#                     if nocookie_obj.id == cookie_id:
-#                         session["cart"].remove(nocookie_obj)
-#                         # also update savedcart if signed in
-#                         if session.get("user_id") is not None:
-#                             db.execute(
-#                                 "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
-#         return redirect("/cart")
+    # TODO
+    # POST (i.e. when user edits item qty)
+    if request.method == "POST":
+        updatedCart = request.get_json()
+        print(updatedCart)
+        # cookie_id = int(request.form.get("id"))
+        # cookie_qty = int(request.form.get("qty"))
+        # if cookie_id:
+        #     if cookie_qty > 0:
+        #         if any(cookie.id == cookie_id for cookie in session["cart"]):
+        #             for cookie_obj in session["cart"]:
+        #                 if cookie_obj.id == cookie_id:
+        #                     cookie_obj.qty = cookie_qty
+        #         # also update savedcart if signed in
+        #         if session.get("user_id") is not None:
+        #             sync_carts("w")
+        #             sync_carts("r")
+        #     # if cookie_qty == 0 remove item from cart
+        #     if cookie_qty == 0:
+        #         for nocookie_obj in session["cart"]:
+        #             if nocookie_obj.id == cookie_id:
+        #                 session["cart"].remove(nocookie_obj)
+        #                 # also update savedcart if signed in
+        #                 if session.get("user_id") is not None:
+        #                     db.execute(
+        #                         "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
+        # return redirect("/cart")
 
 
 # TODO
