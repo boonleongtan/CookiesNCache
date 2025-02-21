@@ -5,6 +5,7 @@ import './fullcart.css';
 
 function FullCart({ cookieCart }) {
     const [receivedQty, setReceivedQty] = useState({});
+    console.log(receivedQty);
 
     console.log("Successfully received cart data: ");
     console.log(cookieCart);
