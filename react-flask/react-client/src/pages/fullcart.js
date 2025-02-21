@@ -6,8 +6,8 @@ import './fullcart.css';
 function FullCart({ cookieCart }) {
     // console.log("Successfully received cart data: ");
     // console.log(cookieCart);
-    const [rcvdQtysObj, setRcvdQtysObj] = useState({});
-    // console.log(rcvdQtysObj);
+    const [changedQty, setChangedQty] = useState({});
+    console.log(changedQty);
 
     async function sendUpdatedCart() {
         const response = await fetch("/api/cart", {
@@ -16,7 +16,7 @@ function FullCart({ cookieCart }) {
                 'Accept': 'application/json',
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(rcvdQtysObj),
+            body: JSON.stringify(changedQty),
         });
         if (response.ok) {
             console.log('Cart updated successfully');
@@ -25,7 +25,7 @@ function FullCart({ cookieCart }) {
 
     useEffect(() => {
         sendUpdatedCart();
-    }, [rcvdQtysObj]);
+    }, [changedQty]);
 
 
     const cookieRows = cookieCart.cookierows && cookieCart.cookierows.map((cookie) => {
@@ -43,7 +43,7 @@ function FullCart({ cookieCart }) {
                     </div>
                 </td>
                 <td>
-                    <NumberInput initialValue={cookie.qty} sendDataToParent={data => {setRcvdQtysObj({...rcvdQtysObj, [cookie.id]: data});console.log('works')}} />
+                    <NumberInput initialValue={cookie.qty} sendDataToParent={data => setChangedQty({[cookie.id]: data})} />
                 </td>
                 <td>{cookie.total}</td>
             </tr>

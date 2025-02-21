@@ -22,7 +22,7 @@ function NumberInput({ sendDataToParent, initialValue }) {
     
     function handleInput(e) {
         if (e.target.value === "") {
-            setQty(null);
+            setQty("");
         } else {
             let val = Number(e.target.value);
             newQty = val > 0 && val < 101 ? val : val > 100 ? 100 : 1;
