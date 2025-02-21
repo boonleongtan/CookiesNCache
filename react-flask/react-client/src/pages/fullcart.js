@@ -1,14 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NumberInput from '../components/NumberInput';
 import './fullcart.css';
 
 function FullCart({ cookieCart }) {
+    // console.log("Successfully received cart data: ");
+    // console.log(cookieCart);
     const [receivedQty, setReceivedQty] = useState({});
-    console.log(receivedQty);
+    // console.log(receivedQty);
 
-    console.log("Successfully received cart data: ");
-    console.log(cookieCart);
+    useEffect(() => {
+        fetch("/api/cart", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(receivedQty),
+        }).then(response.ok && console.log('Success'));
+    }, [receivedQty]);
+
 
     const cookieRows = cookieCart.cookierows && cookieCart.cookierows.map((cookie) => {
         return (
