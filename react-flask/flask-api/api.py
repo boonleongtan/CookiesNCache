@@ -240,6 +240,7 @@ def cart():
     if request.method == "POST":
         updatedCart = request.get_json()
         print(updatedCart)
+        return "Received updated cart", 202
         # cookie_id = int(request.form.get("id"))
         # cookie_qty = int(request.form.get("qty"))
         # if cookie_id:
