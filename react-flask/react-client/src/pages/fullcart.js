@@ -9,15 +9,18 @@ function FullCart({ cookieCart }) {
     const [receivedQty, setReceivedQty] = useState({});
     // console.log(receivedQty);
 
-    useEffect(() => {
-        fetch("/api/cart", {
+    useEffect(async () => {
+        const response = await fetch("/api/cart", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json',
             },
             body: JSON.stringify(receivedQty),
-        }).then(response.ok && console.log('Success'));
+        });
+        if (response.ok) {
+            console.log('Cart updated successfully');
+        }
     }, [receivedQty]);
 
 
