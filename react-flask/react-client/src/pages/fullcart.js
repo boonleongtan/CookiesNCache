@@ -4,14 +4,14 @@ import NumberInput from '../components/NumberInput';
 import './fullcart.css';
 
 function FullCart({ cookieCart }) {
-    const [receivedQty, setReceivedQty] = useState();
+    const [receivedQty, setReceivedQty] = useState({});
 
     console.log("Successfully received cart data: ");
     console.log(cookieCart);
 
     const cookieRows = cookieCart.cookierows && cookieCart.cookierows.map((cookie) => {
         return (
-            <tr>
+            <tr key={cookie.id}>
                 <td>
                     <img
                         src={cookie.img}
@@ -24,7 +24,7 @@ function FullCart({ cookieCart }) {
                     </div>
                 </td>
                 <td>
-                    <NumberInput initialValue={cookie.qty} sendDataToParent={data => setReceivedQty(data)} />
+                    <NumberInput initialValue={cookie.qty} sendDataToParent={data => setReceivedQty({...receivedQty, [cookie.id]: data})} />
                 </td>
                 <td>{cookie.total}</td>
             </tr>
