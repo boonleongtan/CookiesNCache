@@ -43,7 +43,7 @@ function FullCart({ cookieCart }) {
                     </div>
                 </td>
                 <td>
-                    <NumberInput initialValue={cookie.qty} sendDataToParent={data => setChangedQty({[cookie.id]: data})} />
+                    <NumberInput initialValue={cookie.qty} sendDataToParent={data => setChangedQty({id: cookie.id, qty: data})} />
                 </td>
                 <td>{cookie.total}</td>
             </tr>
