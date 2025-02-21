@@ -36,19 +36,23 @@ function FullCart({ cookieCart }) {
         <>
             <table className="cart-table">
                 {/* headings */}
-                <tr>
-                    <th style={{paddingLeft: "20px"}}>PRODUCTS</th>
-                    <th>QUANTITY</th>
-                    <th>TOTAL</th>
-                </tr>
-                {/* respective cookie rows */}
-                {cookieRows}
-                {/* grandtotal */}
-                <tr>
-                    <td></td>
-                    <td style={{textAlign: "right"}}>GRAND TOTAL</td>
-                    <td>{cookieCart.grandtotal}</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th style={{paddingLeft: "20px"}}>PRODUCTS</th>
+                        <th>QUANTITY</th>
+                        <th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {/* respective cookie rows */}
+                    {cookieRows}
+                    {/* grandtotal */}
+                    <tr>
+                        <td></td>
+                        <td style={{textAlign: "right"}}>GRAND TOTAL</td>
+                        <td>{cookieCart.grandtotal}</td>
+                    </tr>
+                </tbody>
             </table>
 
             <button className="checkout" type="submit">Proceed to Checkout</button>
