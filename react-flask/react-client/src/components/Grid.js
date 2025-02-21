@@ -17,7 +17,7 @@ function Grid({ apiRoute, children }) {
     // map cookie list to grid space in grid layout, and add link and pass data
     const gridItems = cookieList[0] && cookieList.map((cookie) => {
         return (
-            <Link to='/Product' state={{ cookie: cookie }} className="grid-item">
+            <Link to='/Product' state={{ cookie: cookie }} className="grid-item" key={cookie.id}>
                 <input name="id" type="hidden" value={cookie.id} />
                 <img src={cookie.img} alt={cookie.name} className="item-img" />
                 <div className="item-name">{cookie.name}</div>
