@@ -1,14 +1,18 @@
 import { useState } from 'react';
 import './NumberInput.css';
 
-function NumberInput({ sendDataToParent, initialValue }) {
+function NumberInput({ sendDataToParent, initialValue, allowZero }) {
     const [qty, setQty] = useState(initialValue);
     // allows passing data from child to parent via sendDataToParent; but can use formData.get(name) in parent also
     let newQty = qty;
     
     function decCnt(e) {
         e.preventDefault();
-        newQty = qty > 1 ? qty - 1 : qty;
+        if (allowZero) {
+            newQty = qty > 0 ? qty - 1 : qty;
+        } else {
+            newQty = qty > 1 ? qty - 1 : qty;
+        }
         setQty(newQty);
         sendDataToParent(newQty);
     }
@@ -25,14 +29,18 @@ function NumberInput({ sendDataToParent, initialValue }) {
             setQty("");
         } else {
             let val = Number(e.target.value);
-            newQty = val > 0 && val < 101 ? val : val > 100 ? 100 : 1;
+            if (allowZero) {
+                newQty = val >= 0 && val < 101 ? val : val > 100 ? 100 : 1;
+            } else {
+                newQty = val > 0 && val < 101 ? val : val > 100 ? 100 : 1;
+            }
             setQty(newQty);
             sendDataToParent(newQty);
         }
     }
     function handleEnterKey(e) {
         if (e.key === 'Enter') {
-            newQty = (initialValue === 1) ? (qty + 1) : qty;
+            newQty = allowZero ? qty : qty + 1;
             setQty(newQty);
             sendDataToParent(newQty);
         }

@@ -1,10 +1,10 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import NumberInput from './NumberInput';
 import './AddToCart.css';
 
 function AddToCart({ productId }) {
     // allows passing data from child to parent; but can use formData.get(name) also
-    const [receivedQty, setReceivedQty] = useState();
+    // const [receivedQty, setReceivedQty] = useState();
 
     async function addToCart(productId, formData) {
         const response = await fetch("/api/addtocart", {
@@ -27,7 +27,11 @@ function AddToCart({ productId }) {
     return (
         <form action={addProductToCart}>
             <p className="qtylabel">Quantity</p>
-            <NumberInput initialValue={1} sendDataToParent={data => setReceivedQty(data)}/>
+            <NumberInput
+                initialValue={1}
+                // sendDataToParent={data => setReceivedQty(data)}
+                allowZero={false}
+            />
             {/* use div for styling */}
             <div>
                 <button className="add-to-cart" type="submit">
