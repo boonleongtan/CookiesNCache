@@ -231,7 +231,7 @@ def cart():
             # display cart
             return {
                 "cookierows": [c.serialise() for c in session["cart"]],
-                "grandtotal": session["grandtotal"]
+                "grandtotal": session["grandtotal"],
             }
     # POST (i.e. when user edits item qty)
     if request.method == "POST":
@@ -308,7 +308,7 @@ def checkout():
             "cookies": session["cart"],
             "subtotal": session["grandtotal"],
             "total": session["discounted"],
-            "gift_code_status": session["gift_code_status"]
+            "gift_code_status": session["gift_code_status"],
         }
 
     # TODO
