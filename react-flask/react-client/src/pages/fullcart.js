@@ -7,7 +7,7 @@ function FullCart({ cookieCart, editCart }) {
     // console.log("Successfully received cart data: ");
     // console.log(cookieCart);
     const [changedQty, setChangedQty] = useState({});
-    console.log(changedQty);
+    console.log("Changed item: " + changedQty);
 
     async function sendUpdatedCart() {
         const response = await fetch("/api/cart", {
