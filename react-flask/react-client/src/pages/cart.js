@@ -5,7 +5,7 @@ import EmptyCart from './emptycart';
 
 function Cart() {
     const [cookieCart, setCookieCart] = useState([]);
-    const [refreshCart, setRefreshCart] = useState(true);
+    const [refreshCart, setRefreshCart] = useState({});
     
     useEffect(() => {
         fetch("/api/cart").then(res => res.json()).then(data => setCookieCart(data));
