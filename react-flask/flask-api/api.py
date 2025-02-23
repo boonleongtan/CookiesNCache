@@ -174,7 +174,6 @@ def seasonal():
 # cart functions
 
 
-# TODO!!!
 # add to cart
 @app.route("/api/addtocart", methods=["POST"])
 def add_to_cart():
@@ -234,8 +233,6 @@ def cart():
                 "cookierows": [c.serialise() for c in session["cart"]],
                 "grandtotal": session["grandtotal"]
             }
-            # return render_template("fullcart.html", cookies=session["cart"], grandtotal=session["grandtotal"])
-    # TODO
     # POST (i.e. when user edits item qty)
     if request.method == "POST":
         updatedCart = request.get_json()
