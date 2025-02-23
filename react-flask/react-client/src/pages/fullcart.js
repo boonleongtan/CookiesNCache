@@ -20,12 +20,12 @@ function FullCart({ cookieCart, editCart }) {
         });
         if (response.ok) {
             console.log('Cart updated successfully');
+            editCart(changedQty);
         }
     }
 
     useEffect(() => {
         sendUpdatedCart();
-        editCart(changedQty);
     }, [changedQty]);
 
 
