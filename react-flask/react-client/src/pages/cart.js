@@ -5,10 +5,11 @@ import EmptyCart from './emptycart';
 
 function Cart() {
     const [cookieCart, setCookieCart] = useState([]);
+    const [cartEdit, setCartEdit] = useState(true);
     
     useEffect(() => {
         fetch("/api/cart").then(res => res.json()).then(data => setCookieCart(data));
-    }, []);
+    }, [cartEdit]);
 
     return (
         <>
@@ -16,7 +17,7 @@ function Cart() {
 
             <Layout>
                 <h1>Shopping Cart</h1>
-                {cookieCart.cookierows ? <FullCart cookieCart={cookieCart} /> : <EmptyCart />}
+                {cookieCart.cookierows ? <FullCart cookieCart={cookieCart} editCart={data => setCartEdit(data)} /> : <EmptyCart />}
             </Layout>
         </>
     );

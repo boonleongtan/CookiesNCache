@@ -32,7 +32,11 @@ function NumberInput({ sendDataToParent, initialValue }) {
     }
     function handleEnterKey(e) {
         if (e.key === 'Enter') {
-            newQty = qty + 1;
+            if (initialValue === 1) {
+                newQty = qty + 1;
+            } else {
+                newQty = qty;
+            }
             setQty(newQty);
             sendDataToParent(newQty);
         }

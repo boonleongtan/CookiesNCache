@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import NumberInput from '../components/NumberInput';
 import './fullcart.css';
 
-function FullCart({ cookieCart }) {
+function FullCart({ cookieCart, editCart }) {
     // console.log("Successfully received cart data: ");
     // console.log(cookieCart);
     const [changedQty, setChangedQty] = useState({});
@@ -25,6 +25,7 @@ function FullCart({ cookieCart }) {
 
     useEffect(() => {
         sendUpdatedCart();
+        editCart(changedQty);
     }, [changedQty]);
 
 
