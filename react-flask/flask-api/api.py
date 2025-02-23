@@ -293,59 +293,64 @@ def cart():
 # checkout functions
 
 
-# TODO
 # checkout page
-# @app.route("/checkout", methods=["GET", "POST"])
-# def checkout():
-#     if "gift_code_status" not in session:
-#         session["gift_code_status"] = ""
-#     if "discounted" not in session:
-#         session["discounted"] = session["grandtotal"]
+@app.route("/api/checkout", methods=["GET", "POST"])
+def checkout():
+    if "gift_code_status" not in session:
+        session["gift_code_status"] = ""
+    if "discounted" not in session:
+        session["discounted"] = session["grandtotal"]
 
-#     # GET (when user clicks on checkout button in shopping cart)
-#     if request.method == "GET":
-#         # display checkout page
-#         return render_template("checkout.html", cookies=session["cart"], subtotal=session["grandtotal"], total=session["discounted"], gift_code_status=session["gift_code_status"])
+    # GET (when user clicks on checkout button in shopping cart)
+    if request.method == "GET":
+        # display checkout page
+        return {
+            "cookies": session["cart"],
+            "subtotal": session["grandtotal"],
+            "total": session["discounted"],
+            "gift_code_status": session["gift_code_status"]
+        }
 
-#     # POST (when user clicks on paynow button in checkout page)
-#     if request.method == "POST":
-#         # get all input details
-#         name = f"{request.form.get("fname")} {request.form.get("lname")}"
-#         email = request.form.get("email")
-#         phone_no = request.form.get("phone-no")
-#         country = request.form.get("country")
-#         address = request.form.get("address")
-#         postal_code = request.form.get("postal-code")
-#         delivery_datetime = request.form.get("delivery-datetime")
-#         card_no = request.form.get("card-no")
-#         card_exp = request.form.get("card-exp")
-#         card_code = request.form.get("card-code")
-#         card_name = request.form.get("card-name")
-#         # get the pre discounted amt
-#         prediscount_amt = request.form.get("prediscount")
-#         # get the final paid amount
-#         transacted_amt = request.form.get("paid")
-#         # enter user details into database
-#         db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
-#                    name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
-#         # get the transaction id (using the latest data entry)
-#         transaction_id = db.execute(
-#             "SELECT id FROM transactions WHERE id=(SELECT max(id) FROM transactions);")[0]["id"]
-#         # enter transacted items into database
-#         for cookie in session["cart"]:
-#             db.execute("INSERT INTO transacted_items(transaction_id, item_name, item_price, item_qty) VALUES(?, ?, ?, ?)",
-#                        transaction_id, cookie.name, cookie.price, cookie.qty)
-#         # clear session and savedcart if logged in
-#         clear_session()
-#         # render receipt
-#         details = db.execute("SELECT * FROM transactions WHERE id = ?", transaction_id)[0]
-#         details["delivery_datetime"] = f"{delivery_datetime[:10]}, {delivery_datetime[11:]}"
-#         details["card_no"] = f"**** **** **** {details["card_no"][-4:]}"
-#         items = db.execute(
-#             "SELECT * FROM transacted_items WHERE transaction_id = ?", transaction_id)
-#         # show success message
-#         flash("Thank you for shopping with us! 😊", "alert")
-#         return render_template("receipt.html", details=details, items=items)
+    # TODO
+    # # POST (when user clicks on paynow button in checkout page)
+    # if request.method == "POST":
+    #     # get all input details
+    #     name = f"{request.form.get("fname")} {request.form.get("lname")}"
+    #     email = request.form.get("email")
+    #     phone_no = request.form.get("phone-no")
+    #     country = request.form.get("country")
+    #     address = request.form.get("address")
+    #     postal_code = request.form.get("postal-code")
+    #     delivery_datetime = request.form.get("delivery-datetime")
+    #     card_no = request.form.get("card-no")
+    #     card_exp = request.form.get("card-exp")
+    #     card_code = request.form.get("card-code")
+    #     card_name = request.form.get("card-name")
+    #     # get the pre discounted amt
+    #     prediscount_amt = request.form.get("prediscount")
+    #     # get the final paid amount
+    #     transacted_amt = request.form.get("paid")
+    #     # enter user details into database
+    #     db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
+    #                name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
+    #     # get the transaction id (using the latest data entry)
+    #     transaction_id = db.execute(
+    #         "SELECT id FROM transactions WHERE id=(SELECT max(id) FROM transactions);")[0]["id"]
+    #     # enter transacted items into database
+    #     for cookie in session["cart"]:
+    #         db.execute("INSERT INTO transacted_items(transaction_id, item_name, item_price, item_qty) VALUES(?, ?, ?, ?)",
+    #                    transaction_id, cookie.name, cookie.price, cookie.qty)
+    #     # clear session and savedcart if logged in
+    #     clear_session()
+    #     # render receipt
+    #     details = db.execute("SELECT * FROM transactions WHERE id = ?", transaction_id)[0]
+    #     details["delivery_datetime"] = f"{delivery_datetime[:10]}, {delivery_datetime[11:]}"
+    #     details["card_no"] = f"**** **** **** {details["card_no"][-4:]}"
+    #     items = db.execute(
+    #         "SELECT * FROM transacted_items WHERE transaction_id = ?", transaction_id)
+    #     # show success message
+    #     flash("Thank you for shopping with us! 😊", "alert")
+    #     return render_template("receipt.html", details=details, items=items)
 
 
 # TODO
