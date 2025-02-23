@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import NumberInput from '../components/NumberInput';
 import './fullcart.css';
 
-function FullCart({ cookieCart, editCart }) {
+function FullCart({ cookieCart, refreshCart }) {
     // console.log("Successfully received cart data: ");
     // console.log(cookieCart);
     const [changedQty, setChangedQty] = useState({});
-    console.log("Changed item: " + changedQty);
-
+    
     async function sendUpdatedCart() {
         const response = await fetch("/api/cart", {
             method: 'POST',
@@ -20,11 +19,12 @@ function FullCart({ cookieCart, editCart }) {
         });
         if (response.ok) {
             console.log('Cart updated successfully');
-            editCart(changedQty);
+            refreshCart(changedQty);
         }
     }
-
+    
     useEffect(() => {
+        console.log("Changed item: " + changedQty);
         sendUpdatedCart();
     }, [changedQty]);
 
