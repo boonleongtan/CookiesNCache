@@ -25,7 +25,10 @@ function FullCart({ cookieCart, refreshCart }) {
     
     useEffect(() => {
         console.log("Changed item: " + changedQty);
-        sendUpdatedCart();
+        if (Object.keys(changedQty).length > 0) {
+            sendUpdatedCart();
+        }
+        // eslint-disable-next-line
     }, [changedQty]);
 
 
