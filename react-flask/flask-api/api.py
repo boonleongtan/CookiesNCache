@@ -355,7 +355,6 @@ def checkout():
     #     return render_template("receipt.html", details=details, items=items)
 
 
-# TODO
 # when discount code is applied
 @app.route("/api/giftcode", methods=["POST"])
 def giftcode():
