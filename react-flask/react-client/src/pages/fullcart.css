@@ -84,6 +84,7 @@ td:last-child {
     background-color: black;
     color: white;
     font: 1.25vw Verdana, serif;
+    text-decoration: none;
 }
 
 .checkout:hover {
