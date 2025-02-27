@@ -1,15 +1,12 @@
-import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import './checkout.css';
 
 function Checkout() {
     return (
         <>
-            <title>Checkout</title>
+            <title>Checkout | Cookies & Cache!</title>
 
-            <header className="special-header">
-                <Link to="/">Cookies & Cache</Link>
-            </header>
+            <header className="special-header">Cookies & Cache</header>
 
             <h1>Delivery</h1>
 
