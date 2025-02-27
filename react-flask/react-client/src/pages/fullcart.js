@@ -81,7 +81,7 @@ function FullCart({ cookieCart, refreshCart }) {
                 </tbody>
             </table>
 
-            <button className="checkout" type="submit">Proceed to Checkout</button>
+            <Link className="checkout" to="/Checkout">Proceed to Checkout</Link>
 
             <div className="beforefooterspace"></div>
         </>

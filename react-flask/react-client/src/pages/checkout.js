@@ -17,7 +17,7 @@ function Checkout() {
                 <div className="vert-split-half">
 
                 {/* <!--Left half: fill in details sections--> */}
-                    <div className="each-half" style="width:60%;">
+                    <div className="each-half" style={{width:'60%'}}>
                         <form action="/checkout" method="post">
                             <div className="fill-in-details-section">
                                 <h3>Contact</h3>
@@ -27,7 +27,7 @@ function Checkout() {
                             <div className="fill-in-details-section">
                                 <h3>Delivery Address</h3>
                                 <label for="country">Country/Region</label>
-                                <select name="country" style="width:95%;" required>
+                                <select name="country" style={{width:'95%'}} required>
                                     <option value="" disabled>Select Country/Region</option>
                                     <option value="Singapore" selected>Singapore</option>
                                 </select>
@@ -76,27 +76,27 @@ function Checkout() {
                         {/* <!--subtotal row--> */}
                             <tr className="no-border-bottom no-padding">
                                 <td>
-                                    <p className="checkout-subtotal" style="line-height:3.5vw;">Subtotal</p>
+                                    <p className="checkout-subtotal" style={{lineHeight:'3.5vw'}}>Subtotal</p>
                                 </td>
                                 <td></td>
                                 <td>
-                                    {/* <p className="checkout-subtotal" style="line-height:3.5vw;text-align:right;">{{ subtotal }}</p> */}
+                                    {/* <p className="checkout-subtotal" style={{lineHeight:'3.5vw',textAlign:'right'}}>{{ subtotal }}</p> */}
                                 </td>
                             </tr>
                             <tr className="no-border-bottom no-padding fill-in-details-section">
                                 <form action="/giftcode" method="post">
                                     <td>
-                                        <input name="gift-code" placeholder="Discount code or gift card" style="width:115%;margin:0;" type="text" />
+                                        <input name="gift-code" placeholder="Discount code or gift card" style={{width:'115%',margin:0}} type="text" />
                                     </td>
                                     <td></td>
-                                    <td style="padding:0;">
+                                    <td style={{padding:0}}>
                                         <button className="apply-gift-code-btn" type="submit">Apply</button>
                                     </td>
                                 </form>
                             </tr>
                             <tr className="no-padding">
                                 <td>
-                                    {/* <p className="gift-code-status" style="padding-bottom:10%;line-height:3.5vw;">{{ gift_code_status}}</p> */}
+                                    {/* <p className="gift-code-status" style={{paddingBottom:'10%',lineHeight:'3.5vw'}}>{{ gift_code_status}}</p> */}
                                 </td>
                                 <td></td>
                                 <td></td>
@@ -109,7 +109,7 @@ function Checkout() {
                                 </td>
                                 <td></td>
                                 <td>
-                                    {/* <p className="checkout-total" style="text-align:right;">{{ total }}</p> */}
+                                    {/* <p className="checkout-total" style={{textAlign:'right'}}>{{ total }}</p> */}
                                 </td>
                             </tr>
 
