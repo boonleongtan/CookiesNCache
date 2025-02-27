@@ -11,6 +11,19 @@ function Checkout() {
         console.log(checkoutCart);
     }, []);
 
+    const productRow = checkoutCart.cookies && checkoutCart.cookies.map(product => {
+        return (
+            <tr>
+                <td>
+                    <img src={ product.img } className="checkout-img" />
+                    <p>{ product.name }</p>
+                </td>
+                <td>{ product.qty }</td>
+                <td>{ product.total }</td>
+            </tr>
+        );
+    })
+
     function handleCheckout() {}
 
     return (
@@ -156,16 +169,7 @@ function Checkout() {
                         <tbody>
 
                             {/* <!--product row--> */}
-                            {/* {% for cookie in cookies %}
-                                <tr>
-                                <td>
-                                <img src="{{ cookie.img }}" className="checkout-img">
-                                <p>{{ cookie.name }}</p>
-                                </td>
-                                <td>{{ cookie.qty }}</td>
-                                <td>{{ cookie.total | usd }}</td>
-                                </tr>
-                                {% endfor %} */}
+                            {productRow}
 
                             {/* <!--subtotal row--> */}
                             <tr className="no-border-bottom no-padding">
