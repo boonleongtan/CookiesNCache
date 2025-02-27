@@ -6,11 +6,12 @@ import './checkout.css';
 function Checkout() {
     const [checkoutCart, setCheckoutCart] = useState({});
     console.log(checkoutCart);
+    const [giftCode, setGiftCode] = useState('');
 
     useEffect(() => {
         fetch("/api/checkout").then(res => res.json()).then(data => setCheckoutCart(data));
         // eslint-disable-next-line
-    }, []);
+    }, [giftCode]);
 
     const productRow = checkoutCart.cookies && checkoutCart.cookies.map(product => {
         return (
@@ -25,7 +26,19 @@ function Checkout() {
         );
     })
 
-    function handleGiftCode() {}
+    async function handleGiftCode() {
+        const response = await fetch("/api/giftcode", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(giftCode),
+        });
+        if (response.ok) {
+            console.log('Sent gift code successfully');
+        }
+    }
 
     function handleCheckout() {}
 
@@ -193,6 +206,8 @@ function Checkout() {
                                         placeholder="Discount code or gift card"
                                         style={{width:'110%',margin:0}}
                                         type="text"
+                                        value={giftCode}
+                                        onChange={e => setGiftCode(e.target.value)}
                                     />
                                 </td>
                                 <td></td>

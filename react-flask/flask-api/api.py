@@ -357,17 +357,17 @@ def checkout():
 
 # TODO
 # when discount code is applied
-# @app.route("/giftcode", methods=["POST"])
-# def giftcode():
-#     # POST (when user applies gift code)
-#     input_code = request.form.get("gift-code")
-#     # check code
-#     if input_code == "YAY":
-#         session["discounted"] *= 0.9
-#         session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
-#     else:
-#         session["gift_code_status"] = "Invalid Gift Code!"
-#     return redirect("/checkout")
+@app.route("/api/giftcode", methods=["POST"])
+def giftcode():
+    # POST (when user applies gift code)
+    input_code = request.get_json()
+    # check code
+    if input_code == "YAY":
+        session["discounted"] *= 0.9
+        session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
+    else:
+        session["gift_code_status"] = "Invalid Gift Code!"
+    return "Received code", 203
 
 
 # clear all session items and savedcart items
