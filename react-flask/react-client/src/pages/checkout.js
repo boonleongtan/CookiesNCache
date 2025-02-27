@@ -7,11 +7,12 @@ function Checkout() {
     const [checkoutCart, setCheckoutCart] = useState({});
     console.log(checkoutCart);
     const [giftCode, setGiftCode] = useState('');
+    const [refreshGCS, setRefreshGCS] = useState(false);
 
     useEffect(() => {
         fetch("/api/checkout").then(res => res.json()).then(data => setCheckoutCart(data));
         // eslint-disable-next-line
-    }, [giftCode]);
+    }, [refreshGCS]);
 
     const productRow = checkoutCart.cookies && checkoutCart.cookies.map(product => {
         return (
@@ -37,6 +38,7 @@ function Checkout() {
         });
         if (response.ok) {
             console.log('Sent gift code successfully');
+            setRefreshGCS(!refreshGCS);
         }
     }
 
