@@ -5,17 +5,18 @@ import './checkout.css';
 
 function Checkout() {
     const [checkoutCart, setCheckoutCart] = useState({});
+    console.log(checkoutCart);
 
     useEffect(() => {
         fetch("/api/checkout").then(res => res.json()).then(data => setCheckoutCart(data));
-        console.log(checkoutCart);
+        // eslint-disable-next-line
     }, []);
 
     const productRow = checkoutCart.cookies && checkoutCart.cookies.map(product => {
         return (
-            <tr>
+            <tr key={product.id}>
                 <td>
-                    <img src={ product.img } className="checkout-img" />
+                    <img src={ product.img } alt={product.name} className="checkout-img" />
                     <p>{ product.name }</p>
                 </td>
                 <td>{ product.qty }</td>
@@ -178,7 +179,7 @@ function Checkout() {
                                 </td>
                                 <td></td>
                                 <td>
-                                    {/* <p className="checkout-subtotal" style={{lineHeight:'3.5vw',textAlign:'right'}}>{{ subtotal }}</p> */}
+                                    <p className="checkout-subtotal" style={{lineHeight:'3.5vw',textAlign:'right'}}>{ checkoutCart.subtotal }</p>
                                 </td>
                             </tr>
                             <tr className="no-border-bottom no-padding fill-in-details-section">
@@ -194,7 +195,7 @@ function Checkout() {
                             </tr>
                             <tr className="no-padding">
                                 <td>
-                                    {/* <p className="gift-code-status" style={{paddingBottom:'10%',lineHeight:'3.5vw'}}>{{ gift_code_status}}</p> */}
+                                    <p className="gift-code-status" style={{paddingBottom:'10%',lineHeight:'3.5vw'}}>{ checkoutCart.gift_code_status}</p>
                                 </td>
                                 <td></td>
                                 <td></td>
@@ -207,7 +208,7 @@ function Checkout() {
                                 </td>
                                 <td></td>
                                 <td>
-                                    {/* <p className="checkout-total" style={{textAlign:'right'}}>{{ total }}</p> */}
+                                    <p className="checkout-total" style={{textAlign:'right'}}>{ checkoutCart.total }</p>
                                 </td>
                             </tr>
 
