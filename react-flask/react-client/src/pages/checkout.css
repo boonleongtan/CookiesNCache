@@ -1,12 +1,3 @@
-/* special header for checkout and receipt */
-.special-header {
-    padding: 15px 0;
-    border-bottom: 1px solid #d2d2d2;
-    font: bold 3vw "Brush Script MT", serif;
-    text-align: center;
-    color: black;
-}
-
 .fill-in-details-section {
     margin: 0 0 35px 20%;
 }

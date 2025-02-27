@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { SpecialHeader } from '../components/Header';
 import { SpecialFooter } from '../components/Footer';
 import './checkout.css';
 
@@ -7,9 +7,7 @@ function Checkout() {
         <>
             <title>Checkout | Cookies & Cache!</title>
 
-            <header className="special-header">
-                <Link to="/">Cookies & Cache</Link>
-            </header>
+            <SpecialHeader />
 
             <h1>Delivery</h1>
 

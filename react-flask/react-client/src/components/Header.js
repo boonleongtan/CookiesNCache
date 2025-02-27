@@ -18,4 +18,12 @@ function Header() {
     );
 }
 
+export function SpecialHeader() {
+    return (
+        <header className="special-header">
+            <Link to="/">Cookies & Cache</Link>
+        </header>
+    );
+}
+
 export default Header;
