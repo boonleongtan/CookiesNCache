@@ -1,8 +1,16 @@
+import { useState, useEffect } from 'react';
 import { SpecialHeader } from '../components/Header';
 import { SpecialFooter } from '../components/Footer';
 import './checkout.css';
 
 function Checkout() {
+    const [checkoutCart, setCheckoutCart] = useState({});
+
+    useEffect(() => {
+        fetch("/api/checkout").then(res => res.json()).then(data => setCheckoutCart(data));
+        console.log(checkoutCart);
+    }, []);
+
     function handleCheckout() {}
 
     return (

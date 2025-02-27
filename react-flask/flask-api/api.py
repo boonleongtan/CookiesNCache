@@ -304,12 +304,14 @@ def checkout():
     # GET (when user clicks on checkout button in shopping cart)
     if request.method == "GET":
         # display checkout page
-        return {
-            "cookies": session["cart"],
+        checkout_data = {
+            "cookies": [c.serialise() for c in session["cart"]],
             "subtotal": session["grandtotal"],
             "total": session["discounted"],
             "gift_code_status": session["gift_code_status"],
         }
+        print(checkout_data)
+        return checkout_data
 
     # TODO
     # # POST (when user clicks on paynow button in checkout page)
