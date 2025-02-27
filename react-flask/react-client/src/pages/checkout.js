@@ -29,17 +29,17 @@ function Checkout() {
                         <div className="fill-in-details-section">
                             <h3>Contact</h3>
                             <input
-                                autocomplete="email"
-                                autofocus
+                                autoComplete="email"
+                                autoFocus
                                 name="email"
                                 placeholder="Email"
                                 type="email"
                                 required
                             />
                             <input
-                                autocomplete="tel"
+                                autoComplete="tel"
                                 name="phone-no"
-                                inputmode="numeric"
+                                inputMode="numeric"
                                 pattern="\+?[0-9\-\s]+"
                                 title="Allowed characters: +, -, space, numbers"
                                 placeholder="Phone Number"
@@ -49,21 +49,21 @@ function Checkout() {
                         </div>
                         <div className="fill-in-details-section">
                             <h3>Delivery Address</h3>
-                            <label for="country">Country/Region</label>
-                            <select name="country" style={{width:'95%'}} required>
+                            <label htmlFor="country">Country/Region</label>
+                            <select name="country" style={{width:'95%'}} defaultValue={"Singapore"} required>
                                 <option value="" disabled>Select Country/Region</option>
-                                <option value="Singapore" selected>Singapore</option>
+                                <option value="Singapore">Singapore</option>
                             </select>
                             <div className="fill-in-details-inline">
                                 <input
-                                    autocomplete="given-name"
+                                    autoComplete="given-name"
                                     name="fname"
                                     placeholder="First Name"
                                     type="text"
                                     required
                                 />
                                 <input
-                                    autocomplete="family-name"
+                                    autoComplete="family-name"
                                     name="lname"
                                     placeholder="Last Name"
                                     type="text"
@@ -71,14 +71,14 @@ function Checkout() {
                                 />
                             </div>
                             <input
-                                autocomplete="street-address"
+                                autoComplete="street-address"
                                 name="address"
                                 placeholder="Address"
                                 type="text"
                                 required
                             />
                             <input
-                                autocomplete="postal-code"
+                                autoComplete="postal-code"
                                 name="postal-code"
                                 placeholder="Postal Code"
                                 type="text"
@@ -96,10 +96,10 @@ function Checkout() {
                         <div className="fill-in-details-section">
                             <h3>Payment</h3>
                             <input
-                                autocomplete="cc-number"
+                                autoComplete="cc-number"
                                 name="card-no"
-                                inputmode="numeric"
-                                maxlength="19"
+                                inputMode="numeric"
+                                maxLength="19"
                                 pattern="[0-9\s]{13,19}"
                                 placeholder="Card Number"
                                 title="Must be a valid credit card number!"
@@ -108,7 +108,7 @@ function Checkout() {
                             />
                             <div className="fill-in-details-inline">
                                 <input
-                                    autocomplete="cc-exp"
+                                    autoComplete="cc-exp"
                                     name="card-exp"
                                     placeholder="Expiration Date (MM/YY)"
                                     pattern="(0[1-9]|1[0-2])/[0-9]{2}"
@@ -117,10 +117,10 @@ function Checkout() {
                                     required
                                 />
                                 <input
-                                    autocomplete="cc-csc"
+                                    autoComplete="cc-csc"
                                     name="card-code"
-                                    inputmode="numeric"
-                                    maxlength="3"
+                                    inputMode="numeric"
+                                    maxLength="3"
                                     pattern="[0-9]{3}"
                                     placeholder="CVV"
                                     title="xxx"
@@ -129,7 +129,7 @@ function Checkout() {
                                 />
                             </div>
                             <input
-                                autocomplete="cc-name"
+                                autoComplete="cc-name"
                                 name="card-name"
                                 placeholder="Name on card"
                                 type="text"
@@ -178,7 +178,7 @@ function Checkout() {
                                 </td>
                             </tr>
                             <tr className="no-border-bottom no-padding fill-in-details-section">
-                                <form action="/giftcode" method="post">
+                                {/* <form action="/giftcode" method="post"> */}
                                     <td>
                                         <input name="gift-code" placeholder="Discount code or gift card" style={{width:'115%',margin:0}} type="text" />
                                     </td>
@@ -186,7 +186,7 @@ function Checkout() {
                                     <td style={{padding:0}}>
                                         <button className="apply-gift-code-btn" type="submit">Apply</button>
                                     </td>
-                                </form>
+                                {/* </form> */}
                             </tr>
                             <tr className="no-padding">
                                 <td>
