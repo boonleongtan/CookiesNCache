@@ -187,15 +187,18 @@ function Checkout() {
 
                             {/* <!--gift code row--> */}
                             <tr className="no-border-bottom no-padding fill-in-details-section">
-                                <form action={handleGiftCode}>
-                                    <td>
-                                        <input name="gift-code" placeholder="Discount code or gift card" style={{width:'110%',margin:0}} type="text" />
-                                    </td>
-                                    <td></td>
-                                    <td style={{padding:0}}>
-                                        <button className="apply-gift-code-btn" type="submit">Apply</button>
-                                    </td>
-                                </form>
+                                <td>
+                                    <input
+                                        name="gift-code"
+                                        placeholder="Discount code or gift card"
+                                        style={{width:'110%',margin:0}}
+                                        type="text"
+                                    />
+                                </td>
+                                <td></td>
+                                <td style={{padding:0}}>
+                                    <button className="apply-gift-code-btn" type="submit" onClick={handleGiftCode}>Apply</button>
+                                </td>
                             </tr>
 
                             {/* <!--gift code status row--> */}
