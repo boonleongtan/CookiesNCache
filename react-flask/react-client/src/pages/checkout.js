@@ -25,6 +25,8 @@ function Checkout() {
         );
     })
 
+    function handleGiftCode() {}
+
     function handleCheckout() {}
 
     return (
@@ -182,8 +184,10 @@ function Checkout() {
                                     <p className="checkout-subtotal" style={{lineHeight:'3.5vw',textAlign:'right'}}>{ checkoutCart.subtotal }</p>
                                 </td>
                             </tr>
+
+                            {/* <!--gift code row--> */}
                             <tr className="no-border-bottom no-padding fill-in-details-section">
-                                {/* <form action="/giftcode" method="post"> */}
+                                <form action={handleGiftCode}>
                                     <td>
                                         <input name="gift-code" placeholder="Discount code or gift card" style={{width:'110%',margin:0}} type="text" />
                                     </td>
@@ -191,8 +195,10 @@ function Checkout() {
                                     <td style={{padding:0}}>
                                         <button className="apply-gift-code-btn" type="submit">Apply</button>
                                     </td>
-                                {/* </form> */}
+                                </form>
                             </tr>
+
+                            {/* <!--gift code status row--> */}
                             <tr className="no-padding">
                                 <td>
                                     <p className="gift-code-status" style={{paddingBottom:'10%',lineHeight:'3.5vw'}}>{ checkoutCart.gift_code_status}</p>
