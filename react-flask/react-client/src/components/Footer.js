@@ -27,4 +27,12 @@ function Footer() {
     );
 }
 
+export function SpecialFooter() {
+    return (
+        <footer>
+            <div>Copyright © 2025 General379 Pte Ltd | Terms of Use | Privacy Policy | Refund Policy | Delivery Policy</div>
+        </footer>
+    );
+}
+
 export default Footer;

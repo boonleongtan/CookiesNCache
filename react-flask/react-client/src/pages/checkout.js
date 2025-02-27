@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import Footer from '../components/Footer';
+import { SpecialFooter } from '../components/Footer';
 import './checkout.css';
 
 function Checkout() {
@@ -119,7 +119,7 @@ function Checkout() {
 
             </div>
 
-            <Footer />
+            <SpecialFooter />
         </>
     );
 }
