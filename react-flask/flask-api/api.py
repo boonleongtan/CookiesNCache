@@ -371,9 +371,9 @@ def giftcode():
 
 
 # clear all session items and savedcart items
-# def clear_session():
-#     # if logged in, clear all entries
-#     if session.get("user_id") is not None:
-#         db.execute("DELETE FROM savedcart WHERE user_id = ?", session["user_id"])
-#     # then clear all sessions
-#     session.clear()
+def clear_session():
+    # if logged in, clear all entries
+    if session.get("user_id") is not None:
+        db.execute("DELETE FROM savedcart WHERE user_id = ?", session["user_id"])
+    # then clear all sessions
+    session.clear()
