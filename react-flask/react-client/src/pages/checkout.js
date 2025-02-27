@@ -185,7 +185,7 @@ function Checkout() {
                             <tr className="no-border-bottom no-padding fill-in-details-section">
                                 {/* <form action="/giftcode" method="post"> */}
                                     <td>
-                                        <input name="gift-code" placeholder="Discount code or gift card" style={{width:'115%',margin:0}} type="text" />
+                                        <input name="gift-code" placeholder="Discount code or gift card" style={{width:'110%',margin:0}} type="text" />
                                     </td>
                                     <td></td>
                                     <td style={{padding:0}}>
