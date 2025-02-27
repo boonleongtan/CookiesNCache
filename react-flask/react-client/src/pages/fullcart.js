@@ -64,7 +64,7 @@ function FullCart({ cookieCart, refreshCart }) {
                 {/* headings */}
                 <thead>
                     <tr>
-                        <th style={{paddingLeft: "20px"}}>PRODUCTS</th>
+                        <th style={{paddingLeft:"20px"}}>PRODUCTS</th>
                         <th>QUANTITY</th>
                         <th>TOTAL</th>
                     </tr>
@@ -75,7 +75,7 @@ function FullCart({ cookieCart, refreshCart }) {
                     {/* grandtotal */}
                     <tr>
                         <td></td>
-                        <td style={{textAlign: "right"}}>GRAND TOTAL</td>
+                        <td style={{textAlign:"right"}}>GRAND TOTAL</td>
                         <td>{cookieCart.grandtotal}</td>
                     </tr>
                 </tbody>
