@@ -298,7 +298,9 @@ def checkout():
     if "gift_code_status" not in session:
         session["gift_code_status"] = ""
     if "discounted" not in session:
-        session["discounted"] = session["grandtotal"]
+        checkout_total = session["grandtotal"]
+    else:
+        checkout_total = session["discounted"]
 
     # GET (when user clicks on checkout button in shopping cart)
     if request.method == "GET":
@@ -306,7 +308,7 @@ def checkout():
         checkout_data = {
             "cookies": [c.serialise() for c in session["cart"]],
             "subtotal": session["grandtotal"],
-            "total": session["discounted"],
+            "total": checkout_total,
             "gift_code_status": session["gift_code_status"],
         }
         print(checkout_data)
