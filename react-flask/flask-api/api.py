@@ -225,10 +225,7 @@ def cart():
             return []
         else:
             # first calculate total cost, then store it in session["grandtotal"]
-            grandtotal = 0
-            for cookie in session["cart"]:
-                grandtotal += cookie._total
-            session["grandtotal"] = grandtotal
+            session["grandtotal"] = sum([cookie._total for cookie in session["cart"]])
             # display cart
             return {
                 "cookierows": [c.serialise() for c in session["cart"]],
