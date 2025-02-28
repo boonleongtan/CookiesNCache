@@ -23,7 +23,7 @@ db.execute(queries.f_create_table_for_users_saved_cart)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-# Note: In total there are 5 session variables defined: "cart"(list of dictionaries), "grandtotal"(float), "discounted"(float), "gift_code_status"(string), "user_id"(integer)
+# Note: In total there are 5 session variables defined: "cart"(list of dictionaries), "grandtotal"(float), "is_discounted"(boolean), "gift_code_status"(string), "user_id"(integer)
 
 # Ensure responses aren't cached
 @app.after_request
@@ -297,10 +297,8 @@ def cart():
 def checkout():
     if "gift_code_status" not in session:
         session["gift_code_status"] = ""
-    if "discounted" not in session:
-        checkout_total = session["grandtotal"]
-    else:
-        checkout_total = session["discounted"]
+    if "is_discounted" not in session:
+        session["is_discounted"] = False
 
     # GET (when user clicks on checkout button in shopping cart)
     if request.method == "GET":
@@ -308,7 +306,7 @@ def checkout():
         checkout_data = {
             "cookies": [c.serialise() for c in session["cart"]],
             "subtotal": session["grandtotal"],
-            "total": checkout_total,
+            "total": session["grandtotal"] * 0.9 if session["is_discounted"] else session["grandtotal"],
             "gift_code_status": session["gift_code_status"],
         }
         print(checkout_data)
@@ -363,7 +361,7 @@ def giftcode():
     input_code = request.get_json()
     # check code
     if input_code == "YAY":
-        session["discounted"] = session["grandtotal"] * 0.9
+        session["is_discounted"] = True
         session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
     else:
         session["gift_code_status"] = "Invalid Gift Code!"
