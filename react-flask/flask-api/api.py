@@ -362,7 +362,7 @@ def giftcode():
     input_code = request.get_json()
     # check code
     if input_code == "YAY":
-        session["discounted"] *= 0.9
+        session["discounted"] = session["grandtotal"] * 0.9
         session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
     else:
         session["gift_code_status"] = "Invalid Gift Code!"
