@@ -174,7 +174,7 @@ def seasonal():
 # cart functions
 
 
-# add to cart
+# add to cart (from products page)
 @app.route("/api/addtocart", methods=["POST"])
 def add_to_cart():
     # Ensure cart exists
@@ -211,12 +211,13 @@ def add_to_cart():
     #     return product()
 
 
-# view cart
+# view cart and edit cart (on cart page)
 @app.route("/api/cart", methods=["GET", "POST"])
 def cart():
     # Ensure cart exists
     if "cart" not in session:
         session["cart"] = []
+
     # GET (i.e. when user clicks on shopping cart icon)
     if request.method == "GET":
         print("Now in cart: ", [str(_) for _ in session["cart"]])
@@ -233,6 +234,7 @@ def cart():
                 "cookierows": [c.serialise() for c in session["cart"]],
                 "grandtotal": session["grandtotal"],
             }
+        
     # POST (i.e. when user edits item qty)
     if request.method == "POST":
         updatedCart = request.get_json()
@@ -293,7 +295,7 @@ def cart():
 # checkout functions
 
 
-# checkout page
+# go to checkout page and submit details
 @app.route("/api/checkout", methods=["GET", "POST"])
 def checkout():
     if "gift_code_status" not in session:
