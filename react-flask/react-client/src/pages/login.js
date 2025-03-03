@@ -27,7 +27,7 @@ function Login({ setUser }) {
     }
 
     if (!isRegistered) {
-        return <Register setIsRegistered={setIsRegistered} setUser={setUser} />;
+        return <Register setUser={setUser} />;
     } else {
         return (
             <>

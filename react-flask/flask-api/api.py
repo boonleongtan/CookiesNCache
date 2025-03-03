@@ -333,7 +333,7 @@ def register():
     session["user_id"] = rows[0]["id"]
     # Redirect to profile
     # flash("Registration successful! Welcome~", "success")
-    return "Successful registration", 210
+    return {"username": username, "user_id": session["user_id"]}
 
 
 # TODO

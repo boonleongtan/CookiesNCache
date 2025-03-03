@@ -16,9 +16,8 @@ function Register({ setIsRegistered, setUser }) {
             }),
         });
         if (response.ok) {
-            setIsRegistered(true);
             const data = await response.json();
-            console.log('Successful login, user is ' + data.username);
+            console.log('Successful registration, user is ' + data.username);
             setUser(data.username);
         }
     }
