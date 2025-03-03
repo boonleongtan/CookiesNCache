@@ -42,6 +42,9 @@ def clear_session():
     session.clear()
 
 
+# start
+
+
 # navbar functions
 
 
