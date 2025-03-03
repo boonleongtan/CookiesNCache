@@ -248,36 +248,39 @@ def receipt():
 
 
 # login page
-@app.route("/api/login", methods=["POST"])
+@app.route("/api/login", methods=["GET", "POST"])
 def login():
     # First clear any past logins
     session["user_id"] = None
     # POST (when user fills in login form, if successful direct to profile page)
-    data = request.get_json()
-    username = data["username"]
-    password = data["password"]
-    # If any field is empty, retry
-    if not username:
-        # flash("Missing username!", "error")
-        return "e", 400
-    elif not password:
-        # flash("Missing password!", "error")
-        return "e", 400
-    # Ensure username exists and password is correct
-    rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
-    if len(rows) != 1 or not check_password_hash(
-        rows[0]["hash"], password
-    ):
-        # flash("Invalid username and/or password!", "error")
-        return "e", 400
-    # Log user in
-    session["user_id"] = rows[0]["id"]
-    # On login, sync carts
-    sync_carts("a")
-    sync_carts("r")
-    # Redirect user to profile page
-    # flash("Welcome!", "success")
-    return {"username": username, "user_id": session["user_id"]}
+    if request.method == "POST":
+        data = request.get_json()
+        username = data["username"]
+        password = data["password"]
+        # If any field is empty, retry
+        if not username:
+            # flash("Missing username!", "error")
+            return "e", 400
+        elif not password:
+            # flash("Missing password!", "error")
+            return "e", 400
+        # Ensure username exists and password is correct
+        rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
+        if len(rows) != 1 or not check_password_hash(
+            rows[0]["hash"], password
+        ):
+            # flash("Invalid username and/or password!", "error")
+            return "e", 400
+        # Log user in
+        session["user_id"] = rows[0]["id"]
+        # On login, sync carts
+        sync_carts("a")
+        sync_carts("r")
+        # Redirect user to profile page
+        # flash("Welcome!", "success")
+        return {"username": username, "user_id": session["user_id"]}
+    elif request.method == "GET":
+        return {"username": username, "user_id": session["user_id"]}
 
 
 # log user out
