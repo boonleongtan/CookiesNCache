@@ -6,14 +6,17 @@ import './login.css';
 function Login({ setUser }) {
     const [isRegistered, setIsRegistered] = useState(true);
 
-    async function handleLogIn() {
+    async function handleLogIn(formData) {
         const response = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json',
             },
-            body: "data",
+            body: JSON.stringify({
+                username: formData.get('username'),
+                password: formData.get('password'),
+            }),
         });
         if (response.ok) {
             const data = await response.json();

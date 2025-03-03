@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import './login.css';
 
-function Register({ setIsRegistered, setUser }) {
+function Register({ setUser }) {
     async function handleRegister(formData) {
         const response = await fetch('/api/register', {
             method: 'POST',
