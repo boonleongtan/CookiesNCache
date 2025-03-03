@@ -32,7 +32,7 @@ function Receipt() {
             </table>
             <p>Total Price Before Discount: details.prediscount_amt</p>
 
-            <h2 style="margin-left:100px;">Input Details</h2>
+            <h2 style={{marginLeft:'100px'}}>Input Details</h2>
             <p>Name: details.name</p>
             <p>Email: details.email</p>
             <p>Phone number: details.phone_no</p>
