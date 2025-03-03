@@ -210,6 +210,7 @@ function Checkout() {
                                         type="text"
                                         value={giftCode}
                                         onChange={e => setGiftCode(e.target.value)}
+                                        onKeyUp={e => e.key === 'Enter' && handleGiftCode()}
                                     />
                                 </td>
                                 <td></td>
