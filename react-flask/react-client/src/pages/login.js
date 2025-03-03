@@ -1,7 +1,11 @@
 import Layout from '../components/Layout';
 import './login.css';
 
-function Login() {
+function Login({ setIsLoggedIn }) {
+    function handleLogIn() {
+        setIsLoggedIn(true);
+    }
+    
     return (
         <>
             <title>Login | Cookies & Cache!</title>
@@ -15,7 +19,7 @@ function Login() {
                     <form action="/login" method="post">
                         <input autocomplete="off" autofocus name="username" placeholder="Username" type="text" />
                         <input name="password" placeholder="Password" type="password" />
-                        <button type="submit">Log In</button>
+                        <button type="submit" onClick={handleLogIn}>Log In</button>
                     </form>
                     <span>---------- <i>or</i> ----------</span>
                     <form action="/register" method="get">
