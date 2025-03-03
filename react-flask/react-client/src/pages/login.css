@@ -1,0 +1,35 @@
+.login input {
+    display: block;
+    margin: 15px auto;
+    padding: 20px;
+    border: 1px solid #d2d2d2;
+    border-radius: 50px;
+    font-size: 1.5vw;
+}
+
+.login input:focus {
+    outline: 1.5px solid hsl(204, 77%, 39%);
+}
+
+.login button {
+    display: block;
+    margin: auto;
+    padding: 17.5px 110px;
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: black;
+    color: white;
+    font: 1.25vw Verdana, serif;
+}
+
+.login button:hover {
+    cursor: pointer;
+    border: 2px solid yellow;
+    color: yellow;
+}
+
+.login span {
+    display: block;
+    text-align: center;
+    margin: 15px;
+}

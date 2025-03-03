@@ -1,4 +1,5 @@
 import Layout from '../components/Layout';
+import './login.css';
 
 function Profile({ username = "user" }) {
     return (
