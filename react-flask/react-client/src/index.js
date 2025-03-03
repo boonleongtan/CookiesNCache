@@ -15,6 +15,7 @@ import Profile from './pages/profile';
 import Cart from './pages/cart';
 import Product from './pages/product';
 import Checkout from './pages/checkout';
+import Receipt from './pages/receipt';
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
   {
     path: "/Checkout",
     element: <Checkout />,
+  },
+  {
+    path: '/Receipt',
+    element: <Receipt />,
   },
 ]);
 

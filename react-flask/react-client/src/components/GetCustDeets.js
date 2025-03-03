@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function GetCustDeets(subtotal, total) {
+    let navigate = useNavigate();
+
     async function handleCheckout(formData) {
         const custDeets = {
             email: formData.get('email'),
@@ -26,6 +30,7 @@ function GetCustDeets(subtotal, total) {
         });
         if (response.ok) {
             console.log('Checkout success');
+            navigate("/Receipt");
         }
     }
 
