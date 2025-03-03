@@ -266,10 +266,7 @@ def login():
     # session["user_id"] = None
 
     if request.method == "POST":
-        session["user_id"] = "test"
         return {"username": "test"}
-    if request.method == "GET":
-        return {"username": session["user_id"]}
 
 #     # POST (when user fills in login form, if successful direct to profile page)
 #     if request.method == "POST":

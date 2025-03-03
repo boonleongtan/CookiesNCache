@@ -5,7 +5,7 @@ import './login.css';
 
 function Profile() {
     const [user, setUser] = useState(null);
-    console.log(user);
+    console.log('from profile page: user is ' + user);
 
     // useEffect(() => {
     //     fetch('/api/login').then(res => res.json()).then(data => setUser(data.username));

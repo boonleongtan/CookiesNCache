@@ -16,9 +16,9 @@ function Login({ setUser }) {
             body: "data",
         });
         if (response.ok) {
-            console.log('successful login');
-            console.log(response.username);
-            setUser(response.username);
+            console.log('successful login, user is ' + data.username);
+            const data = await response.json();
+            setUser(data.username);
         }
     }
 
