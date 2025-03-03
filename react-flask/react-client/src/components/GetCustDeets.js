@@ -1,40 +1,5 @@
-import { useNavigate } from "react-router-dom";
 
-function GetCustDeets(subtotal, total) {
-    let navigate = useNavigate();
-    
-    console.log("subtotal: " + subtotal + ", total: " + total);
-    async function handleCheckout(formData) {
-        const custDeets = {
-            email: formData.get('email'),
-            tel: formData.get('tel'),
-            country: formData.get('country'),
-            fname: formData.get('fname'),
-            lname: formData.get('lname'),
-            address: formData.get('address'),
-            postalCode: formData.get('postal-code'),
-            deliveryDatetime: formData.get('delivery-datetime'),
-            cardNo: formData.get('card-no'),
-            cardExp: formData.get('card-exp'),
-            cardCode: formData.get('card-code'),
-            cardName: formData.get('card-name'),
-            prediscount: formData.get('prediscount'),
-            paid: formData.get('paid'),
-        };
-        const response = await fetch("/api/receipt", {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(custDeets),
-        });
-        if (response.ok) {
-            console.log('Checkout success');
-            navigate("/Receipt");
-        }
-    }
-
+function GetCustDeets(handleCheckout) {
     return (
         <form action={handleCheckout}>
             <div className="fill-in-details-section">

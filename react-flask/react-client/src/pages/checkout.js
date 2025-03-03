@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { SpecialHeader } from '../components/Header';
 import { SpecialFooter } from '../components/Footer';
 import GetCustDeets from '../components/GetCustDeets';
 import './checkout.css';
 
 function Checkout() {
+    let navigate = useNavigate();
+
     const [checkoutCart, setCheckoutCart] = useState({});
     console.log(checkoutCart);
     const [giftCode, setGiftCode] = useState('');
@@ -43,6 +46,37 @@ function Checkout() {
         }
     }
 
+    async function handleCheckout(formData) {
+        const custDeets = {
+            email: formData.get('email'),
+            tel: formData.get('tel'),
+            country: formData.get('country'),
+            fname: formData.get('fname'),
+            lname: formData.get('lname'),
+            address: formData.get('address'),
+            postalCode: formData.get('postal-code'),
+            deliveryDatetime: formData.get('delivery-datetime'),
+            cardNo: formData.get('card-no'),
+            cardExp: formData.get('card-exp'),
+            cardCode: formData.get('card-code'),
+            cardName: formData.get('card-name'),
+            prediscount: formData.get('prediscount'),
+            paid: formData.get('paid'),
+        };
+        const response = await fetch("/api/receipt", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(custDeets),
+        });
+        if (response.ok) {
+            console.log('Checkout success');
+            navigate("/Receipt");
+        }
+    }
+
     return (
         <>
             <title>Checkout | Cookies & Cache!</title>
@@ -55,7 +89,7 @@ function Checkout() {
 
                 {/* <!--Left half: fill in details sections--> */}
                 <div className="each-half" style={{width:'60%'}}>
-                    <GetCustDeets subtotal={checkoutCart.subtotal} total={checkoutCart.total} />
+                    <GetCustDeets handleCheckout={handleCheckout} />
                 </div>
 
                 {/* <!--Right half: checkout product details--> */}
