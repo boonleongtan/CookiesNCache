@@ -28,7 +28,7 @@ function Profile() {
     }
 
     if (!user) {
-        return <Login />;
+        return <Login setUser={setUser} />;
     } else {
         return (
             <>

@@ -1,12 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import Register from './register';
 import './login.css';
 
-function Login() {
-    let navigate = useNavigate();
-
+function Login({ setUser }) {
     const [isRegistered, setIsRegistered] = useState(true);
 
     async function handleLogIn() {
@@ -20,7 +17,7 @@ function Login() {
         });
         if (response.ok) {
             console.log('successful login');
-            navigate('/Profile', { replace: true });
+            setUser(true);
         }
     }
 
