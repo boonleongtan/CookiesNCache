@@ -60,8 +60,8 @@ function Checkout() {
             cardExp: formData.get('card-exp'),
             cardCode: formData.get('card-code'),
             cardName: formData.get('card-name'),
-            prediscount: formData.get('prediscount'),
-            paid: formData.get('paid'),
+            prediscount: checkoutCart.subtotal,
+            paid: checkoutCart.total,
         };
         const response = await fetch("/api/receipt", {
             method: 'POST',

@@ -2,6 +2,7 @@
 function GetCustDeets(handleCheckout) {
     return (
         <form action={handleCheckout}>
+
             <div className="fill-in-details-section">
                 <h3>Contact</h3>
                 <input
@@ -23,6 +24,7 @@ function GetCustDeets(handleCheckout) {
                     required
                 />
             </div>
+
             <div className="fill-in-details-section">
                 <h3>Delivery Address</h3>
                 <label htmlFor="country">Country/Region</label>
@@ -61,6 +63,7 @@ function GetCustDeets(handleCheckout) {
                     required
                 />
             </div>
+
             <div className="fill-in-details-section">
                 <h3>Delivery Date and Time</h3>
                 <input
@@ -69,6 +72,7 @@ function GetCustDeets(handleCheckout) {
                     required
                 />
             </div>
+            
             <div className="fill-in-details-section">
                 <h3>Payment</h3>
                 <input
@@ -112,16 +116,7 @@ function GetCustDeets(handleCheckout) {
                     required
                 />
             </div>
-            <input
-                name="prediscount"
-                type="hidden"
-                value={subtotal}
-            />
-            <input
-                name="paid"
-                type="hidden"
-                value={total}
-            />
+
             <button className="paynow" type="submit">Pay now</button>
         </form>
     );
