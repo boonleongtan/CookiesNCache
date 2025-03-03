@@ -1,7 +1,11 @@
+import { useLocation } from "react-router-dom";
 import { SpecialHeader } from "../components/Header";
 import { SpecialFooter } from "../components/Footer";
 
 function Receipt() {
+    const { state } = useLocation();
+    console.log(state);
+
     return (
         <>
             <title>Receipt | Cookies & Cache!</title>
