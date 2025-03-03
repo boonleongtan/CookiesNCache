@@ -332,6 +332,7 @@ def checkout():
         prediscount_amt = formData["prediscount"]
         # get the final paid amount
         transacted_amt = formData["paid"]
+        print(transacted_amt)
         # enter user details into database
         db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
                    name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
