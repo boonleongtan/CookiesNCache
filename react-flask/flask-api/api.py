@@ -325,55 +325,43 @@ def giftcode():
 
 
 # go to receipt page and show details
-@app.route("/api/receipt", methods=["GET", "POST"])
+@app.route("/api/receipt", methods=["POST"])
 def receipt():
     # POST (when user clicks on paynow button in checkout page)
-    if request.method == "POST":
-        formData = request.get_json()
-        print(formData)
-        # get all input details
-        name = f"{formData["fname"]} {formData["lname"]}"
-        email = formData["email"]
-        phone_no = formData["phone-no"]
-        country = formData["country"]
-        address = formData["address"]
-        postal_code = formData["postalCode"]
-        delivery_datetime = formData["deliveryDatetime"]
-        card_no = formData["cardNo"]
-        card_exp = formData["cardExp"]
-        card_code = formData["cardCode"]
-        card_name = formData["cardName"]
-        # get the pre discounted amt
-        prediscount_amt = formData["prediscount"]
-        # get the final paid amount
-        transacted_amt = formData["paid"]
-        print(transacted_amt)
-        # enter user details into database
-        db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
-                   name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
-        # get the transaction id (by selecting the latest data entry)
-        transaction_id = db.execute(
-            "SELECT id FROM transactions WHERE id=(SELECT max(id) FROM transactions);")[0]["id"]
-        # enter transacted items into database
-        for cookie in session["cart"]:
-            db.execute("INSERT INTO transacted_items(transaction_id, item_name, item_price, item_qty) VALUES(?, ?, ?, ?)",
-                       transaction_id, cookie.name, cookie.price, cookie.qty)
-        # clear session and savedcart if logged in
-        clear_session()
-        # show success message
-        # flash("Thank you for shopping with us! 😊", "alert")
-        return "Received", 204
-    
-    # # GET (when user is on the receipt page)
-    # if request.method == "GET":
-    #     # render receipt
-    #     details = db.execute("SELECT * FROM transactions WHERE id = ?", transaction_id)[0]
-    #     details["delivery_datetime"] = f"{delivery_datetime[:10]}, {delivery_datetime[11:]}"
-    #     details["card_no"] = f"**** **** **** {details["card_no"][-4:]}"
-    #     items = db.execute(
-    #         "SELECT * FROM transacted_items WHERE transaction_id = ?", transaction_id)
-    #     return
-
+    formData = request.get_json()
+    print(formData)
+    # get all input details
+    name = f"{formData["fname"]} {formData["lname"]}"
+    email = formData["email"]
+    phone_no = formData["phone-no"]
+    country = formData["country"]
+    address = formData["address"]
+    postal_code = formData["postalCode"]
+    delivery_datetime = formData["deliveryDatetime"]
+    card_no = formData["cardNo"]
+    card_exp = formData["cardExp"]
+    card_code = formData["cardCode"]
+    card_name = formData["cardName"]
+    # get the pre discounted amt
+    prediscount_amt = formData["prediscount"]
+    # get the final paid amount
+    transacted_amt = formData["paid"]
+    print(transacted_amt)
+    # enter user details into database
+    db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
+                name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
+    # get the transaction id (by selecting the latest data entry)
+    transaction_id = db.execute(
+        "SELECT id FROM transactions WHERE id=(SELECT max(id) FROM transactions);")[0]["id"]
+    # enter transacted items into database
+    for cookie in session["cart"]:
+        db.execute("INSERT INTO transacted_items(transaction_id, item_name, item_price, item_qty) VALUES(?, ?, ?, ?)",
+                    transaction_id, cookie.name, cookie.price, cookie.qty)
+    # clear session and savedcart if logged in
+    clear_session()
+    # show success message
+    # flash("Thank you for shopping with us! 😊", "alert")
+    return "Received", 204
 
 # clear all session items and savedcart items
 def clear_session():
