@@ -107,15 +107,15 @@ def add_to_cart():
                 "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
             session["cart"].append(Cookie(cookie_id, cookie_name,
                                     cookie_price, cookie_qty, cookie_img))
-    print("Added to cart: ", [str(_) for _ in session["cart"]])
-    return "Success", 201
-    #     # also update savedcart if signed in
-    #     if session.get("user_id") is not None:
-    #         sync_carts("w")
-    #         sync_carts("r")
+        # also update savedcart if signed in
+        if session.get("user_id") is not None:
+            sync_carts("w")
+            sync_carts("r")
     #     # once done render success message and stay on page
     #     flash("Item added to cart!", "success")
     #     return product()
+    print("Added to cart: ", [str(_) for _ in session["cart"]])
+    return "Success", 201
 
 
 # view cart and edit cart (on cart page)
@@ -152,19 +152,19 @@ def cart():
                         if cookie_obj.id == cookie_id:
                             cookie_obj.qty = cookie_qty
                             cookie_obj.update_total()
-        #         # also update savedcart if signed in
-        #         if session.get("user_id") is not None:
-        #             sync_carts("w")
-        #             sync_carts("r")
+                # also update savedcart if signed in
+                if session.get("user_id") is not None:
+                    sync_carts("w")
+                    sync_carts("r")
             # if cookie_qty == 0 remove item from cart
             if cookie_qty == 0:
                 for nocookie_obj in session["cart"]:
                     if nocookie_obj.id == cookie_id:
                         session["cart"].remove(nocookie_obj)
-        #                 # also update savedcart if signed in
-        #                 if session.get("user_id") is not None:
-        #                     db.execute(
-        #                         "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
+                        # also update savedcart if signed in
+                        if session.get("user_id") is not None:
+                            db.execute(
+                                "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
         print([str(_) for _ in session["cart"]])
         return "Received updated cart", 202
 
@@ -272,9 +272,9 @@ def login():
         return "e", 400
     # Log user in
     session["user_id"] = rows[0]["id"]
-    # # On login, sync carts
-    # sync_carts("a")
-    # sync_carts("r")
+    # On login, sync carts
+    sync_carts("a")
+    sync_carts("r")
     # Redirect user to profile page
     # flash("Welcome!", "success")
     return {"username": username, "user_id": session["user_id"]}
