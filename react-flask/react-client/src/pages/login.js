@@ -9,8 +9,19 @@ function Login() {
 
     const [isRegistered, setIsRegistered] = useState(true);
 
-    function handleLogIn() {
-        navigate('/Profile', { replace: true });
+    async function handleLogIn() {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            },
+            body: "data",
+        });
+        if (response.ok) {
+            console.log('successful login');
+            navigate('/Profile', { replace: true });
+        }
     }
 
     function handleRegister() {
