@@ -23,6 +23,8 @@ function Profile() {
         if (response.ok) {
             console.log("Successful logout");
         }
+        // not necessary but set to allow rerender
+        setUser(null);
     }
 
     if (!user) {
