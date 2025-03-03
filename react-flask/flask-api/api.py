@@ -68,12 +68,10 @@ def search():
 def index():
     return db.execute("SELECT * FROM products;")
 
-
 # favourites page
 @app.route("/api/favs")
 def favs():
     return db.execute("SELECT * FROM products WHERE fav = 'yes';")
-
 
 # seasonal page
 @app.route("/api/seasonal")
@@ -91,27 +89,26 @@ def add_to_cart():
     if "cart" not in session:
         session["cart"] = []
     # POST (i.e. when user adds item to cart from individual product page)
-    if request.method == "POST":
-        cookie = request.get_json()
-        cookie_id = int(cookie["id"])
-        cookie_qty = int(cookie["qty"])
-        # add to session["cart"]
-        # Note! This function is only for adding items so cookie_qty must > 0!
-        if cookie_id and cookie_qty > 0:
-            # if the cookie is already in session["cart"], update qty
-            if any(cookie.id == cookie_id for cookie in session["cart"]):
-                for cookie_obj in session["cart"]:
-                    if cookie_obj.id == cookie_id:
-                        cookie_obj.qty += cookie_qty
-                        cookie_obj.update_total()
-            # else if the cookie is not yet in session["cart"], add it as a new Cookie object
-            else:
-                cookie_name, cookie_price, cookie_img = db.execute(
-                    "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
-                session["cart"].append(Cookie(cookie_id, cookie_name,
-                                       cookie_price, cookie_qty, cookie_img))
-        print("Added to cart: ", [str(_) for _ in session["cart"]])
-        return "Success", 201
+    cookie = request.get_json()
+    cookie_id = int(cookie["id"])
+    cookie_qty = int(cookie["qty"])
+    # add to session["cart"]
+    # Note! This function is only for adding items so cookie_qty must > 0!
+    if cookie_id and cookie_qty > 0:
+        # if the cookie is already in session["cart"], update qty
+        if any(cookie.id == cookie_id for cookie in session["cart"]):
+            for cookie_obj in session["cart"]:
+                if cookie_obj.id == cookie_id:
+                    cookie_obj.qty += cookie_qty
+                    cookie_obj.update_total()
+        # else if the cookie is not yet in session["cart"], add it as a new Cookie object
+        else:
+            cookie_name, cookie_price, cookie_img = db.execute(
+                "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
+            session["cart"].append(Cookie(cookie_id, cookie_name,
+                                    cookie_price, cookie_qty, cookie_img))
+    print("Added to cart: ", [str(_) for _ in session["cart"]])
+    return "Success", 201
     #     # also update savedcart if signed in
     #     if session.get("user_id") is not None:
     #         sync_carts("w")
