@@ -309,6 +309,7 @@ def checkout():
     print(checkout_data)
     return checkout_data
 
+
 # when discount code is applied
 @app.route("/api/giftcode", methods=["POST"])
 def giftcode():
@@ -359,15 +360,20 @@ def receipt():
                        transaction_id, cookie.name, cookie.price, cookie.qty)
         # clear session and savedcart if logged in
         clear_session()
-        # render receipt
-        details = db.execute("SELECT * FROM transactions WHERE id = ?", transaction_id)[0]
-        details["delivery_datetime"] = f"{delivery_datetime[:10]}, {delivery_datetime[11:]}"
-        details["card_no"] = f"**** **** **** {details["card_no"][-4:]}"
-        items = db.execute(
-            "SELECT * FROM transacted_items WHERE transaction_id = ?", transaction_id)
         # show success message
         # flash("Thank you for shopping with us! 😊", "alert")
         return "Received", 204
+    
+    # # GET (when user is on the receipt page)
+    # if request.method == "GET":
+    #     # render receipt
+    #     details = db.execute("SELECT * FROM transactions WHERE id = ?", transaction_id)[0]
+    #     details["delivery_datetime"] = f"{delivery_datetime[:10]}, {delivery_datetime[11:]}"
+    #     details["card_no"] = f"**** **** **** {details["card_no"][-4:]}"
+    #     items = db.execute(
+    #         "SELECT * FROM transacted_items WHERE transaction_id = ?", transaction_id)
+    #     return
+
 
 # clear all session items and savedcart items
 def clear_session():
