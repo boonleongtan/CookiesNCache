@@ -55,7 +55,7 @@ function Checkout() {
 
                 {/* <!--Left half: fill in details sections--> */}
                 <div className="each-half" style={{width:'60%'}}>
-                    <GetCustDeets />
+                    <GetCustDeets subtotal={checkoutCart.subtotal} total={checkoutCart.total} />
                 </div>
 
                 {/* <!--Right half: checkout product details--> */}

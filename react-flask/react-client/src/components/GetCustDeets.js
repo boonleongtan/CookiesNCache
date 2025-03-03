@@ -1,4 +1,4 @@
-function GetCustDeets() {
+function GetCustDeets(subtotal, total) {
     async function handleCheckout(formData) {
         const custDeets = {
             email: formData.get('email'),
@@ -144,12 +144,12 @@ function GetCustDeets() {
             <input
                 name="prediscount"
                 type="hidden"
-                value="{{ subtotal | usd }}"
+                value={subtotal}
             />
             <input
                 name="paid"
                 type="hidden"
-                value="{{ total | usd }}"
+                value={total}
             />
             <button className="paynow" type="submit">Pay now</button>
         </form>
