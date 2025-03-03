@@ -77,7 +77,7 @@ function Checkout() {
                 replace: true,
                 state: {
                     details: custDeets,
-                    items: checkoutCart,
+                    items: checkoutCart.cookies,
                 },
             });
         }

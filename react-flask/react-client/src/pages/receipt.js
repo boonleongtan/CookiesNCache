@@ -6,6 +6,16 @@ function Receipt() {
     const { state } = useLocation();
     const { details, items } = state;
 
+    const itemRows = items[0] && items.map(item => {
+        return (
+            <tr key={item.id}>
+                <td>{item.name}</td>
+                <td>{item.price}</td>
+                <td>{item.qty}</td>
+            </tr>
+        );
+    });
+
     return (
         <>
             <title>Receipt | Cookies & Cache!</title>
@@ -25,16 +35,10 @@ function Receipt() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* {% for item in items %}
-                        <tr>
-                        <td>item.item_name</td>
-                        <td>item.item_price | usd</td>
-                        <td>item.item_qty</td>
-                        </tr>
-                        {% endfor %} */}
+                    {itemRows}
                 </tbody>
             </table>
-            <p>Total Price Before Discount: {details.prediscount_amt}</p>
+            <p>Total Price Before Discount: {details.prediscount}</p>
 
             <h2 style={{marginLeft:'100px'}}>Input Details</h2>
             <p>Name: {details.fname + " " + details.lname}</p>
