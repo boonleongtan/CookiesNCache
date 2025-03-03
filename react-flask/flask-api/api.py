@@ -292,26 +292,40 @@ def cart():
 # checkout functions
 
 
-# go to checkout page and submit details
-@app.route("/api/checkout", methods=["GET", "POST"])
+# go to checkout page
+@app.route("/api/checkout", methods=["GET"])
 def checkout():
     if "gift_code_status" not in session:
         session["gift_code_status"] = ""
     if "is_discounted" not in session:
         session["is_discounted"] = False
-
     # GET (when user clicks on checkout button in shopping cart)
-    if request.method == "GET":
-        # display checkout page
-        checkout_data = {
-            "cookies": [c.serialise() for c in session["cart"]],
-            "subtotal": session["grandtotal"],
-            "total": session["grandtotal"] * 0.9 if session["is_discounted"] else session["grandtotal"],
-            "gift_code_status": session["gift_code_status"],
-        }
-        print(checkout_data)
-        return checkout_data
+    checkout_data = {
+        "cookies": [c.serialise() for c in session["cart"]],
+        "subtotal": session["grandtotal"],
+        "total": session["grandtotal"] * 0.9 if session["is_discounted"] else session["grandtotal"],
+        "gift_code_status": session["gift_code_status"],
+    }
+    print(checkout_data)
+    return checkout_data
 
+# when discount code is applied
+@app.route("/api/giftcode", methods=["POST"])
+def giftcode():
+    # POST (when user applies gift code)
+    input_code = request.get_json()
+    # check code
+    if input_code == "YAY":
+        session["is_discounted"] = True
+        session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
+    else:
+        session["gift_code_status"] = "Invalid Gift Code!"
+    return "Received code", 203
+
+
+# go to receipt page and show details
+@app.route("/api/receipt", methods=["GET", "POST"])
+def receipt():
     # POST (when user clicks on paynow button in checkout page)
     if request.method == "POST":
         formData = request.get_json()
@@ -354,21 +368,6 @@ def checkout():
         # show success message
         # flash("Thank you for shopping with us! 😊", "alert")
         return "Received", 204
-
-
-# when discount code is applied
-@app.route("/api/giftcode", methods=["POST"])
-def giftcode():
-    # POST (when user applies gift code)
-    input_code = request.get_json()
-    # check code
-    if input_code == "YAY":
-        session["is_discounted"] = True
-        session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
-    else:
-        session["gift_code_status"] = "Invalid Gift Code!"
-    return "Received code", 203
-
 
 # clear all session items and savedcart items
 def clear_session():

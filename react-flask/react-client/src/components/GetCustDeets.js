@@ -21,7 +21,7 @@ function GetCustDeets(subtotal, total) {
             prediscount: formData.get('prediscount'),
             paid: formData.get('paid'),
         };
-        const response = await fetch("/api/checkout", {
+        const response = await fetch("/api/receipt", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
