@@ -12,7 +12,7 @@ function Receipt() {
 
             <h4>Thank you for shopping with us! Below are the details of your transaction:</h4>
 
-            <table style="margin-left:100px;border:1px solid black;">
+            <table style={{marginLeft:'100px',border:'1px solid black'}}>
                 <thead>
                     <tr>
                         <th>Item</th>
