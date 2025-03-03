@@ -54,7 +54,9 @@ function Checkout() {
             <div className="vert-split-half">
 
                 {/* <!--Left half: fill in details sections--> */}
-                <GetCustDeets />
+                <div className="each-half" style={{width:'60%'}}>
+                    <GetCustDeets />
+                </div>
 
                 {/* <!--Right half: checkout product details--> */}
                 <div className="each-half checkout-info-section">
