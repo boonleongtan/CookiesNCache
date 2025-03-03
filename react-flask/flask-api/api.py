@@ -263,41 +263,33 @@ def receipt():
 @app.route("/api/login", methods=["GET", "POST"])
 def login():
     # First clear any past logins
-    # session["user_id"] = None
-
-    if request.method == "POST":
-        return {"username": "test"}
-
-#     # POST (when user fills in login form, if successful direct to profile page)
-#     if request.method == "POST":
-#         username = request.form.get("username")
-#         password = request.form.get("password")
-#         # If any field is empty, retry
-#         if not username:
-#             flash("Missing username!", "error")
-#             return redirect("/login")
-#         elif not password:
-#             flash("Missing password!", "error")
-#             return redirect("/login")
-#         # Ensure username exists and password is correct
-#         rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
-#         if len(rows) != 1 or not check_password_hash(
-#             rows[0]["hash"], password
-#         ):
-#             flash("Invalid username and/or password!", "error")
-#             return redirect("/login")
-#         # Log user in
-#         session["user_id"] = rows[0]["id"]
-#         # On login, sync carts
-#         sync_carts("a")
-#         sync_carts("r")
-#         # Redirect user to profile page
-#         flash("Welcome!", "success")
-#         return redirect("/profile")
-
-#     # GET (when user clicks on profile icon, display login form)
-#     else:
-#         return render_template("login.html")
+    session["user_id"] = None
+    # POST (when user fills in login form, if successful direct to profile page)
+    data = request.get_json()
+    username = data["username"]
+    password = data["password"]
+    # If any field is empty, retry
+    if not username:
+        # flash("Missing username!", "error")
+        return "e", 400
+    elif not password:
+        # flash("Missing password!", "error")
+        return "e", 400
+    # Ensure username exists and password is correct
+    rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
+    if len(rows) != 1 or not check_password_hash(
+        rows[0]["hash"], password
+    ):
+        # flash("Invalid username and/or password!", "error")
+        return "e", 400
+    # Log user in
+    session["user_id"] = rows[0]["id"]
+    # # On login, sync carts
+    # sync_carts("a")
+    # sync_carts("r")
+    # Redirect user to profile page
+    # flash("Welcome!", "success")
+    return {"username": session["user_id"]}
 
 
 # log user out
