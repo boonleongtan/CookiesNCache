@@ -312,9 +312,11 @@ def checkout():
         print(checkout_data)
         return checkout_data
 
+    # POST (when user clicks on paynow button in checkout page)
+    if request.method == "POST":
+        print(request.get_json())
+        return "Received", 204
     # TODO
-    # # POST (when user clicks on paynow button in checkout page)
-    # if request.method == "POST":
     #     # get all input details
     #     name = f"{request.form.get("fname")} {request.form.get("lname")}"
     #     email = request.form.get("email")

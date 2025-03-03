@@ -1,12 +1,16 @@
 function GetCustDeets() {
-    async function handleCheckout() {
+    async function handleCheckout(formData) {
+        const custDeets = {
+            email: formData.get('email'),
+            phone_no: formData.get('phone-no'),
+        };
         const response = await fetch("/api/checkout", {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(),
+            body: JSON.stringify(custDeets),
         });
         if (response.ok) {
             console.log('Checkout success');
