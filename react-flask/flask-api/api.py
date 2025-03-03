@@ -277,7 +277,7 @@ def login():
     # sync_carts("r")
     # Redirect user to profile page
     # flash("Welcome!", "success")
-    return {"username": session["user_id"]}
+    return {"username": username, "user_id": session["user_id"]}
 
 
 # log user out
@@ -285,10 +285,9 @@ def login():
 def logout():
     session["user_id"] = None
     # flash("You have logged out successfully~", "alert")
-    return {"username": session["user_id"]}
+    return {"username": None, "user_id": session["user_id"]}
 
 
-# TODO
 # register page
 @app.route("/api/register", methods=["POST"])
 def register():
@@ -327,28 +326,24 @@ def register():
 # sync functions
 
 
-# TODO
 # allows syncing of session["cart"] and savedcart in sql
-# def sync_carts(op_type):
-#     # Ensure signed in
-#     if session.get("user_id") is not None:
-#         # If user already added an item to cart before login
-#         if "cart" in session:
-#             # add ("a") or update ("w") all items from session["cart"] into savedcart table
-#             if op_type == "a":
-#                 for cookie in session["cart"]:
-#                     db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(product_id) DO UPDATE SET qty=qty+excluded.qty",
-#                                session["user_id"], cookie.id, cookie.qty)
-#             elif op_type == "w":
-#                 for cookie in session["cart"]:
-#                     db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(product_id) DO UPDATE SET qty=excluded.qty",
-#                                session["user_id"], cookie.id, cookie.qty)
-#         # If user logs in when cart is still empty, and After reading to savedcart
-#         session["cart"] = []
-#         if op_type == "r":
-#             # Read all savedcart items into empty session["cart"]
-#             products = db.execute(
-#                 "SELECT products.id, products.name, products.price, savedcart.qty, products.img FROM savedcart JOIN products ON savedcart.product_id=products.id WHERE user_id = ?;", session["user_id"],)
-#             for product in products:
-#                 session["cart"].append(Cookie(product["id"], product["name"],
-#                                               product["price"], product["qty"], product["img"]))
+def sync_carts(op_type):
+    # Ensure signed in
+    if session.get("user_id") is not None:
+        # If user already added an item to cart before login
+        if "cart" in session:
+            # add ("a") or update ("w") all items from session["cart"] into savedcart table
+            if op_type == "a":
+                for cookie in session["cart"]:
+                    db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(product_id) DO UPDATE SET qty=qty+excluded.qty", session["user_id"], cookie.id, cookie.qty)
+            elif op_type == "w":
+                for cookie in session["cart"]:
+                    db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(product_id) DO UPDATE SET qty=excluded.qty", session["user_id"], cookie.id, cookie.qty)
+        # If user logs in when cart is still empty, and After reading to savedcart
+        session["cart"] = []
+        if op_type == "r":
+            # Read all savedcart items into empty session["cart"]
+            products = db.execute(
+                "SELECT products.id, products.name, products.price, savedcart.qty, products.img FROM savedcart JOIN products ON savedcart.product_id=products.id WHERE user_id = ?;", session["user_id"],)
+            for product in products:
+                session["cart"].append(Cookie(product["id"], product["name"], product["price"], product["qty"], product["img"]))
