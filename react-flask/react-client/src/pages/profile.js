@@ -22,9 +22,8 @@ function Profile() {
         });
         if (response.ok) {
             console.log("Successful logout");
+            setUser(response.username);
         }
-        // not necessary but set to allow rerender
-        setUser(null);
     }
 
     if (!user) {

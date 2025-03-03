@@ -308,7 +308,7 @@ def login():
 def logout():
     session["user_id"] = None
     # flash("You have logged out successfully~", "alert")
-    return "Successful logout", 205
+    return {"username": session["user_id"]}
 
 
 # TODO
