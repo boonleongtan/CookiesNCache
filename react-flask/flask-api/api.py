@@ -260,10 +260,12 @@ def receipt():
 
 # TODO
 # login page
-# @app.route("/login", methods=["GET", "POST"])
-# def login():
-#     # First clear any past logins
-#     session["user_id"] = None
+@app.route("/api/login", methods=["GET", "POST"])
+def login():
+    # First clear any past logins
+    session["user_id"] = None
+    if request.method == "GET":
+        return {"username": "test"}
 
 #     # POST (when user fills in login form, if successful direct to profile page)
 #     if request.method == "POST":

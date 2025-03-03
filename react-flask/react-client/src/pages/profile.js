@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
+import Login from './login';
 import './login.css';
 
 function Profile() {
-    let navigate = useNavigate();
-
     const [user, setUser] = useState(false);
+    console.log(user);
 
     useEffect(() => {
-        fetch('/api/login').then(res => res.json()).then(data => setUser(data));
+        fetch('/api/login').then(res => res.json()).then(data => setUser(data.username));
     }, []);
 
     function handleLogOut() {
@@ -17,7 +16,7 @@ function Profile() {
     }
 
     if (!user) {
-        navigate('/Login', { replace: true });
+        return <Login />;
     } else {
         return (
             <>

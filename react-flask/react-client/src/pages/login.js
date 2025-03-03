@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
-import './login.css';
 import Register from './register';
+import './login.css';
 
-function Login({ setIsLoggedIn }) {
+function Login() {
+    let navigate = useNavigate();
+
     const [isRegistered, setIsRegistered] = useState(true);
 
     function handleLogIn() {
-        setIsLoggedIn(true);
+        navigate('/Profile', { replace: true });
     }
 
     function handleRegister() {
@@ -28,7 +31,7 @@ function Login({ setIsLoggedIn }) {
     
                     <div className="login">
                         <form action={handleLogIn}>
-                            <input autocomplete="off" autofocus name="username" placeholder="Username" type="text" />
+                            <input autoComplete="off" autoFocus name="username" placeholder="Username" type="text" />
                             <input name="password" placeholder="Password" type="password" />
                             <button type="submit">Log In</button>
                         </form>
