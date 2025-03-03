@@ -23,6 +23,7 @@ function Profile() {
         if (response.ok) {
             console.log("Successful logout");
         }
+        setUser(false);
     }
 
     if (!user) {
