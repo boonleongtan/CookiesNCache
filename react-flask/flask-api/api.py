@@ -334,7 +334,7 @@ def receipt():
         # get all input details
         name = f"{formData["fname"]} {formData["lname"]}"
         email = formData["email"]
-        phone_no = formData["tel"]
+        phone_no = formData["phone-no"]
         country = formData["country"]
         address = formData["address"]
         postal_code = formData["postalCode"]

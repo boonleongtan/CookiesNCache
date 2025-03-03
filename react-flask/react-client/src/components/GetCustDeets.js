@@ -14,7 +14,7 @@ function GetCustDeets({ handleCheckout }) {
                 />
                 <input
                     autoComplete="tel"
-                    name="tel"
+                    name="phone-no"
                     inputMode="numeric"
                     pattern="\+?[0-9\-\s]+"
                     title="Allowed characters: +, -, space, numbers"

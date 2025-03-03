@@ -49,7 +49,7 @@ function Checkout() {
     async function handleCheckout(formData) {
         const custDeets = {
             email: formData.get('email'),
-            tel: formData.get('tel'),
+            phoneNo: formData.get('phone-no'),
             country: formData.get('country'),
             fname: formData.get('fname'),
             lname: formData.get('lname'),
