@@ -42,7 +42,19 @@ function Checkout() {
         }
     }
 
-    function handleCheckout() {}
+    async function handleCheckout() {
+        const response = await fetch("/api/checkout", {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(),
+        });
+        if (response.ok) {
+            console.log('Checkout success');
+        }
+    }
 
     return (
         <>
