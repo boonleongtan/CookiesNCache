@@ -43,7 +43,7 @@ function Receipt() {
             <p>Card Number: details.card_no</p>
             <p>Total Amount Paid (after discount): details.transacted_amt</p>
 
-            <button onclick="window.print()" class="checkout" style="float:left;margin-left:100px;">Print Receipt</button>
+            <button onclick="window.print()" className="checkout" style={{float:'left',marginLeft:'100px'}}>Print Receipt</button>
 
             <SpecialFooter />
         </>
