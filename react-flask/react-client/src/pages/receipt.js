@@ -4,7 +4,8 @@ import { SpecialFooter } from "../components/Footer";
 
 function Receipt() {
     const { state } = useLocation();
-    console.log(state);
+    const { details } = state;
+    console.log(details);
 
     return (
         <>

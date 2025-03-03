@@ -73,7 +73,7 @@ function Checkout() {
         });
         if (response.ok) {
             console.log('Checkout success');
-            navigate("/Receipt", { state: { custDeets: custDeets } });
+            navigate("/Receipt", { state: { details: custDeets } }, { replace: true });
         }
     }
 
