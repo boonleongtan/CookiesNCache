@@ -265,7 +265,6 @@ def login():
     # First clear any past logins
     session["user_id"] = None
 
-    session["user_id"] = "test"
     if request.method == "GET":
         return {"username": session["user_id"]}
 

@@ -4,7 +4,7 @@ import Login from './login';
 import './login.css';
 
 function Profile() {
-    const [user, setUser] = useState(false);
+    const [user, setUser] = useState(null);
     console.log(user);
 
     useEffect(() => {
@@ -23,7 +23,6 @@ function Profile() {
         if (response.ok) {
             console.log("Successful logout");
         }
-        setUser(false);
     }
 
     if (!user) {
