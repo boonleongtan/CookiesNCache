@@ -33,6 +33,14 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+# for clearing all session items and savedcart items later on
+def clear_session():
+    # if logged in, clear all entries
+    if session.get("user_id") is not None:
+        db.execute("DELETE FROM savedcart WHERE user_id = ?", session["user_id"])
+    # then clear all sessions
+    session.clear()
+
 
 # navbar functions
 
@@ -68,6 +76,172 @@ def favs():
 @app.route("/api/seasonal")
 def seasonal():
     return db.execute("SELECT * FROM products WHERE seasonal = 'yes';")
+
+
+# cart functions
+
+
+# add to cart (from products page)
+@app.route("/api/addtocart", methods=["POST"])
+def add_to_cart():
+    # Ensure cart exists
+    if "cart" not in session:
+        session["cart"] = []
+    # POST (i.e. when user adds item to cart from individual product page)
+    if request.method == "POST":
+        cookie = request.get_json()
+        cookie_id = int(cookie["id"])
+        cookie_qty = int(cookie["qty"])
+        # add to session["cart"]
+        # Note! This function is only for adding items so cookie_qty must > 0!
+        if cookie_id and cookie_qty > 0:
+            # if the cookie is already in session["cart"], update qty
+            if any(cookie.id == cookie_id for cookie in session["cart"]):
+                for cookie_obj in session["cart"]:
+                    if cookie_obj.id == cookie_id:
+                        cookie_obj.qty += cookie_qty
+                        cookie_obj.update_total()
+            # else if the cookie is not yet in session["cart"], add it as a new Cookie object
+            else:
+                cookie_name, cookie_price, cookie_img = db.execute(
+                    "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
+                session["cart"].append(Cookie(cookie_id, cookie_name,
+                                       cookie_price, cookie_qty, cookie_img))
+        print("Added to cart: ", [str(_) for _ in session["cart"]])
+        return "Success", 201
+    #     # also update savedcart if signed in
+    #     if session.get("user_id") is not None:
+    #         sync_carts("w")
+    #         sync_carts("r")
+    #     # once done render success message and stay on page
+    #     flash("Item added to cart!", "success")
+    #     return product()
+
+
+# view cart and edit cart (on cart page)
+@app.route("/api/cart", methods=["GET", "POST"])
+def cart():
+    # Ensure cart exists
+    if "cart" not in session:
+        session["cart"] = []
+
+    # GET (i.e. when user clicks on shopping cart icon)
+    if request.method == "GET":
+        print("Now in cart: ", [str(_) for _ in session["cart"]])
+        if len(session["cart"]) == 0:
+            return []
+        else:
+            # first calculate total cost, then store it in session["grandtotal"]
+            session["grandtotal"] = sum([cookie._total for cookie in session["cart"]])
+            # display cart
+            return {
+                "cookierows": [c.serialise() for c in session["cart"]],
+                "grandtotal": session["grandtotal"],
+            }
+        
+    # POST (i.e. when user edits item qty)
+    if request.method == "POST":
+        updatedCart = request.get_json()
+        print("received changed data: ", updatedCart)
+        cookie_id = int(updatedCart["id"])
+        cookie_qty = int(updatedCart["qty"])
+        if cookie_id:
+            if cookie_qty > 0:
+                if any(cookie.id == cookie_id for cookie in session["cart"]):
+                    for cookie_obj in session["cart"]:
+                        if cookie_obj.id == cookie_id:
+                            cookie_obj.qty = cookie_qty
+                            cookie_obj.update_total()
+        #         # also update savedcart if signed in
+        #         if session.get("user_id") is not None:
+        #             sync_carts("w")
+        #             sync_carts("r")
+            # if cookie_qty == 0 remove item from cart
+            if cookie_qty == 0:
+                for nocookie_obj in session["cart"]:
+                    if nocookie_obj.id == cookie_id:
+                        session["cart"].remove(nocookie_obj)
+        #                 # also update savedcart if signed in
+        #                 if session.get("user_id") is not None:
+        #                     db.execute(
+        #                         "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
+        print([str(_) for _ in session["cart"]])
+        return "Received updated cart", 202
+
+
+# checkout functions
+
+
+# go to checkout page
+@app.route("/api/checkout", methods=["GET"])
+def checkout():
+    if "gift_code_status" not in session:
+        session["gift_code_status"] = ""
+    if "is_discounted" not in session:
+        session["is_discounted"] = False
+    # GET (when user clicks on checkout button in shopping cart)
+    checkout_data = {
+        "cookies": [c.serialise() for c in session["cart"]],
+        "subtotal": session["grandtotal"],
+        "total": session["grandtotal"] * 0.9 if session["is_discounted"] else session["grandtotal"],
+        "gift_code_status": session["gift_code_status"],
+    }
+    print(checkout_data)
+    return checkout_data
+
+
+# when discount code is applied
+@app.route("/api/giftcode", methods=["POST"])
+def giftcode():
+    # POST (when user applies gift code)
+    input_code = request.get_json()
+    # check code
+    if input_code == "YAY":
+        session["is_discounted"] = True
+        session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
+    else:
+        session["gift_code_status"] = "Invalid Gift Code!"
+    return "Received code", 203
+
+
+# go to receipt page and show details
+@app.route("/api/receipt", methods=["POST"])
+def receipt():
+    # POST (when user clicks on paynow button in checkout page)
+    formData = request.get_json()
+    print(formData)
+    # get all input details
+    name = f"{formData["fname"]} {formData["lname"]}"
+    email = formData["email"]
+    phone_no = formData["phoneNo"]
+    country = formData["country"]
+    address = formData["address"]
+    postal_code = formData["postalCode"]
+    delivery_datetime = formData["deliveryDatetime"]
+    card_no = formData["cardNo"]
+    card_exp = formData["cardExp"]
+    card_code = formData["cardCode"]
+    card_name = formData["cardName"]
+    # get the pre discounted amt
+    prediscount_amt = formData["prediscount"]
+    # get the final paid amount
+    transacted_amt = formData["paid"]
+    print(transacted_amt)
+    # enter user details into database
+    db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
+                name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
+    # get the transaction id (by selecting the latest data entry)
+    transaction_id = db.execute(
+        "SELECT id FROM transactions WHERE id=(SELECT max(id) FROM transactions);")[0]["id"]
+    # enter transacted items into database
+    for cookie in session["cart"]:
+        db.execute("INSERT INTO transacted_items(transaction_id, item_name, item_price, item_qty) VALUES(?, ?, ?, ?)",
+                    transaction_id, cookie.name, cookie.price, cookie.qty)
+    # clear session and savedcart if logged in
+    clear_session()
+    # show success message
+    # flash("Thank you for shopping with us! 😊", "alert")
+    return "Received", 204
 
 
 # login functions
@@ -171,97 +345,6 @@ def seasonal():
 #         return render_template("register.html")
 
 
-# cart functions
-
-
-# add to cart (from products page)
-@app.route("/api/addtocart", methods=["POST"])
-def add_to_cart():
-    # Ensure cart exists
-    if "cart" not in session:
-        session["cart"] = []
-    # POST (i.e. when user adds item to cart from individual product page)
-    if request.method == "POST":
-        cookie = request.get_json()
-        cookie_id = int(cookie["id"])
-        cookie_qty = int(cookie["qty"])
-        # add to session["cart"]
-        # Note! This function is only for adding items so cookie_qty must > 0!
-        if cookie_id and cookie_qty > 0:
-            # if the cookie is already in session["cart"], update qty
-            if any(cookie.id == cookie_id for cookie in session["cart"]):
-                for cookie_obj in session["cart"]:
-                    if cookie_obj.id == cookie_id:
-                        cookie_obj.qty += cookie_qty
-                        cookie_obj.update_total()
-            # else if the cookie is not yet in session["cart"], add it as a new Cookie object
-            else:
-                cookie_name, cookie_price, cookie_img = db.execute(
-                    "SELECT name, price, img FROM products WHERE id = ?;", cookie_id)[0].values()
-                session["cart"].append(Cookie(cookie_id, cookie_name,
-                                       cookie_price, cookie_qty, cookie_img))
-        print("Added to cart: ", [str(_) for _ in session["cart"]])
-        return "Success", 201
-    #     # also update savedcart if signed in
-    #     if session.get("user_id") is not None:
-    #         sync_carts("w")
-    #         sync_carts("r")
-    #     # once done render success message and stay on page
-    #     flash("Item added to cart!", "success")
-    #     return product()
-
-
-# view cart and edit cart (on cart page)
-@app.route("/api/cart", methods=["GET", "POST"])
-def cart():
-    # Ensure cart exists
-    if "cart" not in session:
-        session["cart"] = []
-
-    # GET (i.e. when user clicks on shopping cart icon)
-    if request.method == "GET":
-        print("Now in cart: ", [str(_) for _ in session["cart"]])
-        if len(session["cart"]) == 0:
-            return []
-        else:
-            # first calculate total cost, then store it in session["grandtotal"]
-            session["grandtotal"] = sum([cookie._total for cookie in session["cart"]])
-            # display cart
-            return {
-                "cookierows": [c.serialise() for c in session["cart"]],
-                "grandtotal": session["grandtotal"],
-            }
-        
-    # POST (i.e. when user edits item qty)
-    if request.method == "POST":
-        updatedCart = request.get_json()
-        print("received changed data: ", updatedCart)
-        cookie_id = int(updatedCart["id"])
-        cookie_qty = int(updatedCart["qty"])
-        if cookie_id:
-            if cookie_qty > 0:
-                if any(cookie.id == cookie_id for cookie in session["cart"]):
-                    for cookie_obj in session["cart"]:
-                        if cookie_obj.id == cookie_id:
-                            cookie_obj.qty = cookie_qty
-                            cookie_obj.update_total()
-        #         # also update savedcart if signed in
-        #         if session.get("user_id") is not None:
-        #             sync_carts("w")
-        #             sync_carts("r")
-            # if cookie_qty == 0 remove item from cart
-            if cookie_qty == 0:
-                for nocookie_obj in session["cart"]:
-                    if nocookie_obj.id == cookie_id:
-                        session["cart"].remove(nocookie_obj)
-        #                 # also update savedcart if signed in
-        #                 if session.get("user_id") is not None:
-        #                     db.execute(
-        #                         "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
-        print([str(_) for _ in session["cart"]])
-        return "Received updated cart", 202
-
-
 # TODO
 # allows syncing of session["cart"] and savedcart in sql
 # def sync_carts(op_type):
@@ -287,86 +370,3 @@ def cart():
 #             for product in products:
 #                 session["cart"].append(Cookie(product["id"], product["name"],
 #                                               product["price"], product["qty"], product["img"]))
-
-
-# checkout functions
-
-
-# go to checkout page
-@app.route("/api/checkout", methods=["GET"])
-def checkout():
-    if "gift_code_status" not in session:
-        session["gift_code_status"] = ""
-    if "is_discounted" not in session:
-        session["is_discounted"] = False
-    # GET (when user clicks on checkout button in shopping cart)
-    checkout_data = {
-        "cookies": [c.serialise() for c in session["cart"]],
-        "subtotal": session["grandtotal"],
-        "total": session["grandtotal"] * 0.9 if session["is_discounted"] else session["grandtotal"],
-        "gift_code_status": session["gift_code_status"],
-    }
-    print(checkout_data)
-    return checkout_data
-
-
-# when discount code is applied
-@app.route("/api/giftcode", methods=["POST"])
-def giftcode():
-    # POST (when user applies gift code)
-    input_code = request.get_json()
-    # check code
-    if input_code == "YAY":
-        session["is_discounted"] = True
-        session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
-    else:
-        session["gift_code_status"] = "Invalid Gift Code!"
-    return "Received code", 203
-
-
-# go to receipt page and show details
-@app.route("/api/receipt", methods=["POST"])
-def receipt():
-    # POST (when user clicks on paynow button in checkout page)
-    formData = request.get_json()
-    print(formData)
-    # get all input details
-    name = f"{formData["fname"]} {formData["lname"]}"
-    email = formData["email"]
-    phone_no = formData["phoneNo"]
-    country = formData["country"]
-    address = formData["address"]
-    postal_code = formData["postalCode"]
-    delivery_datetime = formData["deliveryDatetime"]
-    card_no = formData["cardNo"]
-    card_exp = formData["cardExp"]
-    card_code = formData["cardCode"]
-    card_name = formData["cardName"]
-    # get the pre discounted amt
-    prediscount_amt = formData["prediscount"]
-    # get the final paid amount
-    transacted_amt = formData["paid"]
-    print(transacted_amt)
-    # enter user details into database
-    db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
-                name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
-    # get the transaction id (by selecting the latest data entry)
-    transaction_id = db.execute(
-        "SELECT id FROM transactions WHERE id=(SELECT max(id) FROM transactions);")[0]["id"]
-    # enter transacted items into database
-    for cookie in session["cart"]:
-        db.execute("INSERT INTO transacted_items(transaction_id, item_name, item_price, item_qty) VALUES(?, ?, ?, ?)",
-                    transaction_id, cookie.name, cookie.price, cookie.qty)
-    # clear session and savedcart if logged in
-    clear_session()
-    # show success message
-    # flash("Thank you for shopping with us! 😊", "alert")
-    return "Received", 204
-
-# clear all session items and savedcart items
-def clear_session():
-    # if logged in, clear all entries
-    if session.get("user_id") is not None:
-        db.execute("DELETE FROM savedcart WHERE user_id = ?", session["user_id"])
-    # then clear all sessions
-    session.clear()
