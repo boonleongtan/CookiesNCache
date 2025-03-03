@@ -2,7 +2,19 @@ function GetCustDeets() {
     async function handleCheckout(formData) {
         const custDeets = {
             email: formData.get('email'),
-            phone_no: formData.get('phone-no'),
+            tel: formData.get('tel'),
+            country: formData.get('country'),
+            fname: formData.get('fname'),
+            lname: formData.get('lname'),
+            address: formData.get('address'),
+            postalCode: formData.get('postal-code'),
+            deliveryDatetime: formData.get('delivery-datetime'),
+            cardNo: formData.get('card-no'),
+            cardExp: formData.get('card-exp'),
+            cardCode: formData.get('card-code'),
+            cardName: formData.get('card-name'),
+            prediscount: formData.get('prediscount'),
+            paid: formData.get('paid'),
         };
         const response = await fetch("/api/checkout", {
             method: 'POST',
@@ -31,7 +43,7 @@ function GetCustDeets() {
                 />
                 <input
                     autoComplete="tel"
-                    name="phone-no"
+                    name="tel"
                     inputMode="numeric"
                     pattern="\+?[0-9\-\s]+"
                     title="Allowed characters: +, -, space, numbers"
