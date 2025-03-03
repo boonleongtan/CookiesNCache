@@ -13,7 +13,7 @@ function FullCart({ cookieCart, refreshCart }) {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(changedQty),
         });

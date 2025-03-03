@@ -16,7 +16,7 @@ function Profile() {
             method: 'POST',
             headers: {
                 'Accept': 'application.json',
-                'Content-type': 'application/json',
+                'Content-Type': 'application/json',
             },
             body: "logout request",
         });
