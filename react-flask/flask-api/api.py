@@ -264,8 +264,10 @@ def receipt():
 def login():
     # First clear any past logins
     session["user_id"] = None
+
+    session["user_id"] = "test"
     if request.method == "GET":
-        return {"username": "test"}
+        return {"username": session["user_id"]}
 
 #     # POST (when user fills in login form, if successful direct to profile page)
 #     if request.method == "POST":
@@ -299,13 +301,12 @@ def login():
 #         return render_template("login.html")
 
 
-# TODO
 # log user out
-# @app.route("/logout")
-# def logout():
-#     session["user_id"] = None
-#     flash("You have logged out successfully~", "alert")
-#     return redirect("/login")
+@app.route("/api/logout", methods=["POST"])
+def logout():
+    session["user_id"] = None
+    # flash("You have logged out successfully~", "alert")
+    return "Successful logout", 205
 
 
 # TODO

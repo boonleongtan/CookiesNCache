@@ -11,8 +11,18 @@ function Profile() {
         fetch('/api/login').then(res => res.json()).then(data => setUser(data.username));
     }, []);
 
-    function handleLogOut() {
-        setUser(false);
+    async function handleLogOut() {
+        const response = await fetch('/api/logout', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application.json',
+                'Content-type': 'application/json',
+            },
+            body: "logout",
+        });
+        if (response.ok) {
+            console.log("Successful logout");
+        }
     }
 
     if (!user) {
