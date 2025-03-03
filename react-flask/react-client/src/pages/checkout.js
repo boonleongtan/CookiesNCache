@@ -78,6 +78,7 @@ function Checkout() {
                 state: {
                     details: custDeets,
                     items: checkoutCart.cookies,
+                    timeOfPurchase: new Date(),
                 },
             });
         }

@@ -4,7 +4,9 @@ import { SpecialFooter } from "../components/Footer";
 
 function Receipt() {
     const { state } = useLocation();
-    const { details, items } = state;
+    const { details, items, timeOfPurchase } = state;
+
+    const tOP = JSON.stringify(timeOfPurchase);
 
     const itemRows = items[0] && items.map(item => {
         return (
@@ -50,6 +52,7 @@ function Receipt() {
             <p>Chosen Date and Time of Delivery: {details.deliveryDatetime.slice(0,10) + ", " + details.deliveryDatetime.slice(11)}</p>
             <p>Card Number: {"**** **** **** " + details.cardNo.slice(-4)}</p>
             <p>Total Amount Paid (after discount): {details.paid}</p>
+            <p>Time of purchase: {tOP.slice(1,11) + ", UTC " + tOP.slice(12,17)}</p>
 
             <button onClick={window.print} className="checkout" style={{float:'left',marginLeft:'100px'}}>Print Receipt</button>
 
