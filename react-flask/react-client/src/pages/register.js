@@ -1,9 +1,26 @@
 import Layout from '../components/Layout';
 import './login.css';
 
-function Register({ setIsRegistered }) {
-    function handleRegister() {
-        setIsRegistered(true);
+function Register({ setIsRegistered, setUser }) {
+    async function handleRegister(formData) {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: formData.get("username"),
+                password: formData.get("password"),
+                confirmation: formData.get("confirmation"),
+            }),
+        });
+        if (response.ok) {
+            setIsRegistered(true);
+            const data = await response.json();
+            console.log('Successful login, user is ' + data.username);
+            setUser(data.username);
+        }
     }
 
     return (

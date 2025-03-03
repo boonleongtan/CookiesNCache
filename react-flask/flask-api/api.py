@@ -260,7 +260,7 @@ def receipt():
 
 # TODO
 # login page
-@app.route("/api/login", methods=["GET", "POST"])
+@app.route("/api/login", methods=["POST"])
 def login():
     # First clear any past logins
     session["user_id"] = None
@@ -302,41 +302,38 @@ def logout():
 
 # TODO
 # register page
-# @app.route("/register", methods=["GET", "POST"])
-# def register():
-#     # POST (when user registers, check for possible errors, else insert the new user into users table)
-#     if request.method == "POST":
-#         username = request.form.get("username")
-#         password = request.form.get("password")
-#         # If any field is missing, retry
-#         if not username:
-#             flash("Missing username!", "error")
-#             return redirect("/register")
-#         elif not password:
-#             flash("Missing password!", "error")
-#             return redirect("/register")
-#         elif request.form.get("confirmation") != password:
-#             flash("Passwords do not match!", "error")
-#             return redirect("/register")
-#         # If the username is already taken, retry
-#         rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
-#         if len(rows) == 1:
-#             flash("Username is already taken!", "error")
-#             return redirect("/register")
-#         # Use generate_password_hash to generate a hash of the password
-#         password_hash = generate_password_hash(password)
-#         # Insert data entry into db
-#         db.execute("INSERT INTO users (username, hash) VALUES (?, ?);", username, password_hash)
-#         # Log user in
-#         rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
-#         session["user_id"] = rows[0]["id"]
-#         # Redirect to profile
-#         flash("Registration successful! Welcome~", "success")
-#         return redirect("/profile")
-
-#     # GET (display registration form)
-#     else:
-#         return render_template("register.html")
+@app.route("/api/register", methods=["POST"])
+def register():
+    # POST (when user registers, check for possible errors, else insert the new user into users table)
+    data = request.get_json()
+    print(data)
+    username = data["username"]
+    password = data["password"]
+    # If any field is missing, retry
+    if not username:
+        # flash("Missing username!", "error")
+        return "e", 400
+    elif not password:
+        # flash("Missing password!", "error")
+        return "e", 400
+    elif data["confirmation"] != password:
+        # flash("Passwords do not match!", "error")
+        return "e", 400
+    # If the username is already taken, retry
+    rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
+    if len(rows) == 1:
+        # flash("Username is already taken!", "error")
+        return "e", 400
+    # Use generate_password_hash to generate a hash of the password
+    password_hash = generate_password_hash(password)
+    # Insert data entry into db
+    db.execute("INSERT INTO users (username, hash) VALUES (?, ?);", username, password_hash)
+    # Log user in
+    rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
+    session["user_id"] = rows[0]["id"]
+    # Redirect to profile
+    # flash("Registration successful! Welcome~", "success")
+    return "Successful registration", 210
 
 
 # TODO
