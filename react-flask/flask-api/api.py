@@ -267,7 +267,7 @@ def login():
 
     if request.method == "POST":
         session["user_id"] = "test"
-        return "Okat", 205
+        return {"username": "test"}
     if request.method == "GET":
         return {"username": session["user_id"]}
 

@@ -7,9 +7,9 @@ function Profile() {
     const [user, setUser] = useState(null);
     console.log(user);
 
-    useEffect(() => {
-        fetch('/api/login').then(res => res.json()).then(data => setUser(data.username));
-    }, []);
+    // useEffect(() => {
+    //     fetch('/api/login').then(res => res.json()).then(data => setUser(data.username));
+    // }, []);
 
     async function handleLogOut() {
         const response = await fetch('/api/logout', {

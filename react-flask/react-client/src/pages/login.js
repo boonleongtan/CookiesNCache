@@ -17,7 +17,8 @@ function Login({ setUser }) {
         });
         if (response.ok) {
             console.log('successful login');
-            setUser(true);
+            console.log(response.username);
+            setUser(response.username);
         }
     }
 
