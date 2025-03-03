@@ -21,8 +21,9 @@ function Profile() {
             body: "logout",
         });
         if (response.ok) {
-            console.log("Successful logout");
-            setUser(response.username);
+            const data = response.json();
+            console.log('Successful logout, user is ' + data.username);
+            setUser(data.username);
         }
     }
 
