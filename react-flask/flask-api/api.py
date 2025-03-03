@@ -247,20 +247,8 @@ def receipt():
 # login functions
 
 
-# TODO
-# profile page (requires login)
-# @app.route("/profile")
-# @login_required
-# def profile():
-#     # Get username
-#     username = db.execute("SELECT username FROM users WHERE id = ?;",
-#                           session["user_id"])[0]["username"]
-#     return render_template("profile.html", username=username)
-
-
-# TODO
 # login page
-@app.route("/api/login", methods=["POST"])
+@app.route("/api/login", methods=["GET", "POST"])
 def login():
     # First clear any past logins
     session["user_id"] = None
@@ -302,7 +290,7 @@ def logout():
 
 # TODO
 # register page
-@app.route("/api/register", methods=["POST"])
+@app.route("/api/register", methods=["GET", "POST"])
 def register():
     # POST (when user registers, check for possible errors, else insert the new user into users table)
     data = request.get_json()
@@ -334,6 +322,9 @@ def register():
     # Redirect to profile
     # flash("Registration successful! Welcome~", "success")
     return {"username": username, "user_id": session["user_id"]}
+
+
+# sync functions
 
 
 # TODO
