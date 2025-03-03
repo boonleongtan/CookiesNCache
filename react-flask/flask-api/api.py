@@ -248,7 +248,7 @@ def receipt():
 
 
 # login page
-@app.route("/api/login", methods=["GET", "POST"])
+@app.route("/api/login", methods=["POST"])
 def login():
     # First clear any past logins
     session["user_id"] = None
@@ -290,7 +290,7 @@ def logout():
 
 # TODO
 # register page
-@app.route("/api/register", methods=["GET", "POST"])
+@app.route("/api/register", methods=["POST"])
 def register():
     # POST (when user registers, check for possible errors, else insert the new user into users table)
     data = request.get_json()
