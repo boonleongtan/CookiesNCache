@@ -1,4 +1,4 @@
-function GetCustDeets(handleCheckout) {
+function GetCustDeets({ handleCheckout }) {
     return (
         <form action={handleCheckout}>
 
