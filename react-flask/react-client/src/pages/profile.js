@@ -6,7 +6,7 @@ import './login.css';
 
 function Profile() {
     const [user, setUser] = useState(null);
-    console.log('profile - user is ' + user);
+    console.log('(Profile) User - ' + user);
     const [showLogoutAlert, setShowLogoutAlert] = useState(null);
     const [showLoginAlert, setShowLoginAlert] = useState(null);
     const [showRegisteredAlert, setShowRegisteredAlert] = useState(null);
