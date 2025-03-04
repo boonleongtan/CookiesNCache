@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import Register from './register';
+import { ErrorAlert } from '../components/Alerts';
 import './login.css';
 
 function Login({ setUser, setShowLoginAlert, setShowRegisteredAlert }) {
     const [isRegistered, setIsRegistered] = useState(true);
+    const [showErrMsg, setShowErrMsg] = useState(null);
 
     async function handleLogIn(formData) {
         const response = await fetch('/api/login', {
@@ -23,6 +25,8 @@ function Login({ setUser, setShowLoginAlert, setShowRegisteredAlert }) {
             console.log('Successful login, user is ' + data.username);
             setUser(data.username);
             setShowLoginAlert(true);
+        } else {
+            setShowErrMsg(await response.text());
         }
     }
 
@@ -35,6 +39,8 @@ function Login({ setUser, setShowLoginAlert, setShowRegisteredAlert }) {
     } else {
         return (
             <>
+                {showErrMsg && <ErrorAlert errMsg={showErrMsg} setShowErrMsg={setShowErrMsg} />}
+
                 <title>Login | Cookies & Cache!</title>
     
                 <Layout>

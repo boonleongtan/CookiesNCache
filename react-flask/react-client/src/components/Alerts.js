@@ -21,12 +21,12 @@ export function SuccessAlert({ successMsg }) {
     );
 }
 
-export function ErrorAlert({ errMsg }) {
+export function ErrorAlert({ errMsg, setShowErrMsg }) {
     return (
-        <div className="overlay" onClick={overlayOff}>
+        <div className="overlay" onClick={() => {overlayOff();setShowErrMsg(null)}}>
             <div className="alert" style={{height:'40%'}}>
             {/* <!--use cross symbol to close alert--> */}
-                <span className="close-alert" onClick={overlayOff}>&times;</span>
+                <span className="close-alert" onClick={() => {overlayOff();setShowErrMsg(null)}}>&times;</span>
             {/* <!--alert message--> */}
                 <p style={{color:'red'}}>{errMsg}</p>
             </div>
