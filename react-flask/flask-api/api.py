@@ -113,7 +113,7 @@ def add_to_cart():
     # for debugging
     # print("Added to cart: ", [str(_) for _ in session["cart"]])
     # flash("Item added to cart!", "success")
-    return "Added to cart", 210
+    return "Successfully added to cart", 210
 
 
 # view cart and edit cart (on cart page)
