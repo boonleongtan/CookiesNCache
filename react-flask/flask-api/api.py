@@ -280,7 +280,7 @@ def login():
         # flash("Welcome!", "success")
         return {"username": username, "user_id": session["user_id"]}
     elif request.method == "GET":
-        username = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+        username = db.execute("SELECT username FROM users WHERE id = ?;", session["user_id"])[0]["username"]
         return {"username": username, "user_id": session["user_id"]}
 
 
