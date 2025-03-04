@@ -280,8 +280,11 @@ def login():
     
     # GET (when user clicks on profile page)
     if request.method == "GET":
-        username = db.execute("SELECT username FROM users WHERE id = ?;", session["user_id"])[0]["username"]
-        return {"username": username, "user_id": session["user_id"]}
+        if session.get("user_id") is not None:
+            username = db.execute("SELECT username FROM users WHERE id = ?;", session["user_id"])[0]["username"]
+            return {"username": username, "user_id": session["user_id"]}
+        else:
+            return {"username": None, "user_id": session["user_id"]}
 
 
 # log user out
