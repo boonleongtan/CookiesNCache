@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import Register from './register';
 import './login.css';
 
-function Login({ setUser }) {
+function Login({ setUser, setShowLoginAlert }) {
     const [isRegistered, setIsRegistered] = useState(true);
 
     async function handleLogIn(formData) {
@@ -22,6 +22,7 @@ function Login({ setUser }) {
             const data = await response.json();
             console.log('Successful login, user is ' + data.username);
             setUser(data.username);
+            setShowLoginAlert(true);
         }
     }
 
