@@ -7,7 +7,7 @@ import './login.css';
 function Profile() {
     const [user, setUser] = useState(null);
     console.log('profile - user is ' + user);
-    const [showAlert, setShowAlert] = useState(null);
+    const [showLogoutAlert, setShowLogoutAlert] = useState(null);
 
     useEffect(() => {
         fetch('/api/login').then(res => res.json()).then(data => setUser(data.username));
@@ -26,14 +26,14 @@ function Profile() {
             const data = response.json();
             console.log('Successful logout, user is now ' + data.username);
             setUser(data.username);
-            setShowAlert(true);
+            setShowLogoutAlert(true);
         }
     }
 
     if (!user) {
         return (
             <>
-                {showAlert && <AlertAlert alertMsg={"You have logged out successfully~"} />}
+                {showLogoutAlert && <AlertAlert alertMsg={"You have logged out successfully~"} />}
                 <Login setUser={setUser} />
             </>
         );
