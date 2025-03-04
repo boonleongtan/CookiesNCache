@@ -286,8 +286,7 @@ def login():
 # log user out
 @app.route("/api/logout", methods=["POST"])
 def logout():
-    # session["user_id"] = None
-    clear_session()
+    session["user_id"] = None
     # flash("You have logged out successfully~", "alert")
     return {"username": None, "user_id": session["user_id"]}
 
