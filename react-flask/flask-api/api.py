@@ -242,7 +242,7 @@ def receipt():
                     transaction_id, cookie.name, cookie.price, cookie.qty)
     # clear session and savedcart if logged in
     clear_session()
-    return "Received and saved receipt details", 210
+    return "Received and saved receipt details; Checkout success", 210
 
 
 # login functions

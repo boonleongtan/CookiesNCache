@@ -72,7 +72,7 @@ function Checkout() {
             body: JSON.stringify(custDeets),
         });
         if (response.ok) {
-            console.log('Checkout success');
+            console.log(await response.text());
             navigate("/Receipt", {
                 replace: true,
                 state: {
