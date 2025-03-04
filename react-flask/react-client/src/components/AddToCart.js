@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import NumberInput from './NumberInput';
+import AddToCartAlert from './Alerts';
 import './AddToCart.css';
 
 function AddToCart({ productId }) {
@@ -21,6 +22,7 @@ function AddToCart({ productId }) {
         });
         if (response.ok) {
             console.log("Sent data successfully!");
+            return <AddToCartAlert />;
         }
     }
     const addProductToCart = addToCart.bind(null, productId);
