@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NumberInput from './NumberInput';
-import AddToCartAlert from './Alerts';
+import { AddToCartAlert } from './Alerts';
 import './AddToCart.css';
 
 function AddToCart({ productId }) {

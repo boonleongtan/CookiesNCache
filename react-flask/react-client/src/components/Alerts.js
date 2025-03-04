@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Alerts.css';
 
-function AddToCartAlert() {
+export function AddToCartAlert() {
     function overlayOff() {
         document.querySelector(".overlay").style.display = "none";
     }
@@ -20,5 +20,3 @@ function AddToCartAlert() {
         </div>
     );
 }
-
-export default AddToCartAlert;
