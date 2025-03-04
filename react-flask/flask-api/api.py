@@ -112,6 +112,7 @@ def add_to_cart():
             sync_carts("r")
     # for debugging
     # print("Added to cart: ", [str(_) for _ in session["cart"]])
+    # flash("Item added to cart!", "success")
     return "Added to cart", 201
 
 
@@ -188,6 +189,7 @@ def checkout():
     }
     # for debugging
     # print("Checkout details: ", checkout_data)
+    # flash("Thank you for shopping with us! 😊", "alert")
     return checkout_data
 
 
@@ -275,7 +277,6 @@ def login():
         # On login, sync carts
         sync_carts("a")
         sync_carts("r")
-        # Redirect user to profile page
         # flash("Welcome!", "success")
         return {"username": username, "user_id": session["user_id"]}
     elif request.method == "GET":
@@ -287,6 +288,7 @@ def login():
 @app.route("/api/logout", methods=["POST"])
 def logout():
     session["user_id"] = None
+    # flash("You have logged out successfully~", "alert")
     return {"username": None, "user_id": session["user_id"]}
 
 
@@ -321,7 +323,6 @@ def register():
     # Log user in
     rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
     session["user_id"] = rows[0]["id"]
-    # Redirect to profile
     # flash("Registration successful! Welcome~", "success")
     return {"username": username, "user_id": session["user_id"]}
 
