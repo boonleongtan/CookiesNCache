@@ -250,8 +250,8 @@ def receipt():
 # login page
 @app.route("/api/login", methods=["GET", "POST"])
 def login():
-    # First clear any past logins
-    session["user_id"] = None
+    # # First clear any past logins
+    # session["user_id"] = None
     # POST (when user fills in login form, if successful direct to profile page)
     if request.method == "POST":
         data = request.get_json()
