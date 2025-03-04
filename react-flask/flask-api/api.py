@@ -251,8 +251,6 @@ def receipt():
 # login page
 @app.route("/api/login", methods=["GET", "POST"])
 def login():
-    # # First clear any past logins
-    # session["user_id"] = None
     # POST (when user fills in login form, if successful direct to profile page)
     if request.method == "POST":
         data = request.get_json()
@@ -279,7 +277,9 @@ def login():
         sync_carts("r")
         # flash("Welcome!", "success")
         return {"username": username, "user_id": session["user_id"]}
-    elif request.method == "GET":
+    
+    # GET (when user clicks on profile page)
+    if request.method == "GET":
         username = db.execute("SELECT username FROM users WHERE id = ?;", session["user_id"])[0]["username"]
         return {"username": username, "user_id": session["user_id"]}
 
