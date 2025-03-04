@@ -21,14 +21,14 @@ export function AddToCartAlert() {
     );
 }
 
-export function LoginErrorMsgs() {
+export function LoginErrorMsgs({ errMsg }) {
     return (
         <div className="overlay" onClick={overlayOff}>
             <div className="alert" style={{height:'40%'}}>
             {/* <!--use cross symbol to close alert--> */}
                 <span className="close-alert" onClick={overlayOff}>&times;</span>
             {/* <!--alert message--> */}
-                <p style={{color:'red'}}>???</p>
+                <p style={{color:'red'}}>{errMsg}</p>
             </div>
         </div>
     );
