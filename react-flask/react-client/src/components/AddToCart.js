@@ -31,6 +31,7 @@ function AddToCart({ productId }) {
     return (
         <>
             {showAlert && <AddToCartAlert />}
+            
             <form action={addProductToCart}>
                 <p className="qtylabel">Quantity</p>
                 <NumberInput
