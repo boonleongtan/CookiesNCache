@@ -5,14 +5,14 @@ function overlayOff() {
     document.querySelector(".overlay").style.display = "none";
 }
 
-export function AddToCartAlert() {
+export function SuccessAlert({ successMsg }) {
     return (
         <div className="overlay" onClick={overlayOff}>
             <div className="alert" style={{height:'50%'}}>
             {/* <!--use cross symbol to close alert--> */}
                 <span className="close-alert" onClick={overlayOff}>&times;</span>
             {/* <!--alert message--> */}
-                <p style={{color:'blue'}}>Item added to cart!</p>
+                <p style={{color:'blue'}}>{successMsg}</p>
             {/* <!--nav buttons--> */}
                 <Link to="/" id="left">Shop all products {'>'}</Link>
                 <Link to="/Cart" id="right">View Cart {'>'}</Link>
@@ -21,7 +21,7 @@ export function AddToCartAlert() {
     );
 }
 
-export function LoginErrorMsgs({ errMsg }) {
+export function ErrorAlert({ errMsg }) {
     return (
         <div className="overlay" onClick={overlayOff}>
             <div className="alert" style={{height:'40%'}}>
@@ -34,14 +34,14 @@ export function LoginErrorMsgs({ errMsg }) {
     );
 }
 
-export function CheckoutAlert() {
+export function AlertAlert({ alertMsg }) {
     return (
         <div className="overlay" onClick={overlayOff}>
             <div className="alert" style={{height:'40%'}}>
             {/* <!--use cross symbol to close alert--> */}
                 <span className="close-alert" onClick={overlayOff}>&times;</span>
             {/* <!--alert message--> */}
-                <p style={{color:'green'}}>Thank you for shopping with us! 😊</p>
+                <p style={{color:'green'}}>{alertMsg}Thank you for shopping with us! 😊</p>
             </div>
         </div>
     );

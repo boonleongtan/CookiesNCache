@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import NumberInput from './NumberInput';
-import { AddToCartAlert } from './Alerts';
+import { SuccessAlert } from './Alerts';
 import './AddToCart.css';
 
 function AddToCart({ productId }) {
@@ -30,7 +30,7 @@ function AddToCart({ productId }) {
 
     return (
         <>
-            {showAlert && <AddToCartAlert />}
+            {showAlert && <SuccessAlert successMsg={"Item added to cart!"} />}
             
             <form action={addProductToCart}>
                 <p className="qtylabel">Quantity</p>
