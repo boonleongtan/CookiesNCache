@@ -113,7 +113,7 @@ def add_to_cart():
     # for debugging
     # print("Added to cart: ", [str(_) for _ in session["cart"]])
     # flash("Item added to cart!", "success")
-    return "Added to cart", 201
+    return "Added to cart", 210
 
 
 # view cart and edit cart (on cart page)
@@ -167,7 +167,7 @@ def cart():
                                 "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
         # for debugging
         # print("Now in cart: ", [str(_) for _ in session["cart"]])
-        return "Received updated cart", 202
+        return "Received updated cart", 210
 
 
 # checkout functions
@@ -204,7 +204,7 @@ def giftcode():
         session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
     else:
         session["gift_code_status"] = "Invalid Gift Code!"
-    return "Received code", 203
+    return "Received gift code", 210
 
 
 # go to receipt page and show details
@@ -242,7 +242,7 @@ def receipt():
                     transaction_id, cookie.name, cookie.price, cookie.qty)
     # clear session and savedcart if logged in
     clear_session()
-    return "Received", 204
+    return "Received and saved receipt details", 210
 
 
 # login functions
@@ -259,17 +259,17 @@ def login():
         # If any field is empty, retry
         if not username:
             # flash("Missing username!", "error")
-            return "e", 400
+            return "Missing username!", 460
         elif not password:
             # flash("Missing password!", "error")
-            return "e", 400
+            return "e", 460
         # Ensure username exists and password is correct
         rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
         if len(rows) != 1 or not check_password_hash(
             rows[0]["hash"], password
         ):
             # flash("Invalid username and/or password!", "error")
-            return "e", 400
+            return "e", 460
         # Log user in
         session["user_id"] = rows[0]["id"]
         # On login, sync carts
@@ -304,18 +304,18 @@ def register():
     # If any field is missing, retry
     if not username:
         # flash("Missing username!", "error")
-        return "e", 400
+        return "e", 460
     elif not password:
         # flash("Missing password!", "error")
-        return "e", 400
+        return "e", 460
     elif data["confirmation"] != password:
         # flash("Passwords do not match!", "error")
-        return "e", 400
+        return "e", 460
     # If the username is already taken, retry
     rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
     if len(rows) == 1:
         # flash("Username is already taken!", "error")
-        return "e", 400
+        return "e", 460
     # Use generate_password_hash to generate a hash of the password
     password_hash = generate_password_hash(password)
     # Insert data entry into db
