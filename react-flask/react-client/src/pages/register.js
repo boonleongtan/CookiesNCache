@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import Layout from '../components/Layout';
+import { ErrorAlert } from '../components/Alerts';
 import './login.css';
 
 function Register({ setUser, setShowRegisteredAlert }) {
+    const [showErrMsg, setShowErrMsg] = useState(null);
+
     async function handleRegister(formData) {
         const response = await fetch('/api/register', {
             method: 'POST',
@@ -20,11 +24,15 @@ function Register({ setUser, setShowRegisteredAlert }) {
             console.log('Successful registration, user is ' + data.username);
             setUser(data.username);
             setShowRegisteredAlert(true);
+        } else {
+            setShowErrMsg(await response.text());
         }
     }
 
     return (
         <>
+            {showErrMsg && <ErrorAlert errMsg={showErrMsg} setShowErrMsg={setShowErrMsg} />}
+            
             <title>Register | Cookies & Cache!</title>
 
             <Layout>
