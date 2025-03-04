@@ -41,7 +41,7 @@ function Checkout() {
             body: JSON.stringify(giftCode),
         });
         if (response.ok) {
-            console.log('Sent gift code successfully');
+            console.log(await response.text());
             setRefreshGCS(!refreshGCS);
         }
     }

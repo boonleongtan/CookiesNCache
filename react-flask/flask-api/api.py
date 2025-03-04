@@ -113,7 +113,7 @@ def add_to_cart():
     # for debugging
     # print("Added to cart: ", [str(_) for _ in session["cart"]])
     # flash("Item added to cart!", "success")
-    return "Successfully added to cart", 210
+    return "Added to cart successfully", 210
 
 
 # view cart and edit cart (on cart page)
@@ -204,7 +204,7 @@ def giftcode():
         session["gift_code_status"] = f"Gift Code applied: \"{input_code}\" (10% off)"
     else:
         session["gift_code_status"] = "Invalid Gift Code!"
-    return "Received gift code", 210
+    return "Sent gift code successfully", 210
 
 
 # go to receipt page and show details
