@@ -22,7 +22,7 @@ function AddToCart({ productId }) {
             })
         });
         if (response.ok) {
-            console.log("Sent data successfully!");
+            console.log(await response.text());
             setShowAlert(true);
         }
     }
