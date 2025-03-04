@@ -112,7 +112,7 @@ def add_to_cart():
             sync_carts("r")
     # for debugging
     # print("Added to cart: ", [str(_) for _ in session["cart"]])
-    return "Success", 201
+    return "Added to cart", 201
 
 
 # view cart and edit cart (on cart page)
@@ -236,8 +236,6 @@ def receipt():
                     transaction_id, cookie.name, cookie.price, cookie.qty)
     # clear session and savedcart if logged in
     clear_session()
-    # show success message
-    # flash("Thank you for shopping with us! 😊", "alert")
     return "Received", 204
 
 

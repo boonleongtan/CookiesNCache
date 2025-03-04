@@ -41,7 +41,7 @@ export function CheckoutAlert() {
             {/* <!--use cross symbol to close alert--> */}
                 <span className="close-alert" onClick={overlayOff}>&times;</span>
             {/* <!--alert message--> */}
-                <p style={{color:'green'}}></p>
+                <p style={{color:'green'}}>Thank you for shopping with us! 😊</p>
             </div>
         </div>
     );
