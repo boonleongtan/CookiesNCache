@@ -24,7 +24,8 @@ function FullCart({ cookieCart, refreshCart }) {
     }
     
     useEffect(() => {
-        console.log("Changed item: " + changedQty);
+        console.log("Changed item: ");
+        console.log(changedQty);
         if (Object.keys(changedQty).length > 0) {
             sendUpdatedCart();
         }
