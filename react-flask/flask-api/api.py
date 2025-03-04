@@ -167,7 +167,7 @@ def cart():
                                 "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
         # for debugging
         # print("Now in cart: ", [str(_) for _ in session["cart"]])
-        return "Received updated cart", 210
+        return "Cart updated successfully", 210
 
 
 # checkout functions

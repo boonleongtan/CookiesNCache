@@ -18,7 +18,7 @@ function FullCart({ cookieCart, refreshCart }) {
             body: JSON.stringify(changedQty),
         });
         if (response.ok) {
-            console.log('Cart updated successfully');
+            console.log(await response.text());
             refreshCart(changedQty);
         }
     }
