@@ -9,6 +9,7 @@ function Profile() {
     console.log('profile - user is ' + user);
     const [showLogoutAlert, setShowLogoutAlert] = useState(null);
     const [showLoginAlert, setShowLoginAlert] = useState(null);
+    const [showRegisteredAlert, setShowRegisteredAlert] = useState(null);
 
     useEffect(() => {
         fetch('/api/login').then(res => res.json()).then(data => setUser(data.username));
@@ -35,13 +36,14 @@ function Profile() {
         return (
             <>
                 {showLogoutAlert && <AlertAlert alertMsg={"You have logged out successfully~"} />}
-                <Login setUser={setUser} setShowLoginAlert={setShowLoginAlert} />
+                <Login setUser={setUser} setShowLoginAlert={setShowLoginAlert} setShowRegisteredAlert={setShowRegisteredAlert} />
             </>
         );
     } else {
         return (
             <>
                 {showLoginAlert && <SuccessAlert successMsg={"Welcome!"} />}
+                {showRegisteredAlert && <SuccessAlert successMsg={"Registration successful! Welcome~"} />}
 
                 <title>Profile | Cookies & Cache!</title>
     

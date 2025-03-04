@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import './login.css';
 
-function Register({ setUser }) {
+function Register({ setUser, setShowRegisteredAlert }) {
     async function handleRegister(formData) {
         const response = await fetch('/api/register', {
             method: 'POST',
@@ -19,6 +19,7 @@ function Register({ setUser }) {
             const data = await response.json();
             console.log('Successful registration, user is ' + data.username);
             setUser(data.username);
+            setShowRegisteredAlert(true);
         }
     }
 

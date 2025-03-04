@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import Register from './register';
 import './login.css';
 
-function Login({ setUser, setShowLoginAlert }) {
+function Login({ setUser, setShowLoginAlert, setShowRegisteredAlert }) {
     const [isRegistered, setIsRegistered] = useState(true);
 
     async function handleLogIn(formData) {
@@ -31,7 +31,7 @@ function Login({ setUser, setShowLoginAlert }) {
     }
 
     if (!isRegistered) {
-        return <Register setUser={setUser} />;
+        return <Register setUser={setUser} setShowRegisteredAlert={setShowRegisteredAlert} />;
     } else {
         return (
             <>
