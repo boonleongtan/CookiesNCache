@@ -12,7 +12,7 @@ function AddToCartAlert() {
             {/* <!--use cross symbol to close alert--> */}
                 <span className="close-alert" onClick={overlayOff}>&times;</span>
             {/* <!--alert message--> */}
-                <p style={{color:'blue'}}></p>
+                <p style={{color:'blue'}}>Item added to cart!</p>
             {/* <!--nav buttons--> */}
                 <Link to="/" id="left">Shop all products {'>'}</Link>
                 <Link to="/Cart" id="right">View Cart {'>'}</Link>

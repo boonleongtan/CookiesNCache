@@ -91,7 +91,7 @@ def add_to_cart():
     cookie = request.get_json()
     cookie_id = int(cookie["id"])
     cookie_qty = int(cookie["qty"])
-    # add to session["cart"]
+    # add this to session["cart"]
     # Note! This function is only for adding items so cookie_qty must > 0!
     if cookie_id and cookie_qty > 0:
         # if the cookie is already in session["cart"], update qty
@@ -110,10 +110,8 @@ def add_to_cart():
         if session.get("user_id") is not None:
             sync_carts("w")
             sync_carts("r")
-    #     # once done render success message and stay on page
-    #     flash("Item added to cart!", "success")
-    #     return product()
-    print("Added to cart: ", [str(_) for _ in session["cart"]])
+    # for debugging
+    # print("Added to cart: ", [str(_) for _ in session["cart"]])
     return "Success", 201
 
 
