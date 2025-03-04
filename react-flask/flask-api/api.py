@@ -124,7 +124,8 @@ def cart():
 
     # GET (i.e. when user clicks on shopping cart icon)
     if request.method == "GET":
-        print("Now in cart: ", [str(_) for _ in session["cart"]])
+        # for debugging
+        # print("Now in cart: ", [str(_) for _ in session["cart"]])
         if len(session["cart"]) == 0:
             return []
         else:
@@ -139,7 +140,8 @@ def cart():
     # POST (i.e. when user edits item qty)
     if request.method == "POST":
         updatedCart = request.get_json()
-        print("received changed data: ", updatedCart)
+        # for debugging
+        # print("Received updated cart: ", updatedCart)
         cookie_id = int(updatedCart["id"])
         cookie_qty = int(updatedCart["qty"])
         if cookie_id:
@@ -162,7 +164,8 @@ def cart():
                         if session.get("user_id") is not None:
                             db.execute(
                                 "DELETE FROM savedcart WHERE user_id = ? AND product_id = ?;", session["user_id"], cookie_id)
-        print([str(_) for _ in session["cart"]])
+        # for debugging
+        # print("Now in cart: ", [str(_) for _ in session["cart"]])
         return "Received updated cart", 202
 
 
@@ -183,7 +186,8 @@ def checkout():
         "total": session["grandtotal"] * 0.9 if session["is_discounted"] else session["grandtotal"],
         "gift_code_status": session["gift_code_status"],
     }
-    print(checkout_data)
+    # for debugging
+    # print("Checkout details: ", checkout_data)
     return checkout_data
 
 
@@ -206,7 +210,8 @@ def giftcode():
 def receipt():
     # POST (when user clicks on paynow button in checkout page)
     formData = request.get_json()
-    print(formData)
+    # for debugging
+    # print("Receipt details: ", formData)
     # get all input details
     name = f"{formData["fname"]} {formData["lname"]}"
     email = formData["email"]
@@ -223,7 +228,6 @@ def receipt():
     prediscount_amt = formData["prediscount"]
     # get the final paid amount
     transacted_amt = formData["paid"]
-    print(transacted_amt)
     # enter user details into database
     db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
                 name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
@@ -283,7 +287,6 @@ def login():
 @app.route("/api/logout", methods=["POST"])
 def logout():
     session["user_id"] = None
-    # flash("You have logged out successfully~", "alert")
     return {"username": None, "user_id": session["user_id"]}
 
 
@@ -292,7 +295,8 @@ def logout():
 def register():
     # POST (when user registers, check for possible errors, else insert the new user into users table)
     data = request.get_json()
-    print(data)
+    # for debugging
+    # print("Registration details: ", data)
     username = data["username"]
     password = data["password"]
     # If any field is missing, retry
