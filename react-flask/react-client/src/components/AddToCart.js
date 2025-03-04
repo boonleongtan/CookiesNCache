@@ -7,6 +7,7 @@ function AddToCart({ productId }) {
     // allows passing data from child to parent; but can use formData.get(name) also
     // eslint-disable-next-line
     const [receivedQty, setReceivedQty] = useState();
+    const [showAlert, setShowAlert] = useState(false);
 
     async function addToCart(productId, formData) {
         const response = await fetch("/api/addtocart", {
@@ -22,26 +23,29 @@ function AddToCart({ productId }) {
         });
         if (response.ok) {
             console.log("Sent data successfully!");
-            return <AddToCartAlert />;
+            setShowAlert(true);
         }
     }
     const addProductToCart = addToCart.bind(null, productId);
 
     return (
-        <form action={addProductToCart}>
-            <p className="qtylabel">Quantity</p>
-            <NumberInput
-                initialValue={1}
-                sendDataToParent={data => setReceivedQty(data)}
-                allowZero={false}
-            />
-            {/* use div for styling */}
-            <div>
-                <button className="add-to-cart" type="submit">
-                    Add to Cart
-                </button>
-            </div>
-        </form>
+        <>
+            {showAlert && <AddToCartAlert />}
+            <form action={addProductToCart}>
+                <p className="qtylabel">Quantity</p>
+                <NumberInput
+                    initialValue={1}
+                    sendDataToParent={data => setReceivedQty(data)}
+                    allowZero={false}
+                    />
+                {/* use div for styling */}
+                <div>
+                    <button className="add-to-cart" type="submit">
+                        Add to Cart
+                    </button>
+                </div>
+            </form>
+        </>
     );
 }
 
