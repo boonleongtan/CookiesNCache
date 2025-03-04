@@ -262,14 +262,14 @@ def login():
             return "Missing username!", 460
         elif not password:
             # flash("Missing password!", "error")
-            return "e", 460
+            return "Missing password!", 460
         # Ensure username exists and password is correct
         rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
         if len(rows) != 1 or not check_password_hash(
             rows[0]["hash"], password
         ):
             # flash("Invalid username and/or password!", "error")
-            return "e", 460
+            return "Invalid username and/or password!", 460
         # Log user in
         session["user_id"] = rows[0]["id"]
         # On login, sync carts
@@ -304,18 +304,18 @@ def register():
     # If any field is missing, retry
     if not username:
         # flash("Missing username!", "error")
-        return "e", 460
+        return "Missing username!", 460
     elif not password:
         # flash("Missing password!", "error")
-        return "e", 460
+        return "Missing password!", 460
     elif data["confirmation"] != password:
         # flash("Passwords do not match!", "error")
-        return "e", 460
+        return "Passwords do not match!", 460
     # If the username is already taken, retry
     rows = db.execute("SELECT * FROM users WHERE username = ?;", username)
     if len(rows) == 1:
         # flash("Username is already taken!", "error")
-        return "e", 460
+        return "Username is already taken!", 460
     # Use generate_password_hash to generate a hash of the password
     password_hash = generate_password_hash(password)
     # Insert data entry into db
