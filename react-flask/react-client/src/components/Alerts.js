@@ -41,7 +41,7 @@ export function AlertAlert({ alertMsg }) {
             {/* <!--use cross symbol to close alert--> */}
                 <span className="close-alert" onClick={overlayOff}>&times;</span>
             {/* <!--alert message--> */}
-                <p style={{color:'green'}}>{alertMsg}Thank you for shopping with us! 😊</p>
+                <p style={{color:'green'}}>{alertMsg}</p>
             </div>
         </div>
     );

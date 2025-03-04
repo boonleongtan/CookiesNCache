@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { SpecialHeader } from "../components/Header";
 import { SpecialFooter } from "../components/Footer";
+import { AlertAlert } from "../components/Alerts";
 
 function Receipt() {
     const { state } = useLocation();
@@ -20,6 +21,8 @@ function Receipt() {
 
     return (
         <>
+            <AlertAlert alertMsg={"Thank you for shopping with us! 😊"} />
+
             <title>Receipt | Cookies & Cache!</title>
 
             <SpecialHeader />
