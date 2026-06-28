@@ -1,13 +1,12 @@
 # Cookies & Cache - The React Version
 
-### ${\textsf{\color{YellowGreen}{Translating HTML-Flask to React-Flask, and then React-Express.}}}$
+### ${\textsf{\color{YellowGreen}{This React app is translated from the original Flask app.}}}$
 
-${\textsf{\color{Red}{Copyright ©2025 Tan Boon Leong. All rights reserved.}}}$
+[Demo](https://youtu.be/3_55Wi-5f70)
 
-> [!CAUTION]
-> This project was created entirely from scratch by the author. The author retains all rights to prohibit any form of distribution and/or usage of any or all of the materials contained within this project.
+Copyright ©2024 Tan Boon Leong. All rights reserved.
 
 > [!WARNING]
-> Please do not use any of the materials without asking for my permission, and please do remember to credit me even after receiving my permission.
+> This project was created by hand without the use of AI. The author retains all rights to prohibit any form of distribution and/or usage of any or all of the materials contained within this project.
 
-*Unlicensed usage and/or distribution of materials from this project is strictly prohibited.*
+_Unlicensed usage and/or distribution of materials from this project is strictly prohibited._

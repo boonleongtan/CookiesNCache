@@ -1,25 +1,26 @@
 # Boon Leong's CS50x Project Title: COOKIES & CACHE
-${\textsf{\color{red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
 
-> [!CAUTION]
-> This project was created (almost<sup>1</sup>) entirely from scratch by the author. The author retains all rights to prohibit any form of distribution and/or usage of any or all of the materials contained within this project.
+Copyright ©2024 Tan Boon Leong. All rights reserved.
 
 > [!WARNING]
-> Please do not use any of the materials without asking for my permission, and please do remember to credit me even after I give my permission.
+> This project was created by hand without the use of AI. The author retains all rights to prohibit any form of distribution and/or usage of any or all of the materials contained within this project.
 
-*Unlicensed usage and/or distribution of materials from this project is strictly prohibited.*
+_Unlicensed usage and/or distribution of materials from this project is strictly prohibited._
 
 ---
 
-### Video Demo:  https://youtu.be/3_55Wi-5f70
+### Video Demo: https://youtu.be/3_55Wi-5f70
+
 ### Description:
 
 ### ${\textsf{\color{YellowOrange}{What my project is about}}}$
+
 This project is about creating an online website (for use with PC screens only—this project is not yet compatible with mobile) to allow users to order cookies and other products from a fictional cookie company by the name of Cookies & Cache.
 
 ### ${\textsf{\color{YellowOrange}{What each of the files I wrote for the project contains and does}}}$
 
 ## ${\textsf{\color{YellowGreen}{app.py}}}$
+
 Starting with the flask application that powers the whole project, we first import `sqlite3` to work with SQL, `flask` and `flask session` to run Flask, `werkzeug.security` to implement password checking and hashing, as well as other custom helper functions which will be explained in further detail later:
 
 ```python
@@ -107,7 +108,7 @@ Self-explanatory. This function renders the index (home) page of the company's w
 
 /product
 
-This function returns the corresponding individual product page via any clicking of any link with the respective product name. Eg if the user clicks on a link that says *Chocolate Cookies*, they will have actually submitted a form which posts the product id of *Chocolate Cookies* to this function. This function can then get this product id and query the database for the data entry corresponding to this unique product id.
+This function returns the corresponding individual product page via any clicking of any link with the respective product name. Eg if the user clicks on a link that says _Chocolate Cookies_, they will have actually submitted a form which posts the product id of _Chocolate Cookies_ to this function. This function can then get this product id and query the database for the data entry corresponding to this unique product id.
 
 /favs and /seasonal
 
@@ -125,7 +126,7 @@ Renders the profile page of the user currently logged in, referencing session["u
 
 /login
 
-When retrieved via GET, displays a form to allow users to sign in or sign up. When the form is submitted via POST, first checks if username and password are valid, returning error flash messages if not, then logs user in via saving the user id to session["user_id"] and then redirecting back to the profile page via /profile. ***On successful login, the carts are addition-synced. This means that all the products previously saved to the user's profile and stored in the database will first be added to the cart as a base amount, and then any products which the user just added in the current session prior to logging in will then be added on top of this new base amount.*** As an example, if the user originally logged in with an empty cart (i.e. the user did not add any item to cart prior to logging in), any item that the user then adds to cart after logging in will also be saved to the database. This item quantity will remain in the current session even after the user logs out. On a second login without clearing the current cart, all the items in the current session will also be added to the saved cart in the database, resulting in a duplicated qty of items both in the current cart and in the database.
+When retrieved via GET, displays a form to allow users to sign in or sign up. When the form is submitted via POST, first checks if username and password are valid, returning error flash messages if not, then logs user in via saving the user id to session["user_id"] and then redirecting back to the profile page via /profile. **_On successful login, the carts are addition-synced. This means that all the products previously saved to the user's profile and stored in the database will first be added to the cart as a base amount, and then any products which the user just added in the current session prior to logging in will then be added on top of this new base amount._** As an example, if the user originally logged in with an empty cart (i.e. the user did not add any item to cart prior to logging in), any item that the user then adds to cart after logging in will also be saved to the database. This item quantity will remain in the current session even after the user logs out. On a second login without clearing the current cart, all the items in the current session will also be added to the saved cart in the database, resulting in a duplicated qty of items both in the current cart and in the database.
 
 > [!CAUTION]
 > This results in a duplicate amount being saved to cart (this is also displayed in the current session). Users are advised to clear their carts after logging out if they intend to log in again.
@@ -140,7 +141,7 @@ Clears the current `session["user_id"]` allowing users to log out. Redirects bac
 
 /register
 
-When retrieved via GET, renders a sign up page with password confirmation. When submitted via POST, ensures validity of username and password, then logs users in. *As this is a new account, no cart syncing is required.*
+When retrieved via GET, renders a sign up page with password confirmation. When submitted via POST, ensures validity of username and password, then logs users in. _As this is a new account, no cart syncing is required._
 
 CART FUNCTIONS
 
@@ -165,7 +166,7 @@ CHECKOUT FUNCTIONS
 
 /checkout
 
-When retrieved via GET, i.e. when a user clicks on the checkout button in cart, displays a form allowing users to fill in their personal particulars and delivery and payment details. ***For the simplicity of this project, the payment details are saved as data in the database (though this is not done in practice, of course, in the real world) and hence will be susceptible to attacks and security breaches, with no way to validate account balances or allow actual monetary transfer.*** When executed via POST, i.e. when user fills in the form and submits it on payment, saves all details to the `transactions` and `transacted_items` tables, clears all current sessions via clear_session(), and renders the receipt page.
+When retrieved via GET, i.e. when a user clicks on the checkout button in cart, displays a form allowing users to fill in their personal particulars and delivery and payment details. **_For the simplicity of this project, the payment details are saved as data in the database (though this is not done in practice, of course, in the real world) and hence will be susceptible to attacks and security breaches, with no way to validate account balances or allow actual monetary transfer._** When executed via POST, i.e. when user fills in the form and submits it on payment, saves all details to the `transactions` and `transacted_items` tables, clears all current sessions via clear_session(), and renders the receipt page.
 
 /giftcode
 
@@ -176,6 +177,7 @@ clear_session()
 When the user checkouts, deletes all items saved to the user's profile and then clears all sessions.
 
 ## ${\textsf{\color{YellowGreen}{helper-functions.py}}}$
+
 login_required()
 
 Decorator function that ensures user is logged in before allowing access to the decorated function, else redirects them to login. Used in /profile to allow users to sign in to access their personal profile.
@@ -185,16 +187,19 @@ usd()
 Simple format function to format floats into USD values. Customised as a filter in app.py to allow use in jinja template.
 
 ## ${\textsf{\color{YellowGreen}{cookie.py}}}$
+
 Cookie()
 
-A custom class storing all information about each product using getter and setter functions, as retrieved from the `products` table in the database. The __str__ method is only for debugging purposes.
+A custom class storing all information about each product using getter and setter functions, as retrieved from the `products` table in the database. The **str** method is only for debugging purposes.
 
 ## ${\textsf{\color{YellowGreen}{customsql.py}}}$
+
 CustomSQL()
 
 A custom class to abstract passing SQL queries into the database. If the query starts with `"SELECT"`, returns the result as a list of dictionaries zipped with the keys as the table headers and the values as the corresponding data entries.
 
 ## ${\textsf{\color{YellowGreen}{layout.html}}}$
+
 The base layout for all the templates in this project. Defines meta properties and links to relevant stylesheet, favicon, and script as well as page titles in the head. Defines header for brand logo, nav for navbar, main for page body, flash message alerts, and footer in body.
 
 HEADER
@@ -214,45 +219,59 @@ FOOTER
 The footer displays a certain set of links for easy navigation at the bottom of the page. For the purpose of this project, however, only the link to the about page has been implemented for simplicity sake.
 
 ## ${\textsf{\color{YellowGreen}{grid.html}}}$
+
 This layout is also an extension of `layout.html` which serves as a secondary layer for pages to display multiple products in a table format on the same page.
 
 ## ${\textsf{\color{YellowGreen}{index.html}}}$
+
 This is the homepage of the website, and shows all the products the company sells. Each product is displayed as a grid item and on click leads the user to the respective individual product page.
 
 ## ${\textsf{\color{YellowGreen}{product.html}}}$
+
 This is another extension of `layout.html` which serves as a template for any product given its product id and other details. This allows the same layout to be used for multiple products without the need for multiple individual pages to be created for each product.
 
 ## ${\textsf{\color{YellowGreen}{favs.html and seasonal.html}}}$
+
 These pages display products of their respective categories based on the data entered into the database. Similar to `index.html`, they also extend `grid.html` to use the grid layout to display their products.
 
 ## ${\textsf{\color{YellowGreen}{about.html}}}$
+
 A simple about page to describe the company.
 
 ## ${\textsf{\color{YellowGreen}{profile.html}}}$
+
 Allows users to view their profile or log out as required.
 
 ## ${\textsf{\color{YellowGreen}{login.html}}}$
+
 Allows users to login or sign up for a new account.
 
 ## ${\textsf{\color{YellowGreen}{register.html}}}$
+
 Allows users to register for a new account.
 
 ## ${\textsf{\color{YellowGreen}{cart.html}}}$
+
 This is another template extending `layout.html` that serves as the basis for the following two pages.
 
 ## ${\textsf{\color{YellowGreen}{emptycart.html}}}$
+
 Displays a message prompting users that the cart is empty and directs users to browse products to add to cart. Prevents users from checking out without any item in cart with $0 total cost.
 
 ## ${\textsf{\color{YellowGreen}{fullcart.html}}}$
+
 When an item is added to cart, it will be displayed in a table format here, along with the total cost. Allows users to edit cart items here and checkout when done.
 
 ## ${\textsf{\color{YellowGreen}{checkout.html}}}$
+
 Displays a form for users to fill in personal particulars and delivery and payment details, along with a summary of all products in cart. (See /checkout above for more details)
 
 ## ${\textsf{\color{YellowGreen}{receipt.html}}}$
+
 Returns a commercial receipt of transaction including products bought and customer details, and some other details of the transaction. Allows users to print the receipt page with a print button at the bottom.
 
 ## ${\textsf{\color{YellowGreen}{script.js}}}$
+
 overlay_off()
 
 When the flash alert message is clicked anywhere on the screen, or the red cross on the upper right hand corner of the alert box is clicked, closes the flash alert box and simultaneously removes the dark overlay. This is because the alert box is under the overlay `<div>` as well.
@@ -262,6 +281,7 @@ search()
 Implements the search function in /search using jsonify. Returns, in HTML, a list of block links (buttons) as part of a form to direct users to the respective products searched for.
 
 ## ${\textsf{\color{YellowGreen}{styles.css}}}$
+
 The main stylesheet that dictates the design principles behind the template items.
 
 Much time and effort was put into designing each element to make them fit better into the page, albeit not supported for mobile viewing, but at least allowing zooming in and out on a PC screen. Each element was painstakingly manually transformed and styled to appeal to the general user (less the number input style, with which credit I have mentioned in the document itself)

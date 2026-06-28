@@ -1,17 +1,14 @@
 # Cookies & Cache
 
-### ${\textsf{\color{YellowGreen}{A CS50x Project, enhanced.}}}$
+[Demo](https://youtu.be/3_55Wi-5f70)
 
 - [Original CS50x Project](original-html-flask)
 
 - [My React Project](react-flask)
 
-${\textsf{\color{Red}{Copyright ©2024 Tan Boon Leong. All rights reserved.}}}$
-
-> [!CAUTION]
-> This project was created entirely from scratch by the author. The author retains all rights to prohibit any form of distribution and/or usage of any or all of the materials contained within this project.
+Copyright ©2024 Tan Boon Leong. All rights reserved.
 
 > [!WARNING]
-> Please do not use any of the materials without asking for my permission, and please do remember to credit me even after receiving my permission.
+> This project was created by hand without the use of AI. The author retains all rights to prohibit any form of distribution and/or usage of any or all of the materials contained within this project.
 
-*Unlicensed usage and/or distribution of materials from this project is strictly prohibited.*
+_Unlicensed usage and/or distribution of materials from this project is strictly prohibited._
