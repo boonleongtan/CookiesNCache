@@ -23,6 +23,8 @@ npm run dev
 
 Open `http://127.0.0.1:3000`.
 
+[Explanation of features](/original-html-flask/README.md)
+
 Copyright ©2024 Tan Boon Leong. All rights reserved.
 
 > [!WARNING]

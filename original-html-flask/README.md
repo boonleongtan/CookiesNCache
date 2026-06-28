@@ -15,13 +15,16 @@ _Unlicensed usage and/or distribution of materials from this project is strictly
 
 ### Description:
 
-### ${\textsf{\color{YellowOrange}{What my project is about}}}$
+### What my project is about
 
 This project is about creating an online website (for use with PC screens only—this project is not yet compatible with mobile) to allow users to order cookies and other products from a fictional cookie company by the name of Cookies & Cache.
 
-### ${\textsf{\color{YellowOrange}{What each of the files I wrote for the project contains and does}}}$
+### Features
 
-## ${\textsf{\color{YellowGreen}{app.py}}}$
+<details>
+<summary>What each of the files I wrote for the project contains and does</summary>
+
+#### ${\textsf{\color{YellowGreen}{app.py}}}$
 
 Starting with the flask application that powers the whole project, we first import `sqlite3` to work with SQL, `flask` and `flask session` to run Flask, `werkzeug.security` to implement password checking and hashing, as well as other custom helper functions which will be explained in further detail later:
 
@@ -178,7 +181,7 @@ clear_session()
 
 When the user checkouts, deletes all items saved to the user's profile and then clears all sessions.
 
-## ${\textsf{\color{YellowGreen}{helper-functions.py}}}$
+#### ${\textsf{\color{YellowGreen}{helper-functions.py}}}$
 
 login_required()
 
@@ -188,19 +191,19 @@ usd()
 
 Simple format function to format floats into USD values. Customised as a filter in app.py to allow use in jinja template.
 
-## ${\textsf{\color{YellowGreen}{cookie.py}}}$
+#### ${\textsf{\color{YellowGreen}{cookie.py}}}$
 
 Cookie()
 
 A custom class storing all information about each product using getter and setter functions, as retrieved from the `products` table in the database. The **str** method is only for debugging purposes.
 
-## ${\textsf{\color{YellowGreen}{customsql.py}}}$
+#### ${\textsf{\color{YellowGreen}{customsql.py}}}$
 
 CustomSQL()
 
 A custom class to abstract passing SQL queries into the database. If the query starts with `"SELECT"`, returns the result as a list of dictionaries zipped with the keys as the table headers and the values as the corresponding data entries.
 
-## ${\textsf{\color{YellowGreen}{layout.html}}}$
+#### ${\textsf{\color{YellowGreen}{layout.html}}}$
 
 The base layout for all the templates in this project. Defines meta properties and links to relevant stylesheet, favicon, and script as well as page titles in the head. Defines header for brand logo, nav for navbar, main for page body, flash message alerts, and footer in body.
 
@@ -220,59 +223,59 @@ FOOTER
 
 The footer displays a certain set of links for easy navigation at the bottom of the page. For the purpose of this project, however, only the link to the about page has been implemented for simplicity sake.
 
-## ${\textsf{\color{YellowGreen}{grid.html}}}$
+#### ${\textsf{\color{YellowGreen}{grid.html}}}$
 
 This layout is also an extension of `layout.html` which serves as a secondary layer for pages to display multiple products in a table format on the same page.
 
-## ${\textsf{\color{YellowGreen}{index.html}}}$
+#### ${\textsf{\color{YellowGreen}{index.html}}}$
 
 This is the homepage of the website, and shows all the products the company sells. Each product is displayed as a grid item and on click leads the user to the respective individual product page.
 
-## ${\textsf{\color{YellowGreen}{product.html}}}$
+#### ${\textsf{\color{YellowGreen}{product.html}}}$
 
 This is another extension of `layout.html` which serves as a template for any product given its product id and other details. This allows the same layout to be used for multiple products without the need for multiple individual pages to be created for each product.
 
-## ${\textsf{\color{YellowGreen}{favs.html and seasonal.html}}}$
+#### ${\textsf{\color{YellowGreen}{favs.html and seasonal.html}}}$
 
 These pages display products of their respective categories based on the data entered into the database. Similar to `index.html`, they also extend `grid.html` to use the grid layout to display their products.
 
-## ${\textsf{\color{YellowGreen}{about.html}}}$
+#### ${\textsf{\color{YellowGreen}{about.html}}}$
 
 A simple about page to describe the company.
 
-## ${\textsf{\color{YellowGreen}{profile.html}}}$
+#### ${\textsf{\color{YellowGreen}{profile.html}}}$
 
 Allows users to view their profile or log out as required.
 
-## ${\textsf{\color{YellowGreen}{login.html}}}$
+#### ${\textsf{\color{YellowGreen}{login.html}}}$
 
 Allows users to login or sign up for a new account.
 
-## ${\textsf{\color{YellowGreen}{register.html}}}$
+#### ${\textsf{\color{YellowGreen}{register.html}}}$
 
 Allows users to register for a new account.
 
-## ${\textsf{\color{YellowGreen}{cart.html}}}$
+#### ${\textsf{\color{YellowGreen}{cart.html}}}$
 
 This is another template extending `layout.html` that serves as the basis for the following two pages.
 
-## ${\textsf{\color{YellowGreen}{emptycart.html}}}$
+#### ${\textsf{\color{YellowGreen}{emptycart.html}}}$
 
 Displays a message prompting users that the cart is empty and directs users to browse products to add to cart. Prevents users from checking out without any item in cart with $0 total cost.
 
-## ${\textsf{\color{YellowGreen}{fullcart.html}}}$
+#### ${\textsf{\color{YellowGreen}{fullcart.html}}}$
 
 When an item is added to cart, it will be displayed in a table format here, along with the total cost. Allows users to edit cart items here and checkout when done.
 
-## ${\textsf{\color{YellowGreen}{checkout.html}}}$
+#### ${\textsf{\color{YellowGreen}{checkout.html}}}$
 
 Displays a form for users to fill in personal particulars and delivery and payment details, along with a summary of all products in cart. (See /checkout above for more details)
 
-## ${\textsf{\color{YellowGreen}{receipt.html}}}$
+#### ${\textsf{\color{YellowGreen}{receipt.html}}}$
 
 Returns a commercial receipt of transaction including products bought and customer details, and some other details of the transaction. Allows users to print the receipt page with a print button at the bottom.
 
-## ${\textsf{\color{YellowGreen}{script.js}}}$
+#### ${\textsf{\color{YellowGreen}{script.js}}}$
 
 overlay_off()
 
@@ -282,22 +285,29 @@ search()
 
 Implements the search function in /search using jsonify. Returns, in HTML, a list of block links (buttons) as part of a form to direct users to the respective products searched for.
 
-## ${\textsf{\color{YellowGreen}{styles.css}}}$
+#### ${\textsf{\color{YellowGreen}{styles.css}}}$
 
 The main stylesheet that dictates the design principles behind the template items.
 
 Much time and effort was put into designing each element to make them fit better into the page, albeit not supported for mobile viewing, but at least allowing zooming in and out on a PC screen. Each element was painstakingly manually transformed and styled to appeal to the general user (less the number input style, with which credit I have mentioned in the document itself)
 
-### ${\textsf{\color{YellowOrange}{Did I debate certain design choices and why I made them?}}}$
+</details>
 
-(1) NUMBER INPUT STYLE
+### Reflections
+
+<details>
+<summary>Did I debate certain design choices and why I made them?</summary>
+
+#### (1) NUMBER INPUT STYLE
 
 To better allow editing item quantity, I chose to use the button style for all number inputs when adding items to cart or editting cart item quantities. As I was inexperienced with such designed principles, I went online to research for a way to implement this, and adapted a ready-made solution to my project (<sup>1</sup>credit: https://stackoverflow.com/questions/45396280/customizing-increment-arrows-on-input-of-type-number-using-css). This allows for more user-friendly number inputs.
 
-(2) DIFFERENT LAYOUT FOR CHECKOUT AND RECEIPT PAGES
+#### (2) DIFFERENT LAYOUT FOR CHECKOUT AND RECEIPT PAGES
 
 The checkout and receipt pages have slightly different layouts from their counterparts due to the simplicity required of their functionalities. Only allows navigation back to the home page to prevent caching of responses due to sensitive details being input in the checkout page.
 
-(3) OTHERS
+#### (3) OTHERS
 
 The rest of the design choices have already been mentioned in their respective sections above in their corresponding functions.
+
+</details>
