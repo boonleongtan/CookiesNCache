@@ -27,6 +27,7 @@ class CustomSQL:
         with sqlite3.connect(self.database) as connection:
             cursor = connection.cursor()
             cursor.execute(query, args)
-            if query.upper().startswith("SELECT"):
+            if cursor.description:
                 return [dict(zip([column[0] for column in cursor.description], row)) for row in cursor.fetchall()]
             connection.commit()
+            return []

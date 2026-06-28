@@ -47,6 +47,7 @@ function Checkout() {
     }
 
     async function handleCheckout(formData) {
+        const cardNo = formData.get('card-no') || '';
         const custDeets = {
             email: formData.get('email'),
             phoneNo: formData.get('phone-no'),
@@ -56,9 +57,7 @@ function Checkout() {
             address: formData.get('address'),
             postalCode: formData.get('postal-code'),
             deliveryDatetime: formData.get('delivery-datetime'),
-            cardNo: formData.get('card-no'),
-            cardExp: formData.get('card-exp'),
-            cardCode: formData.get('card-code'),
+            cardLast4: cardNo.slice(-4),
             cardName: formData.get('card-name'),
             prediscount: checkoutCart.subtotal,
             paid: checkoutCart.total,

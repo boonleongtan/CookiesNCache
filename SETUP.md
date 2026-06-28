@@ -1,93 +1,44 @@
-# Setting up to run React-Flask
+# Setting up React-Flask locally
 
-First `cd` into `react-flask` dir.
+Run the Flask API and Vite React client in separate terminals.
 
-## Server (Flask)
+## Server: Flask API
 
-${\textsf{\color{Orange}{1:}}}$ Open `flask-api` in Integrated Terminal.
+From the repository root:
 
-${\textsf{\color{Orange}{2:}}}$ **Both** Linux and Windows:
-
-```
-python3 -m venv venv
-```
-
-${\textsf{\color{Orange}{3:}}}$ **Linux:**
-
-```
-. venv/bin/activate
-```
-
-or **(also Linux):**
-
-```
-source venv/bin/activate
-```
-
-**Windows:**
-
-```
+```powershell
+cd react-flask/flask-api
+python -m venv venv
 venv\Scripts\activate
+python -m pip install -r requirements.txt
+python -m flask --app api run --no-debugger
 ```
 
-${\textsf{\color{Orange}{4:}}}$ Install libraries (both)
+The API runs at `http://127.0.0.1:5000`.
 
-```
-pip install flask flask-session python-dotenv
-```
+## Client: React + Vite
 
-*(Optional):*
+In a second terminal:
 
-```
-pip install werkzeug
-```
-
-## Client (React)
-
-${\textsf{\color{Pink}{1:}}}$ Open `react-client` in Integrated Terminal
-
-${\textsf{\color{Pink}{2:}}}$ Install node_modules
-
-```
-npm i
-```
-
-or
-
-```
+```powershell
+cd react-flask/react-client
 npm install
+npm run dev
 ```
 
-# ${\textsf{\color{YellowGreen}{Running}}}$
+Open `http://127.0.0.1:3000`.
 
-${\textsf{\color{YellowGreen}{1:}}}$ First change `... "scripts": {...} ...` in `package.json` to match OS:
+The Vite dev server proxies `/api` requests to Flask, so the React code can keep using relative API URLs such as `/api/products`.
 
-**Linux:**
+## Security maintenance
 
-```
-"start-api": "cd ../flask-api && venv/bin/flask run --no-debugger",
-```
-
-**Windows:**
-
-```
-"start-api": "cd ../flask-api && venv\\Scripts\\activate && flask run --no-debugger",
+```powershell
+cd react-flask/react-client
+npm audit
 ```
 
-${\textsf{\color{YellowGreen}{2:}}}$ Then, Open 2 x `react-client` in Integrated Terminal.
-
-${\textsf{\color{YellowGreen}{3:}}}$ In each terminal, run:
-
-### Server (Flask)
-
-```
-npm run start-api
-```
-
-and
-
-### Client (React)
-
-```
-npm start
+```powershell
+cd react-flask/flask-api
+python -m pip install pip-audit
+pip-audit -r requirements.txt
 ```

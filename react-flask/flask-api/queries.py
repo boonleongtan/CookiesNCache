@@ -13,7 +13,7 @@ b_input_products_into_table = '''
 '''
 
 c_create_table_for_transaction_details = '''
-    CREATE TABLE IF NOT EXISTS transactions(id INTEGER PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL, phone_no TEXT NOT NULL, country TEXT NOT NULL, address TEXT NOT NULL, postal_code TEXT NOT NULL, delivery_datetime BLOB NOT NULL, card_no TEXT NOT NULL, card_exp TEXT NOT NULL, card_code TEXT NOT NULL, card_name TEXT NOT NULL, prediscount_amt REAL NOT NULL, transacted_amt REAL NOT NULL, transaction_datetime TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS transactions(id INTEGER PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL, phone_no TEXT NOT NULL, country TEXT NOT NULL, address TEXT NOT NULL, postal_code TEXT NOT NULL, delivery_datetime BLOB NOT NULL, card_last4 TEXT NOT NULL, card_name TEXT NOT NULL, prediscount_amt REAL NOT NULL, transacted_amt REAL NOT NULL, transaction_datetime TEXT NOT NULL);
 '''
 
 d_create_table_for_transacted_items = '''
@@ -25,5 +25,5 @@ e_create_table_for_users = '''
 '''
 
 f_create_table_for_users_saved_cart = '''
-    CREATE TABLE IF NOT EXISTS savedcart(user_id INTEGER NOT NULL, product_id INTEGER NOT NULL UNIQUE, qty INTEGER NOT NULL, FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(product_id) REFERENCES products(id));
+    CREATE TABLE IF NOT EXISTS savedcart(user_id INTEGER NOT NULL, product_id INTEGER NOT NULL, qty INTEGER NOT NULL, UNIQUE(user_id, product_id), FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN KEY(product_id) REFERENCES products(id));
 '''

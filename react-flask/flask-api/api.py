@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request, session
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -9,20 +11,98 @@ import queries
 # Configure app
 app = Flask(__name__)
 
-# Preset database
-db = CustomSQL("store.db")
-db.execute(queries.a_create_table_for_products)
-db.execute(queries.b_input_products_into_table)
-db.execute(queries.c_create_table_for_transaction_details)
-db.execute(queries.d_create_table_for_transacted_items)
-db.execute(queries.e_create_table_for_users)
-db.execute(queries.f_create_table_for_users_saved_cart)
-
 # Configure session
+app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", "dev-secret-key-change-me")
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_SECURE"] = os.environ.get("SESSION_COOKIE_SECURE") == "true"
 Session(app)
 # Note: In total there are 5 session variables defined: "cart"(list of dictionaries), "grandtotal"(float), "is_discounted"(boolean), "gift_code_status"(string), "user_id"(integer)
+
+db = CustomSQL("store.db")
+
+
+def migrate_transactions_table():
+    db.execute(queries.c_create_table_for_transaction_details)
+    columns = {row["name"] for row in db.execute("PRAGMA table_info(transactions);")}
+    if not {"card_no", "card_exp", "card_code"}.intersection(columns):
+        return
+
+    db.execute("DROP TABLE IF EXISTS transactions_new;")
+    db.execute(
+        """
+        CREATE TABLE transactions_new(
+            id INTEGER PRIMARY KEY,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            phone_no TEXT NOT NULL,
+            country TEXT NOT NULL,
+            address TEXT NOT NULL,
+            postal_code TEXT NOT NULL,
+            delivery_datetime BLOB NOT NULL,
+            card_last4 TEXT NOT NULL,
+            card_name TEXT NOT NULL,
+            prediscount_amt REAL NOT NULL,
+            transacted_amt REAL NOT NULL,
+            transaction_datetime TEXT NOT NULL
+        );
+        """
+    )
+    db.execute(
+        """
+        INSERT INTO transactions_new(
+            id, name, email, phone_no, country, address, postal_code,
+            delivery_datetime, card_last4, card_name, prediscount_amt,
+            transacted_amt, transaction_datetime
+        )
+        SELECT
+            id, name, email, phone_no, country, address, postal_code,
+            delivery_datetime, substr(card_no, -4), card_name,
+            prediscount_amt, transacted_amt, transaction_datetime
+        FROM transactions;
+        """
+    )
+    db.execute("DROP TABLE transactions;")
+    db.execute("ALTER TABLE transactions_new RENAME TO transactions;")
+
+
+def migrate_savedcart_table():
+    db.execute(queries.f_create_table_for_users_saved_cart)
+    db.execute("DROP TABLE IF EXISTS savedcart_new;")
+    db.execute(
+        """
+        CREATE TABLE savedcart_new(
+            user_id INTEGER NOT NULL,
+            product_id INTEGER NOT NULL,
+            qty INTEGER NOT NULL,
+            UNIQUE(user_id, product_id),
+            FOREIGN KEY(user_id) REFERENCES users(id),
+            FOREIGN KEY(product_id) REFERENCES products(id)
+        );
+        """
+    )
+    db.execute(
+        """
+        INSERT OR REPLACE INTO savedcart_new(user_id, product_id, qty)
+        SELECT user_id, product_id, qty FROM savedcart;
+        """
+    )
+    db.execute("DROP TABLE savedcart;")
+    db.execute("ALTER TABLE savedcart_new RENAME TO savedcart;")
+
+
+def initialise_database():
+    db.execute(queries.a_create_table_for_products)
+    db.execute(queries.b_input_products_into_table)
+    migrate_transactions_table()
+    db.execute(queries.d_create_table_for_transacted_items)
+    db.execute(queries.e_create_table_for_users)
+    migrate_savedcart_table()
+
+
+initialise_database()
 
 # Ensure responses aren't cached
 @app.after_request
@@ -180,6 +260,10 @@ def checkout():
         session["gift_code_status"] = ""
     if "is_discounted" not in session:
         session["is_discounted"] = False
+    if "cart" not in session:
+        session["cart"] = []
+    if "grandtotal" not in session:
+        session["grandtotal"] = sum([cookie._total for cookie in session["cart"]])
     # GET (when user clicks on checkout button in shopping cart)
     checkout_data = {
         "cookies": [c.serialise() for c in session["cart"]],
@@ -215,24 +299,22 @@ def receipt():
     # for debugging
     # print("Receipt details: ", formData)
     # get all input details
-    name = f"{formData["fname"]} {formData["lname"]}"
+    name = f"{formData['fname']} {formData['lname']}"
     email = formData["email"]
     phone_no = formData["phoneNo"]
     country = formData["country"]
     address = formData["address"]
     postal_code = formData["postalCode"]
     delivery_datetime = formData["deliveryDatetime"]
-    card_no = formData["cardNo"]
-    card_exp = formData["cardExp"]
-    card_code = formData["cardCode"]
+    card_last4 = str(formData["cardLast4"])[-4:]
     card_name = formData["cardName"]
     # get the pre discounted amt
     prediscount_amt = formData["prediscount"]
     # get the final paid amount
     transacted_amt = formData["paid"]
     # enter user details into database
-    db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
-                name, email, phone_no, country, address, postal_code, delivery_datetime, card_no, card_exp, card_code, card_name, prediscount_amt, transacted_amt)
+    db.execute("INSERT INTO transactions(name, email, phone_no, country, address, postal_code, delivery_datetime, card_last4, card_name, prediscount_amt, transacted_amt, transaction_datetime) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP);",
+                name, email, phone_no, country, address, postal_code, delivery_datetime, card_last4, card_name, prediscount_amt, transacted_amt)
     # get the transaction id (by selecting the latest data entry)
     transaction_id = db.execute(
         "SELECT id FROM transactions WHERE id=(SELECT max(id) FROM transactions);")[0]["id"]
@@ -284,7 +366,7 @@ def login():
             username = db.execute("SELECT username FROM users WHERE id = ?;", session["user_id"])[0]["username"]
             return {"username": username, "user_id": session["user_id"]}
         else:
-            return {"username": None, "user_id": session["user_id"]}
+            return {"username": None, "user_id": session.get("user_id")}
 
 
 # log user out
@@ -342,10 +424,10 @@ def sync_carts(op_type):
             # add ("a") or update ("w") all items from session["cart"] into savedcart table
             if op_type == "a":
                 for cookie in session["cart"]:
-                    db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(product_id) DO UPDATE SET qty=qty+excluded.qty", session["user_id"], cookie.id, cookie.qty)
+                    db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(user_id, product_id) DO UPDATE SET qty=qty+excluded.qty", session["user_id"], cookie.id, cookie.qty)
             elif op_type == "w":
                 for cookie in session["cart"]:
-                    db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(product_id) DO UPDATE SET qty=excluded.qty", session["user_id"], cookie.id, cookie.qty)
+                    db.execute("INSERT INTO savedcart(user_id, product_id, qty) VALUES(?, ?, ?) ON CONFLICT(user_id, product_id) DO UPDATE SET qty=excluded.qty", session["user_id"], cookie.id, cookie.qty)
         # If user logs in when cart is still empty, and After reading to savedcart
         session["cart"] = []
         if op_type == "r":

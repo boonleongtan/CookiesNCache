@@ -53,7 +53,7 @@ function Receipt() {
             <p>Address: {details.address}</p>
             <p>Postal Code: {details.postalCode}</p>
             <p>Chosen Date and Time of Delivery: {details.deliveryDatetime.slice(0,10) + ", " + details.deliveryDatetime.slice(11)}</p>
-            <p>Card Number: {"**** **** **** " + details.cardNo.slice(-4)}</p>
+            <p>Card Number: {"**** **** **** " + details.cardLast4}</p>
             <p>Total Amount Paid (after discount): {details.paid}</p>
             <p>Time of purchase: {tOP.slice(1,11) + ", UTC " + tOP.slice(12,17)}</p>
 
