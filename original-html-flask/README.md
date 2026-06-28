@@ -11,6 +11,8 @@ _Unlicensed usage and/or distribution of materials from this project is strictly
 
 ### Video Demo: https://youtu.be/3_55Wi-5f70
 
+![Home page GIF](/readme-media/homepage.gif)
+
 ### Description:
 
 ### ${\textsf{\color{YellowOrange}{What my project is about}}}$

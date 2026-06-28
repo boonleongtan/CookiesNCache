@@ -1,8 +1,10 @@
 # Cookies & Cache - The React Version
 
-### ${\textsf{\color{YellowGreen}{This React app is translated from the original Flask app.}}}$
+### ${\textsf{\color{YellowGreen}{This React app is translated from the original Flask app, and later migrated to Vite.}}}$
 
-[Demo](https://youtu.be/3_55Wi-5f70)
+![Home page GIF](/readme-media/homepage.gif)
+
+[Video Demo](https://youtu.be/3_55Wi-5f70)
 
 ## Local development
 

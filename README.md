@@ -1,10 +1,12 @@
 # Cookies & Cache
 
-[Demo](https://youtu.be/3_55Wi-5f70)
+![Home page GIF](/readme-media/homepage.gif)
 
-- [Original CS50x Project](original-html-flask)
+[Video Demo](https://youtu.be/3_55Wi-5f70)
 
-- [My React Project](react-flask)
+- [Original CS50x Project](original-html-flask) (Includes explanation of all functions)
+
+- [My React Project](react-flask) (Personal project to upgrade html to react)
 
 Copyright ©2025 Tan Boon Leong. All rights reserved.
 
